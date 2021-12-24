@@ -49,6 +49,7 @@ const RichtextComponent = (props) => {
         <p className={'mb-1'}>{children}</p>
       ),
       [BLOCKS.HEADING_6]: (node, children) => <p>{children}</p>,
+      [BLOCKS.HR]: () => <hr className={'mt-5 mb-8'} />,
       [BLOCKS.EMBEDDED_ASSET]: (node) => {
         const url = node.data.target.fields.file.url
         const width = node.data.target.fields.file.details.image.width
@@ -58,7 +59,7 @@ const RichtextComponent = (props) => {
         const fileName = node.data.target.fields.file.fileName
 
         return (
-          <figure key={fileName} className={'my-5'}>
+          <figure key={fileName} className={'my-5 max-w-4xl'}>
             <Image
               key={fileName}
               alt={title || 'Photo of timeline entry'}
@@ -69,7 +70,6 @@ const RichtextComponent = (props) => {
               blurDataURL={`https:${
                 url.indexOf('?w') > -1 ? url : `${url}?w=8`
               }`}
-              // className={'rounded-lg'}
             />
             {/* {description && <figcaption>{description}</figcaption>} */}
           </figure>
