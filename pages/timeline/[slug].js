@@ -32,6 +32,7 @@ export const getStaticProps = async (context) => {
     props: {
       timeline: res.items[0].fields,
     },
+    revalidate: 3600,
   }
 }
 

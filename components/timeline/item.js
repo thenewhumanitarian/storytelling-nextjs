@@ -19,7 +19,7 @@ const TimelineItem = ({ data }) => {
         }
       >
         {title && (
-          <h3 className={'text-burgundy'} onClick={() => setIsOpen(!isOpen)}>
+          <h3 className={'text-burgundy font-normal'} onClick={() => setIsOpen(!isOpen)}>
             {title}
           </h3>
         )}
