@@ -6,7 +6,7 @@ const Timeline = ({ timeline }) => {
   console.log(timeline)
 
   return (
-    <div data-iframe-height={true} className={'w-full overflow-hidden h-auto'}>
+    <div data-iframe-height={true} className={'w-full overflow-hidden h-auto py-4'}>
       <TimelineComponent content={timeline} />
     </div>
   )
