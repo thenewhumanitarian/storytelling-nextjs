@@ -3,7 +3,7 @@ import { createClient } from 'contentful'
 import TimelineComponent from '@components/timeline/timeline.js'
 
 const Timeline = ({ timeline }) => {
-  console.log(timeline)
+  // console.log(timeline)
 
   return (
     <div data-iframe-height={true} className={'w-full overflow-hidden h-auto py-4'}>
