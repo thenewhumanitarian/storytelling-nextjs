@@ -2,15 +2,15 @@ import { callContentful } from '@utils/contentfulHelper'
 import SliderComponent from '@components/slideshow/slider'
 
 const Slideshow = ({ slideshow }) => {
-  return <SliderComponent elements={slideshow.imagesCollection.items} />
+	return <SliderComponent elements={slideshow.imagesCollection.items} />
 }
 
 export default Slideshow
 
 export const getStaticProps = async (context) => {
-  const slug = context.params.slug
+	const slug = context.params.slug
 
-  const query = `{
+	const query = `{
     imageSliderCollection(limit: 1, where: {slug: "${slug}"}) {
       items {
         sys {
@@ -100,16 +100,16 @@ export const getStaticProps = async (context) => {
     }
   }`
 
-  const slideshow = await callContentful(query)
+	const slideshow = await callContentful(query)
 
-  return {
-    props: { slideshow: slideshow.data.imageSliderCollection.items[0] },
-    revalidate: 60 * 30,
-  }
+	return {
+		props: { slideshow: slideshow.data.imageSliderCollection.items[0] },
+		revalidate: 60 * 30,
+	}
 }
 
 export const getStaticPaths = async () => {
-  const query = `{
+	const query = `{
     imageSliderCollection {
       items {
         slug
@@ -117,18 +117,18 @@ export const getStaticPaths = async () => {
     }
   }`
 
-  const slideshows = await callContentful(query)
+	const slideshows = await callContentful(query)
 
-  const paths = slideshows.data.imageSliderCollection.items.map((slideshow) => {
-    return {
-      params: {
-        slug: slideshow.slug,
-      },
-    }
-  })
+	const paths = slideshows.data.imageSliderCollection.items.map((slideshow) => {
+		return {
+			params: {
+				slug: slideshow.slug,
+			},
+		}
+	})
 
-  return {
-    paths: paths,
-    fallback: 'blocking', // Creates pages if they don't exist and then stores them...
-  }
+	return {
+		paths: paths,
+		fallback: 'blocking', // Creates pages if they don't exist and then stores them...
+	}
 }
