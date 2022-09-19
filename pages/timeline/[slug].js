@@ -3,41 +3,41 @@ import { createClient } from 'contentful'
 import TimelineComponent from '@components/timeline/timeline.js'
 
 const Timeline = ({ timeline }) => {
-  // console.log(timeline)
+	// console.log(timeline)
 
-  return (
-    <div data-iframe-height={true} className={'w-full overflow-hidden h-auto py-4'}>
-      <TimelineComponent content={timeline} />
-    </div>
-  )
+	return (
+		<div data-iframe-height={true} className={'w-full overflow-hidden h-auto py-4'}>
+			<TimelineComponent content={timeline} />
+		</div>
+	)
 }
 
 export default Timeline
 
 export const getStaticProps = async (context) => {
-  const slug = context.params.slug
+	const slug = context.params.slug
 
-  const client = createClient({
-    space: process.env.CONTENTFUL_SPACE_ID,
-    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-  })
+	const client = createClient({
+		space: process.env.CONTENTFUL_SPACE_ID,
+		accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+	})
 
-  const res = await client.getEntries({
-    content_type: 'timeline',
-    include: 2,
-    'fields.slug[in]': slug,
-  })
+	const res = await client.getEntries({
+		content_type: 'timeline',
+		include: 2,
+		'fields.slug[in]': slug,
+	})
 
-  return {
-    props: {
-      timeline: res.items[0].fields,
-    },
-    revalidate: 3600,
-  }
+	return {
+		props: {
+			timeline: res.items[0].fields,
+		},
+		revalidate: 3600,
+	}
 }
 
 export const getStaticPaths = async () => {
-  const query = `{
+	const query = `{
     timelineCollection {
       items {
         slug
@@ -45,18 +45,18 @@ export const getStaticPaths = async () => {
     }
   }`
 
-  const timelines = await callContentful(query)
+	const timelines = await callContentful(query)
 
-  const paths = timelines.data.timelineCollection.items.map((timeline) => {
-    return {
-      params: {
-        slug: timeline.slug,
-      },
-    }
-  })
+	const paths = timelines.data.timelineCollection.items.map((timeline) => {
+		return {
+			params: {
+				slug: timeline.slug,
+			},
+		}
+	})
 
-  return {
-    paths: paths,
-    fallback: 'blocking', // Creates pages if they don't exist and then stores them...
-  }
+	return {
+		paths: paths,
+		fallback: 'blocking', // Creates pages if they don't exist and then stores them...
+	}
 }

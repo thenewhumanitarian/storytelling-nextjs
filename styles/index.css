@@ -34,10 +34,10 @@
     @apply font-body text-base;
   }
   a {
-    @apply no-underline font-medium border-b border-gray-600;
+    @apply no-underline font-normal border-b border-gray-600;
   }
   a:hover {
-    @apply no-underline font-medium border-b border-gray-600 bg-gray-600 text-white;
+    @apply no-underline font-normal border-b border-gray-600 bg-gray-600 text-white;
   }
   a:focus,
   a:active {
@@ -45,6 +45,9 @@
   }
   iframe {
     @apply w-full top-0 left-0 absolute h-full;
+  }
+  b, strong {
+    font-weight: bold;
   }
 }
 @tailwind components;
