@@ -17,20 +17,22 @@ const Typist = dynamic(() => import('react-typist'), {
 
 const TypistElement = ({ item }) => {
 	return (
-		<>
-			<Typist
-				cursor={{
-					show: true,
-					blink: true,
-					element: '|',
-					hideWhenDone: false,
-					hideWhenDoneDelay: 0,
-				}}
-			>
-				<h3 className={'inline absolute top-0 left-0 text-3xl'}>{item.quote}</h3>
-			</Typist>
-			<h3 className={'inline-block absolute top-0 left-0 opacity-25 text-burgundy text-3xl'}>{item.quote}</h3>
-			<h3 className={'inline opacity-0 text-3xl'}>{item.quote}</h3>
+		<div>
+			<div className={'mt-10 mb-8'}>
+				<Typist
+					cursor={{
+						show: true,
+						blink: true,
+						element: '|',
+						hideWhenDone: false,
+						hideWhenDoneDelay: 0,
+					}}
+				>
+					<h3 className={'inline absolute top-0 left-0 text-3xl'}>{item.quote}</h3>
+				</Typist>
+				<h3 className={'inline-block absolute top-0 left-0 opacity-25 text-burgundy text-3xl'}>{item.quote}</h3>
+				<h3 className={'inline opacity-0 text-3xl'}>{item.quote}</h3>
+			</div>
 			<div className={'text-center'}>
 				<Link href={item.link}>
 					<a target={'_top'}>
@@ -41,7 +43,7 @@ const TypistElement = ({ item }) => {
 					</a>
 				</Link>
 			</div>
-		</>
+		</div>
 	)
 }
 
@@ -79,7 +81,21 @@ const TypistSliderComponent = ({ content }) => {
 	}
 
 	return (
-		<div className={'relative'}>
+		<div className={'relative mb-6'}>
+			<div className={'flex justify-between w-full py-6'}>
+				<button
+					className={'bg-gray-200 hover:bg-gray-100 rounded-full ml-4 p-2 w-12 h-12'}
+					onClick={() => changeSlide(currentSlide + 1 >= content.length ? 0 : currentSlide + 1)}
+				>
+					<ArrowLeftIcon />
+				</button>
+				<button
+					className={'bg-gray-200 hover:bg-gray-100 rounded-full mr-4 p-2 w-12 h-12'}
+					onClick={() => changeSlide(currentSlide + 1 >= content.length ? 0 : currentSlide + 1)}
+				>
+					<ArrowRightIcon />
+				</button>
+			</div>
 			<div className={'grid grid-cols-1 sm:grid-cols-3 gap-x-10 justify-start'} key={`wrapper-${currentSlide}`}>
 				<HeadElement
 					className={'hidden sm:flex'}
@@ -101,14 +117,14 @@ const TypistSliderComponent = ({ content }) => {
 					item={currentSlide + 1 >= content.length ? content[0] : content[currentSlide + 1]}
 				/>
 			</div>
-			<div className={'flex justify-between w-full py-6'}>
+			{/* <div className={'flex justify-between w-full py-6'}>
 				<button className={'w-8 h-8'} onClick={() => changeSlide(currentSlide + 1 >= content.length ? 0 : currentSlide + 1)}>
 					<ArrowLeftIcon />
 				</button>
 				<button className={'w-8 h-8'} onClick={() => changeSlide(currentSlide + 1 >= content.length ? 0 : currentSlide + 1)}>
 					<ArrowRightIcon />
 				</button>
-			</div>
+			</div> */}
 			<motion.div className={'relative'}>
 				<TypistElement key={`typist-${currentSlide}`} item={content[currentSlide]} />
 			</motion.div>
