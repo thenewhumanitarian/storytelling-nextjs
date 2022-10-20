@@ -1,5 +1,5 @@
 // import { Suspense } from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
@@ -76,9 +76,13 @@ const TypistSliderComponent = ({ content }) => {
 	const [currentSlide, setCurrentSlide] = useState(0)
 
 	const changeSlide = (i) => {
-		console.log(i)
+		// console.log(i)
 		setCurrentSlide(i)
 	}
+
+	useEffect(() => {
+		setCurrentSlide(Math.floor(Math.random() * content.length - 1) + 1)
+	}, [])
 
 	return (
 		<div className={'relative mb-6'}>
