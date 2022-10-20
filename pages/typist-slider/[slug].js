@@ -6,7 +6,7 @@ const TypistSlider = ({ typistSlider }) => {
 	const { items } = typistSlider.quotesCollection
 
 	return (
-		<div data-iframe-height={true} className={'w-full overflow-hidden h-auto'}>
+		<div className={'w-full overflow-hidden h-auto'}>
 			<TypistSliderComponent content={items} />
 		</div>
 	)
