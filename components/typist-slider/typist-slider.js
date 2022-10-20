@@ -18,7 +18,7 @@ const Typist = dynamic(() => import('react-typist'), {
 const TypistElement = ({ item }) => {
 	return (
 		<div>
-			<div className={'mt-10 mb-8'}>
+			<div className={'sm:mt-10 sm:mb-8'}>
 				<Typist
 					cursor={{
 						show: true,
@@ -28,10 +28,10 @@ const TypistElement = ({ item }) => {
 						hideWhenDoneDelay: 0,
 					}}
 				>
-					<h3 className={'inline absolute top-0 left-0 text-3xl'}>{item.quote}</h3>
+					<h3 className={'inline absolute top-0 left-0 text-xl sm:text-3xl'}>{item.quote}</h3>
 				</Typist>
-				<h3 className={'inline-block absolute top-0 left-0 opacity-25 text-burgundy text-3xl'}>{item.quote}</h3>
-				<h3 className={'inline opacity-0 text-3xl'}>{item.quote}</h3>
+				<h3 className={'inline-block absolute top-0 left-0 opacity-25 text-burgundy text-xl sm:text-3xl'}>{item.quote}</h3>
+				<h3 className={'inline opacity-0 text-xl sm:text-3xl'}>{item.quote}</h3>
 			</div>
 			<div className={'text-center'}>
 				<Link href={item.link}>
@@ -57,7 +57,7 @@ const HeadElement = ({ item, onClick, isCurrent, className }) => {
 			initial={{ opacity: 0 }}
 			animate={{ opacity: isCurrent ? 1 : 0.3 }}
 		>
-			<motion.div className={'relative w-full pt-full rounded-full overflow-hidden'}>
+			<motion.div className={'relative w-1/2 sm:w-full pt-1/2 sm:pt-full rounded-full overflow-hidden'}>
 				<Image
 					className={'w-full h-full object-cover absolute top-0 left-0'}
 					layout={'fill'}
@@ -86,7 +86,7 @@ const TypistSliderComponent = ({ content }) => {
 
 	return (
 		<div className={'relative mb-6'}>
-			<div className={'flex justify-between w-full py-6'}>
+			<div className={'hidden sm:flex justify-between w-full py-6'}>
 				<button
 					className={'bg-gray-200 hover:bg-gray-100 rounded-full ml-4 p-2 w-12 h-12'}
 					onClick={() => changeSlide(currentSlide + 1 >= content.length ? 0 : currentSlide + 1)}
@@ -121,14 +121,20 @@ const TypistSliderComponent = ({ content }) => {
 					item={currentSlide + 1 >= content.length ? content[0] : content[currentSlide + 1]}
 				/>
 			</div>
-			{/* <div className={'flex justify-between w-full py-6'}>
-				<button className={'w-8 h-8'} onClick={() => changeSlide(currentSlide + 1 >= content.length ? 0 : currentSlide + 1)}>
+			<div className={'flex sm:hidden justify-between w-full pb-6'}>
+				<button
+					className={'bg-gray-200 hover:bg-gray-100 rounded-full ml-4 p-2 w-12 h-12'}
+					onClick={() => changeSlide(currentSlide + 1 >= content.length ? 0 : currentSlide + 1)}
+				>
 					<ArrowLeftIcon />
 				</button>
-				<button className={'w-8 h-8'} onClick={() => changeSlide(currentSlide + 1 >= content.length ? 0 : currentSlide + 1)}>
+				<button
+					className={'bg-gray-200 hover:bg-gray-100 rounded-full mr-4 p-2 w-12 h-12'}
+					onClick={() => changeSlide(currentSlide + 1 >= content.length ? 0 : currentSlide + 1)}
+				>
 					<ArrowRightIcon />
 				</button>
-			</div> */}
+			</div>
 			<motion.div className={'relative'}>
 				<TypistElement key={`typist-${currentSlide}`} item={content[currentSlide]} />
 			</motion.div>
