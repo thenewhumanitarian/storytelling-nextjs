@@ -79,7 +79,7 @@ const TypistSliderComponent = ({ content }) => {
 	}
 
 	return (
-		<div data-iframe-height={true}>
+		<div className={'relative'}>
 			<div className={'grid grid-cols-1 sm:grid-cols-3 gap-x-10 justify-start'} key={`wrapper-${currentSlide}`}>
 				<HeadElement
 					className={'hidden sm:flex'}
@@ -101,7 +101,7 @@ const TypistSliderComponent = ({ content }) => {
 					item={currentSlide + 1 >= content.length ? content[0] : content[currentSlide + 1]}
 				/>
 			</div>
-			<div className={'flex justify-between w-full p-6'}>
+			<div className={'flex justify-between w-full py-6'}>
 				<button className={'w-8 h-8'} onClick={() => changeSlide(currentSlide + 1 >= content.length ? 0 : currentSlide + 1)}>
 					<ArrowLeftIcon />
 				</button>
