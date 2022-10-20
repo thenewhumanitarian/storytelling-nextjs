@@ -79,7 +79,7 @@ const TypistSliderComponent = ({ content }) => {
 	}
 
 	return (
-		<div>
+		<div data-iframe-height={true}>
 			<div className={'grid grid-cols-1 sm:grid-cols-3 gap-x-10 justify-start'} key={`wrapper-${currentSlide}`}>
 				<HeadElement
 					className={'hidden sm:flex'}
@@ -87,7 +87,13 @@ const TypistSliderComponent = ({ content }) => {
 					onClick={() => changeSlide(currentSlide - 1 < 0 ? content.length - 1 : currentSlide - 1)}
 					item={currentSlide - 1 < 0 ? content[content.length - 1] : content[currentSlide - 1]}
 				/>
-				<HeadElement className={'p-4 sm:p-0'} isCurrent key={`current-head-${currentSlide}`} onClick={() => changeSlide(currentSlide)} item={content[currentSlide]} />
+				<HeadElement
+					className={'p-4 sm:p-0'}
+					isCurrent
+					key={`current-head-${currentSlide}`}
+					onClick={() => changeSlide(currentSlide)}
+					item={content[currentSlide]}
+				/>
 				<HeadElement
 					className={'hidden sm:flex'}
 					key={`next-head-${currentSlide}`}
