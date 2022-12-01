@@ -148,9 +148,7 @@ const SliderComponent = ({ elements, ua }) => {
 						)}
 						{elements[imageIndex].credit && (
 							<div
-								className={
-									'text-sm sm:text-sm absolute bottom-0 left-0 border-l-4 border-burgundy background-gray-800 text-gray-300 py-1 px-2 bg-black bg-opacity-40'
-								}
+								className={'absolute text-xs bottom-0 left-0 text-black py-1 px-2 bg-white bg-opacity-60 hover:bg-opacity-100 transition-all duration-300'}
 							>
 								{elements[imageIndex].credit}
 							</div>
