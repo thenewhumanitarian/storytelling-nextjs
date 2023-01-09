@@ -40,7 +40,17 @@ const SliderComponent = ({ elements, ua }) => {
 	const [[page, direction], setPage] = useState([0, 0])
 	const imageIndex = wrap(0, elements.length, page)
 
+	const [isInIframe, setIsInIframe] = useState(false)
 	const [iframeHeight, setIframeHeight] = useState((100 / 16) * 9)
+
+	useEffect(() => {
+		if (window !== window.parent) {
+			setIsInIframe(true)
+			console.log('Is in iframe!')
+		} else {
+			console.log('Is not in iframe!')
+		}
+	}, [])
 
 	useEffect(() => {
 		if (elements[imageIndex].iframeHeight || elements.iframeHeightMobile) {
@@ -55,8 +65,6 @@ const SliderComponent = ({ elements, ua }) => {
 			setIframeHeight((elements[imageIndex].image?.height / elements[imageIndex].image?.width) * 100)
 		}
 	}, [ua, imageIndex])
-
-	// console.log(iframeHeight)
 
 	const paginate = (newDirection) => {
 		setPage([page + newDirection, newDirection])
@@ -75,12 +83,16 @@ const SliderComponent = ({ elements, ua }) => {
 	}
 
 	return (
-		<div>
-			{elements.length > 1 && (
-				<div className={'flex sm:hidden justify-around items-center h-8 bg-gray-100 text-gray-700 text-sm dark:bg-gray-800 dark:text-gray-50'}>
-					<span onClick={() => paginate(-1)}>←</span>
-					<span>Swipe to see more</span>
-					<span onClick={() => paginate(1)}>→</span>
+		<div className={'bg-transparent'}>
+			{elements.length > 1 && !isInIframe && (
+				<div className={`flex sm:hidden justify-around items-center h-8 bg-gray-100 text-gray-700 text-sm dark:bg-gray-800 dark:text-gray-50`}>
+					<span className={'cursor-pointer'} onClick={() => paginate(-1)}>
+						←
+					</span>
+					<span>Swipe or click to see more</span>
+					<span className={'cursor-pointer'} onClick={() => paginate(1)}>
+						→
+					</span>
 				</div>
 			)}
 			<AnimatePresence initial={false} custom={direction}>
@@ -107,8 +119,11 @@ const SliderComponent = ({ elements, ua }) => {
 							paginate(-1)
 						}
 					}}
-					className={'top-8 sm:top-0 w-full absolute cursor-default flex flex-col flex-1'}
+					className={`${isInIframe ? '' : 'top-8'} sm:top-0 w-full absolute cursor-default flex flex-col flex-1`}
 					data-iframe-height={true}
+					style={{
+						backgroundColor: isInIframe ? '#282828' : 'transparent',
+					}}
 				>
 					<div
 						className={'relative w-full overflow-hidden m-0 p-0'}
@@ -146,10 +161,24 @@ const SliderComponent = ({ elements, ua }) => {
 								</div>
 							</>
 						)}
+
+						{elements.length > 1 && isInIframe && (
+							<>
+								<div className={'absolute text-white top-1/2 -mt-5 left-0 z-50'}>
+									<div className='prev' onClick={() => paginate(-1)}>
+										<ArrowLeft className={'w-10 h-10 bg-white bg-opacity-50 p-1 cursor-pointer -ml-1 hover:bg-opacity-60'} />
+									</div>
+								</div>
+								<div className={'absolute text-white top-1/2 -mt-5 right-0 z-50'}>
+									<div className='next' onClick={() => paginate(1)}>
+										<ArrowRight className={'w-10 h-10 bg-white bg-opacity-50 p-1 cursor-pointer -mr-1'} />
+									</div>
+								</div>
+							</>
+						)}
+
 						{elements[imageIndex].credit && (
-							<div
-								className={'absolute text-xs bottom-0 left-0 text-black py-1 px-2 bg-white bg-opacity-60 hover:bg-opacity-100 transition-all duration-300'}
-							>
+							<div className={'absolute text-xs bottom-0 left-0 text-black py-1 px-2 bg-white bg-opacity-60 hover:bg-opacity-100 transition-all duration-300'}>
 								{elements[imageIndex].credit}
 							</div>
 						)}
