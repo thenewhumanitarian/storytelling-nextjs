@@ -60,7 +60,8 @@ const SliderComponent = ({ elements, ua }) => {
 				setIframeHeight(elements[imageIndex].iframeHeight)
 			}
 		} else if (elements[imageIndex].videoHeight) {
-			setIframeHeight((elements[imageIndex].video?.height / elements[imageIndex].video?.width) * 100)
+			setIframeHeight(elements[imageIndex].videoHeight)
+			// setIframeHeight((elements[imageIndex].video?.height / elements[imageIndex].video?.width) * 100)
 		} else {
 			setIframeHeight((elements[imageIndex].image?.height / elements[imageIndex].image?.width) * 100)
 		}
