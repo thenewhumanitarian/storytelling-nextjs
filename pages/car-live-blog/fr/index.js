@@ -14,7 +14,7 @@ const AllLiveBlogs = ({ liveBlogData }) => {
 		<div>
 			<Helmet
 				htmlAttributes={{
-					lang: 'en-GB',
+					lang: 'fr',
 				}}
 			>
 				<meta name='viewport' content='width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no' />
@@ -44,7 +44,7 @@ const AllLiveBlogs = ({ liveBlogData }) => {
 
 				<div class='col-span-7 xl:col-span-5 grid grid-cols-1 gap-y-10'>
 					<h2>Dernières entrées</h2>
-					<Feed />
+					<Feed entries={liveBlogData.contentCollection.items} />
 				</div>
 			</div>
 		</div>
@@ -55,8 +55,40 @@ export default AllLiveBlogs
 
 export const getStaticProps = async () => {
 	const query1 = `{
-		liveBlog (locale: "fr", id: "6e28fk0egaJ9AhzGXsee2Y") {
-			title
+	liveBlogCollection(limit: 1, where: { slug: "car-blog-french" }) {
+			items {
+				title
+				slug
+				summary {
+					json
+				}
+				shareImage {
+					url
+				}
+				shareText
+				contentCollection {
+					items {
+						... on LiveBlogEntry {
+							title
+							slug
+							summary
+							type
+							blogEntryAuthor {
+								name
+								image {
+									url
+								}
+								description {
+									json
+								}
+								image {
+									url
+								}
+							}
+						}
+					}
+				}
+			}
 		}
   }`
 
