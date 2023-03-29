@@ -54,8 +54,8 @@ const AllLiveBlogs = ({ liveBlogData }) => {
 export default AllLiveBlogs
 
 export const getStaticProps = async () => {
-	const query1 = `{
-	liveBlogCollection(limit: 1, where: { slug: "car-blog-french" }) {
+	const query = `{
+	liveBlogCollection(locale: "fr", limit: 1, where: { slug: "car-blog-french" }) {
 			items {
 				title
 				slug
@@ -92,10 +92,10 @@ export const getStaticProps = async () => {
 		}
   }`
 
-	const liveBlog = await callContentful(query1)
+	const liveBlog = await callContentful(query)
 
 	return {
-		props: { liveBlogData: liveBlog.data.liveBlog },
+		props: { liveBlogData: liveBlog.data.liveBlogCollection.items[0] },
 		revalidate: 60,
 	}
 }

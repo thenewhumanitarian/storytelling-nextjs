@@ -54,7 +54,7 @@ const AllLiveBlogs = ({ liveBlogData }) => {
 export default AllLiveBlogs
 
 export const getStaticProps = async () => {
-	const query1 = `{
+	const query = `{
 	liveBlogCollection(limit: 1, where: { slug: "car-blog-english" }) {
 			items {
 				title
@@ -92,7 +92,7 @@ export const getStaticProps = async () => {
 		}
   }`
 
-	const liveBlog = await callContentful(query1)
+	const liveBlog = await callContentful(query)
 
 	return {
 		props: { liveBlogData: liveBlog.data.liveBlogCollection.items[0] },
