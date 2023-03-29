@@ -464,7 +464,8 @@ p:not([class]) {
   font-size: 1.9rem;
   line-height: 1.421;
   font-family: "Roboto", sans-serif;
-  color: #63666A;
+  /* color: #63666A; */
+  color: #000;
 }
 
 @media only screen and (max-width: 37.5em) {
@@ -556,7 +557,8 @@ blockquote p:not([class]) {
 .content__bulk a:not([class]),
 .chapter a:not([class]),
 .typeography a:not([class]) {
-  color: #63666A;
+  /* color: #63666A; */
+  color: #000;
   text-decoration: none;
   font-weight: 500;
   border-bottom: 1px solid #63666A;
@@ -632,7 +634,8 @@ blockquote p:not([class]) {
   font-size: 1.9rem;
   line-height: 1.421;
   font-family: "Roboto", sans-serif;
-  color: #63666A;
+  /* color: #63666A; */
+  color: #000;
   margin-bottom: 1rem;
   position: relative;
 }
@@ -886,7 +889,8 @@ picture {
   font-size: 1.4rem;
   line-height: 1.142;
   font-family: "Roboto", sans-serif;
-  color: #63666A;
+  /* color: #63666A; */
+  color: #000;
   padding: 1rem;
   background-color: #F2F2F2;
   height: auto;
@@ -3320,7 +3324,8 @@ textarea {
   font-size: 1.4rem;
   line-height: 1.142;
   font-family: "Roboto", sans-serif;
-  color: #63666A;
+  /* color: #63666A; */
+  color: #000;
   padding: 0.5rem 10rem 0.5rem 0;
   position: absolute;
 }
@@ -6868,7 +6873,8 @@ textarea {
   font-size: 1.4rem;
   line-height: 1.1428571429;
   padding-bottom: 0.5rem;
-  color: #63666A;
+  /* color: #63666A; */
+  color: #000;
   border-bottom: 0.1rem solid rgba(99, 102, 106, 0.35);
   text-decoration: none;
   -webkit-transition: all ease-in-out 0.2s;
