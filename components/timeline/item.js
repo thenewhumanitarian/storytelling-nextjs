@@ -15,7 +15,7 @@ const TimelineItem = ({ data }) => {
 		<div className={'mb-8'}>
 			<div className={'flex flex-row items-center justify-start relative cursor-pointer'}>
 				{title && (
-					<h3 className={'text-burgundy font-normal'} onClick={() => setIsOpen(!isOpen)}>
+					<h3 className={'text-burgundy font-normal text-3xl'} onClick={() => setIsOpen(!isOpen)}>
 						{title}
 					</h3>
 				)}

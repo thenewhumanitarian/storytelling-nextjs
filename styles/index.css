@@ -18,13 +18,13 @@
 		src: url(/fonts/GT-Sectra-Fine-Regular.woff) format('woff');
 	}
 	h1 {
-		@apply font-title text-3xl mb-2;
+		@apply font-serif font-normal text-3xl mb-2;
 	}
 	h2 {
-		@apply font-title text-2xl mb-2;
+		@apply font-serif font-normal text-2xl mb-2;
 	}
 	h3 {
-		@apply font-title text-xl mb-2;
+		@apply font-serif font-normal text-xl mb-2;
 	}
 	h6 {
 		@apply text-burgundy;
@@ -34,7 +34,7 @@
 		@apply font-body text-base;
 	}
 	a {
-		@apply no-underline font-normal text-burgundy;
+		@apply no-underline font-medium text-burgundy;
 	}
 	a:hover {
 		@apply underline;

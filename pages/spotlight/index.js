@@ -3,28 +3,30 @@ import Link from 'next/link'
 import { callContentful } from '@utils/contentfulHelper'
 
 const AllSpotlights = ({ spotlights }) => {
-  return (
-    <div className={'m-5'}>
-      <h2 className={'mb-2'}>All TNH spotlights:</h2>
-      <ul>
-        {spotlights.map((el) => {
-          return (
-            <li key={el.slug}>
-              <Link href={`/spotlight/${el.slug}`}>
-                <a>{el.title}</a>
-              </Link>
-            </li>
-          )
-        })}
-      </ul>
-    </div>
-  )
+	return (
+		<div className={'m-5'}>
+			<h2 className={'mb-2'}>All TNH spotlights:</h2>
+			<ul>
+				{spotlights.map((el) => {
+					return (
+						<li key={el.slug}>
+							<Link href={`/spotlight/${el.slug}`}>
+								<a>
+									<p className={'text-base'}>{el.title}</p>
+								</a>
+							</Link>
+						</li>
+					)
+				})}
+			</ul>
+		</div>
+	)
 }
 
 export default AllSpotlights
 
 export const getStaticProps = async () => {
-  const query = `{
+	const query = `{
     instaStoryCollection {
       items {
         title
@@ -33,10 +35,10 @@ export const getStaticProps = async () => {
     }
   }`
 
-  const spotlights = await callContentful(query)
+	const spotlights = await callContentful(query)
 
-  return {
-    props: { spotlights: spotlights.data.instaStoryCollection.items },
-    revalidate: 60,
-  }
+	return {
+		props: { spotlights: spotlights.data.instaStoryCollection.items },
+		revalidate: 60,
+	}
 }
