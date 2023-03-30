@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>button--play</title>
+    <desc>Created with Sketch.</desc>
+    <g id="v3" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Homepage" transform="translate(-662.000000, -2958.000000)">
+            <g id="Group-2" transform="translate(99.000000, 2360.000000)">
+                <g id="Teaser-row-Copy-4" transform="translate(0.000000, 449.000000)">
+                    <g id="Video-teaser-Copy" transform="translate(304.000000, 0.000000)">
+                        <g id="Teaser-image">
+                            <g id="button--play" transform="translate(260.000000, 150.000000)">
+                                <g id="button-play">
+                                    <circle id="Oval" stroke="#FFFFFF" fill-opacity="0.2" fill="#282828" fill-rule="nonzero" cx="9.93695652" cy="9.93695652" r="9.93695652"></circle>
+                                    <polygon id="Path" fill="#FFFFFF" fill-rule="nonzero" points="8.57173913 5.75217391 12.8130435 9.99347826 8.68478261 14.123913"></polygon>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
