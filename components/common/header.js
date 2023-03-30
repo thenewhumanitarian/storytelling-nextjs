@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 const SiteHeader = styled.header`
 	width: 100vw;
-	height: 8rem;
+	height: 6rem;
 	padding: 2.25rem 3.5rem;
 	text-align: center;
 	display: flex;
@@ -12,14 +12,25 @@ const SiteHeader = styled.header`
 	position: fixed;
 	z-index: 9999;
 	top: 0;
-	/* box-shadow: 0px 10px 33px 0px rgba(0, 0, 0, 0.5);
-  -webkit-box-shadow: 0px 10px 33px 0px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 0px 10px 33px 0px rgba(0, 0, 0, 0.5); */
 
 	.logo {
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		max-width: 180px;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		display: inline-block;
+		width: 180px;
+		height: 4rem;
+		text-indent: -999rem;
+		text-decoration: none;
+		overflow: hidden;
+		margin: auto;
+		top: 0;
 	}
 
 	.logo:hover {
@@ -31,6 +42,9 @@ const SiteHeader = styled.header`
 			text-decoration: none !important;
 			color: white !important;
 			font-weight: bold;
+			font-size: 1.4rem;
+			margin-left: 0 !important;
+			padding: 0.8rem 1rem;
 		}
 	}
 
@@ -142,9 +156,14 @@ const Header = (props) => {
 	}, [])
 
 	return (
-		<SiteHeader className={`border-none border-b-none site-header shadow-xs bg-white`} style={{ border: 'inherit' }}>
+		<SiteHeader className={`border-none border-b-none site-header shadow-xs`} style={{ border: 'inherit' }}>
 			<div className='site-header__left'>
-				<a rel={'noopener noreferrer'} target='_blank' className='button site-header__subscribe' href='https://www.thenewhumanitarian.org/membership'>
+				<a
+					rel={'noopener noreferrer'}
+					target='_blank'
+					className='px-3 py-1 font-bold text-white hover:no-underline bg-burgundy hover:opacity-80'
+					href='https://www.thenewhumanitarian.org/membership'
+				>
 					Donate
 				</a>
 				{props.shareProps && <ShareIcons shareProps={props.shareProps} inverted={props.inverted} />}
@@ -156,7 +175,7 @@ const Header = (props) => {
 					id='ANIMATED-LOGO'
 					height={'100%'}
 					viewBox='0 0 405.32 109.7'
-					className={`${props.inverted ? 'text-white' : 'text-gray-900'}`}
+					className={`w-full ${props.inverted ? 'text-white' : 'text-gray-900'}`}
 				>
 					<title>Logo of The New Humanitarian</title>
 					<path
@@ -260,7 +279,7 @@ const Header = (props) => {
 			</a>
 
 			<div className='site-header__right'>
-				<div className='site-header__tagline'>
+				<div className='text-base site-header__tagline'>
 					<span className={props.inverted ? 'text-white' : ''}>{props.tagline || 'Journalism from the heart of crises'}</span>
 				</div>
 			</div>

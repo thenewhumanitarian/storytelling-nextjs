@@ -23,20 +23,23 @@ const AllLiveBlogs = ({ liveBlogData }) => {
 			<HeaderComponent />
 
 			{/* Horizontal timeline */}
-			<div className={'w-full mt-32 bg-gray-200 px-8 py-5'}>{/* <HorizontalTimelineComponent liveBlogs={liveBlogs} /> */}</div>
+			<div className={'w-full bg-gray-200 px-8 py-5 mt-24'}>
+				{/* <HorizontalTimelineComponent liveBlogs={liveBlogs} /> */}
+				<p className={'text-base text-burgundy'}>[Horizontal Timeline]</p>
+			</div>
 
 			{/* Grid for main content */}
-			<div className='grid grid-flow-col grid-cols-9 gap-8 px-8 mt-14'>
+			<div className='grid grid-flow-col grid-cols-9 gap-8 px-8 mt-10'>
 				<div className='col-span-2'>
 					<h2>{liveBlogData.title}</h2>
-					<ul className={'list-none m-0 gap-y-3 grid py-5'}>
-						<li className={'underline'}>
+					<ul className={'list-none m-0 grid pt-2'}>
+						<li>
 							<Link href={'#'}>Why are we doing this</Link>
 						</li>
-						<li className={'underline'}>
+						<li>
 							<Link href={'#'}>What is it about</Link>
 						</li>
-						<li className={'underline'}>
+						<li>
 							<Link href={'#'}>Send us your feedback</Link>
 						</li>
 					</ul>

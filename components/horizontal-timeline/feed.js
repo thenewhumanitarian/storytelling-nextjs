@@ -1,5 +1,5 @@
 import { Fragment } from 'react'
-import { ChatBubbleLeftEllipsisIcon, TagIcon, UserCircleIcon } from '@heroicons/react/20/solid'
+import { NewspaperIcon, TagIcon, UserCircleIcon } from '@heroicons/react/20/solid'
 import { IconNewsReport, IconAudio, IconMovie, IconPhotoGallery } from '@components/icons/media'
 
 // const activity = [
@@ -107,23 +107,25 @@ export default function Feed({ entries }) {
 											/>
 
 											<span className='absolute -bottom-0.5 -right-1 rounded-tl bg-white px-0.5 py-px'>
-												<ChatBubbleLeftEllipsisIcon className='w-5 h-5 text-gray-400' aria-hidden='true' />
+												<span className='relative w-5 h-5 overflow-hidden text-gray-400 bg-white rounded-full' aria-hidden='true'>
+													<span className={'w-6 block'}>{activityItem.icon}</span>
+												</span>
 											</span>
 										</div>
 										<div className='flex-1 min-w-0'>
 											<div>
-												<div className='flex items-center justify-between w-full gap-8 text-4xl gap-x-4'>
+												<div className='flex items-center justify-between w-full gap-8 gap-x-4'>
 													<a href={activityItem.person.href} className='font-serif text-burgundy'>
-														{activityItem.title}
+														<h3 className={'text-2xl mb-0 mt-1'}>{activityItem.title}</h3>
 													</a>
-													<span className={'block w-12'}>{activityItem.icon}</span>
+													{/* <span className={'block w-6 opacity-40 absolute top-0 right-0'}>{activityItem.icon}</span> */}
 												</div>
-												<p className='mt-0.5 text-2xl text-gray-500'>
+												<p className='mt-0.5 text-gray-500'>
 													Posted {activityItem.date} by {activityItem.person.name}
 												</p>
 											</div>
-											<div className='mt-2 text-sm text-gray-700'>
-												<p>{activityItem.summary}</p>
+											<div className='mt-2 text-black'>
+												<p className={'text-base'}>{activityItem.summary}</p>
 											</div>
 										</div>
 									</>
@@ -137,9 +139,9 @@ export default function Feed({ entries }) {
 											</div>
 										</div>
 										<div className='min-w-0 flex-1 py-1.5'>
-											<div className='text-sm text-gray-500'>
+											<div className='text-gray-500'>
 												<a href={activityItem.person.href} className='font-medium text-gray-900'>
-													{activityItem.title}
+													<h3 className={'m-0 p-0'}>{activityItem.title}</h3>
 												</a>{' '}
 												assigned{' '}
 												<a href={activityItem.assigned.href} className='font-medium text-gray-900'>
@@ -159,7 +161,7 @@ export default function Feed({ entries }) {
 											</div>
 										</div>
 										<div className='flex-1 min-w-0 py-0'>
-											<div className='text-sm leading-8 text-gray-500'>
+											<div className='leading-8 text-gray-500'>
 												<span className='mr-0.5'>
 													<a href={activityItem.person.href} className='font-medium text-gray-900'>
 														{activityItem.title}
@@ -171,7 +173,7 @@ export default function Feed({ entries }) {
 														<Fragment key={tag.name}>
 															<a
 																href={tag.href}
-																className='relative inline-flex items-center rounded-full px-2.5 py-1 text-xs ring-1 ring-inset ring-gray-300 hover:bg-gray-50'
+																className='relative inline-flex items-center rounded-full px-2.5 py-1 ring-1 ring-inset ring-gray-300 hover:bg-gray-50'
 															>
 																<span className='absolute flex items-center justify-center flex-shrink-0'>
 																	<span className={classNames(tag.color, 'h-1.5 w-1.5 rounded-full')} aria-hidden='true' />

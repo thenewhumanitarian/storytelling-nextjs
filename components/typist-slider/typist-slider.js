@@ -28,10 +28,10 @@ const TypistElement = ({ item }) => {
 						hideWhenDoneDelay: 0,
 					}}
 				>
-					<h3 className={'inline absolute top-0 left-0 text-xl sm:text-3xl'}>{item.quote}</h3>
+					<h3 className={'inline absolute top-0 left-0'}>{item.quote}</h3>
 				</Typist>
-				<h3 className={'inline-block absolute top-0 left-0 opacity-25 text-burgundy text-xl sm:text-3xl'}>{item.quote}</h3>
-				<h3 className={'inline opacity-0 text-xl sm:text-3xl'}>{item.quote}</h3>
+				<h3 className={'inline-block absolute top-0 left-0 opacity-25 text-burgundy'}>{item.quote}</h3>
+				<h3 className={'inline opacity-0'}>{item.quote}</h3>
 			</div>
 			<div className={'text-center'}>
 				<Link href={item.link}>
@@ -67,7 +67,7 @@ const HeadElement = ({ item, onClick, isCurrent, className }) => {
 					alt={item.image.description || 'No alt text found'}
 				/>
 			</motion.div>
-			<h2 className={'text-center mt-4'}>{item.name}</h2>
+			<h2 className={'text-center font-body font-bold mt-4 text-base'}>{item.name}</h2>
 		</motion.div>
 	)
 }
