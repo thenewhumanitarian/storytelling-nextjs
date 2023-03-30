@@ -17,14 +17,14 @@ const SiteHeader = styled.header`
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		max-width: 180px;
+		max-width: 160px;
 		position: absolute;
 		top: 0;
 		right: 0;
 		bottom: 0;
 		left: 0;
 		display: inline-block;
-		width: 180px;
+		width: 160px;
 		height: 4rem;
 		text-indent: -999rem;
 		text-decoration: none;
@@ -156,7 +156,7 @@ const Header = (props) => {
 	}, [])
 
 	return (
-		<SiteHeader className={`border-none border-b-none site-header shadow-xs`} style={{ border: 'inherit' }}>
+		<SiteHeader className={`border-none border-b-none site-header shadow-lg`} style={{ border: 'inherit' }}>
 			<div className='site-header__left'>
 				<a
 					rel={'noopener noreferrer'}
@@ -169,13 +169,15 @@ const Header = (props) => {
 				{props.shareProps && <ShareIcons shareProps={props.shareProps} inverted={props.inverted} />}
 			</div>
 
-			<a className='logo' href='https://www.thenewhumanitarian.org' title='The New Humanitarian'>
+			<a className='relative flex items-center justify-center w-full h-full logo' href='https://www.thenewhumanitarian.org' title='The New Humanitarian'>
 				<svg
 					xmlns='http://www.w3.org/2000/svg'
 					id='ANIMATED-LOGO'
 					height={'100%'}
+					width={'100%'}
 					viewBox='0 0 405.32 109.7'
-					className={`w-full ${props.inverted ? 'text-white' : 'text-gray-900'}`}
+					className={`w-full block ${props.inverted ? 'text-white' : 'text-gray-900'}`}
+					style={{ maxWidth: '160px' }}
 				>
 					<title>Logo of The New Humanitarian</title>
 					<path

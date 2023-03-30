@@ -1,5 +1,5 @@
 import { Fragment } from 'react'
-import { NewspaperIcon, TagIcon, UserCircleIcon } from '@heroicons/react/20/solid'
+import { TagIcon, UserCircleIcon } from '@heroicons/react/20/solid'
 import { IconNewsReport, IconAudio, IconMovie, IconPhotoGallery } from '@components/icons/media'
 
 // const activity = [

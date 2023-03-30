@@ -39,10 +39,10 @@
 	a:hover {
 		@apply underline;
 	}
-	a:focus,
+	/* a:focus,
 	a:active {
 		@apply text-white bg-gray-600;
-	}
+	} */
 	iframe {
 		@apply w-full top-0 left-0 absolute h-full;
 	}
