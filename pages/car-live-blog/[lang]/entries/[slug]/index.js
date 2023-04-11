@@ -141,8 +141,8 @@ export const getStaticProps = async (ctx) => {
 							}
 						}
 						... on LiveBlogContentVideo {
-							title
 							__typename
+							title
 							video {
 								fileName
 								url
@@ -151,6 +151,31 @@ export const getStaticProps = async (ctx) => {
 								json
 							}
 							credit
+						}
+						... on LiveBlogContentAudio {
+							__typename
+							title
+							audio {
+								fileName
+								url
+							}
+							caption {
+								json
+							}
+							credit
+						}
+						... on LiveBlogContentImageGrid {
+							__typename
+							imagesCollection {
+								items {
+									fileName
+									url
+									width
+									height
+									title
+									description
+								}
+							}
 						}
 					}
 				}

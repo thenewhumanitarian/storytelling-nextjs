@@ -1,5 +1,7 @@
 import RichtextComponent from '@components/live-blog/text'
 import VideoPlayer from '@components/live-blog/video'
+import AudioPlayer from '@components/live-blog/audio'
+import ImageGrid from '@components/live-blog/images'
 
 const DynamicBlogContentComponent = ({ data }) => {
 	const type = data.__typename
@@ -17,6 +19,23 @@ const DynamicBlogContentComponent = ({ data }) => {
 		return (
 			<>
 				<VideoPlayer el={data.video} />
+			</>
+		)
+	}
+
+	if (type === 'LiveBlogContentAudio') {
+		return (
+			<>
+				<AudioPlayer el={data.audio} />
+			</>
+		)
+	}
+
+	if (type === 'LiveBlogContentImageGrid') {
+		console.log(data)
+		return (
+			<>
+				<ImageGrid images={data.imagesCollection.items} />
 			</>
 		)
 	}

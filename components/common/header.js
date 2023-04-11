@@ -281,7 +281,7 @@ const Header = (props) => {
 			</a>
 
 			<div className='site-header__right'>
-				<div className='text-base site-header__tagline'>
+				<div className='flex-1 text-base site-header__tagline'>
 					<span className={props.inverted ? 'text-white' : ''}>{props.tagline || 'Journalism from the heart of crises'}</span>
 				</div>
 			</div>
