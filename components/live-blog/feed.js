@@ -2,61 +2,12 @@ import { Fragment } from 'react'
 import { TagIcon, UserCircleIcon } from '@heroicons/react/20/solid'
 import { IconNewsReport, IconAudio, IconMovie, IconPhotoGallery } from '@components/icons/media'
 
-// const activity = [
-// 	{
-// 		id: 1,
-// 		type: 'comment',
-// 		title: 'Deep dive gender rights big data',
-// 		person: { name: 'Eduardo Benz', href: '#' },
-// 		imageUrl:
-// 			'https://images.unsplash.com/photo-1520785643438-5bf77931f493?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80',
-// 		comment:
-// 			'Outcomes greenwashing strategy thought partnership, citizen-centered outcomes mobilize collective impact. Gender rights best practices policymaker segmentation move the needle society. Impact, social entrepreneurship change-makers NGO systems thinking, ideate replicable ideate compassion low-hanging fruit problem-solvers innovate outcomes replicable.',
-// 		date: '2h ago',
-// 		icon: <IconAudio />,
-// 	},
-// 	{
-// 		id: 2,
-// 		type: 'comment',
-// 		title: 'Deep dive gender rights big data',
-// 		person: { name: 'Hilary Mahy', href: '#' },
-// 		imageUrl: 'https://i.pravatar.cc/250?u=mail@ashallendesign.co.uk',
-// 		comment:
-// 			'Incubator, inspirational when inspiring revolutionary commitment venture philanthropy resilient dynamic. Low-hanging fruit relief targeted accessibility fairness dynamic. Improve the world empathetic activate, storytelling grit compelling youth justice the resistance accessibility.',
-// 		date: '1d ago',
-// 		icon: <IconMovie />,
-// 	},
-// 	{
-// 		id: 3,
-// 		type: 'comment',
-// 		title: 'Deep dive gender rights big data',
-// 		person: { name: 'Hilary Mahy', href: '#' },
-// 		imageUrl: 'https://i.pravatar.cc/250?u=mail@ashallendesign.co.uk',
-// 		comment:
-// 			'Outcomes greenwashing strategy thought partnership, citizen-centered outcomes mobilize collective impact. Gender rights best practices policymaker segmentation move the needle society. Impact, social entrepreneurship change-makers NGO systems thinking, ideate replicable ideate compassion low-hanging fruit problem-solvers innovate outcomes replicable.',
-// 		date: '3d ago',
-// 		icon: <IconNewsReport />,
-// 	},
-// 	{
-// 		id: 4,
-// 		type: 'comment',
-// 		title: 'Deep dive gender rights big data',
-// 		person: { name: 'Jason Meyers', href: '#' },
-// 		imageUrl:
-// 			'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80',
-// 		comment:
-// 			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt nunc ipsum tempor purus vitae id. Morbi in vestibulum nec varius. Et diam cursus quis sed purus nam. Scelerisque amet elit non sit ut tincidunt condimentum. Nisl ultrices eu venenatis diam.',
-// 		date: 'on 22 March 2023',
-// 		icon: <IconPhotoGallery />,
-// 	},
-// ]
-
 function classNames(...classes) {
 	return classes.filter(Boolean).join(' ')
 }
 
-export default function Feed({ entries }) {
-	console.log(entries)
+export default function Feed({ entries, lang }) {
+	// console.log(entries)
 
 	const activity = entries.map((entry, i) => {
 		let icon = <IconNewsReport />
@@ -77,6 +28,7 @@ export default function Feed({ entries }) {
 			id: i,
 			type: 'comment',
 			title: entry.title,
+			slug: entry.slug,
 			person: { name: entry.blogEntryAuthor.name, href: '#' },
 			imageUrl: entry.blogEntryAuthor.image.url,
 			comment:
@@ -115,7 +67,7 @@ export default function Feed({ entries }) {
 										<div className='flex-1 min-w-0'>
 											<div>
 												<div className='flex items-center justify-between w-full gap-8 gap-x-4'>
-													<a href={activityItem.person.href} className='font-serif text-burgundy'>
+													<a href={`${lang}/entries/${activityItem.slug}`} className='font-serif text-burgundy'>
 														<h3 className={'text-2xl mb-0 mt-1'}>{activityItem.title}</h3>
 													</a>
 													{/* <span className={'block w-6 opacity-40 absolute top-0 right-0'}>{activityItem.icon}</span> */}

@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Helmet } from 'react-helmet'
+import { useRouter } from 'next/router'
 
 import { callContentful } from '@utils/contentfulHelper'
 import HeaderComponent from '@components/common/header'
@@ -7,7 +8,7 @@ import Feed from '@components/live-blog/feed'
 // import { IconAudio, IconMovie } from '@components/icons/media'
 // import HorizontalTimelineComponent from '@components/horizontal-timeline'
 
-const AllLiveBlogs = ({ liveBlogData }) => {
+const AllLiveBlogs = ({ lang, liveBlogData }) => {
 	// console.log(liveBlogData)
 
 	return (
@@ -47,7 +48,7 @@ const AllLiveBlogs = ({ liveBlogData }) => {
 
 				<div className='grid grid-cols-1 col-span-7 xl:col-span-5 gap-y-10'>
 					<h2>Latest entries</h2>
-					<Feed entries={liveBlogData.contentCollection.items} />
+					<Feed lang={lang} entries={liveBlogData.contentCollection.items} />
 				</div>
 			</div>
 		</div>
@@ -56,10 +57,23 @@ const AllLiveBlogs = ({ liveBlogData }) => {
 
 export default AllLiveBlogs
 
-export const getStaticProps = async () => {
+export const getStaticPaths = async () => {
+	return {
+		paths: [], //indicates that no page needs be created at build time
+		fallback: 'blocking', //indicates the type of fallback
+	}
+}
+
+export const getStaticProps = async (ctx) => {
+	let slug = 'car-blog-english'
+	const lang = ctx.params.lang
+
+	if (lang === 'fr') {
+		slug = 'car-blog-french'
+	}
+
 	const query = `{
-		
-	liveBlogCollection(limit: 1, where: { slug: "car-blog-english" }) {
+	liveBlogCollection(locale: "${lang}", limit: 1, where: { slug: "${slug}" }) {
 			items {
 				title
 				slug
@@ -99,7 +113,7 @@ export const getStaticProps = async () => {
 	const liveBlog = await callContentful(query)
 
 	return {
-		props: { liveBlogData: liveBlog.data.liveBlogCollection.items[0] },
+		props: { lang, liveBlogData: liveBlog.data.liveBlogCollection.items[0] },
 		revalidate: 60,
 	}
 }

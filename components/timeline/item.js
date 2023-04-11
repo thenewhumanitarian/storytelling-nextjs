@@ -7,7 +7,7 @@ import { ChevronDown, ChevronRight } from '@components/icons/chevrons'
 import CalendarIcon, { BulletIcon, ListIcon } from '@components/icons/timeline'
 
 const TimelineItem = ({ data }) => {
-	const { title, text, openByDefault, icon } = data
+	const { title, text, openByDefault } = data
 
 	const [isOpen, setIsOpen] = useState(openByDefault)
 
@@ -19,8 +19,14 @@ const TimelineItem = ({ data }) => {
 						{title}
 					</h3>
 				)}
-				<span className={'flex items-center justify-center flex-row text-burgundy w-3 h-3 pb-2 ml-2'}>{isOpen ? <ChevronDown /> : <ChevronRight />}</span>
-				<div className={'absolute flex justify-center items-center -left-14 rounded-full w-12 h-12 border-2 border-gray-200 bg-gray-100 p-3 text-gray-500'}>
+				<span className={'flex items-center justify-center flex-row text-burgundy w-3 h-3 pb-2 ml-2'}>
+					{isOpen ? <ChevronDown /> : <ChevronRight />}
+				</span>
+				<div
+					className={
+						'absolute flex justify-center items-center -left-14 rounded-full w-12 h-12 border-2 border-gray-200 bg-gray-100 p-3 text-gray-500'
+					}
+				>
 					{!data.icon && <CalendarIcon />}
 					{data.icon === 'bullet' && <BulletIcon />}
 					{data.icon === 'calendar' && <CalendarIcon />}

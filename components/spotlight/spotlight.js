@@ -41,7 +41,7 @@ const SpotlightComponent = ({ content }) => {
             <div className={`flex items-end justify-center`}>
               <p
                 className={
-                  'bg-opacity-90 hover:bg-opacity-100 text-sm sm:text-base relative text-gray-50 bg-burgundy shadow hover:shadow-lg mb-2 py-1 px-3 cursor-pointer'
+                  'bg-opacity-90 hover:bg-opacity-100 text-sm sm:text-base relative text-gray-50 bg-burgundy shadow mb-2 py-1 px-3 cursor-pointer'
                 }
                 onClick={() => {
                   window.top.location.href = img.link
@@ -57,7 +57,7 @@ const SpotlightComponent = ({ content }) => {
             <div className={`flex items-end justify-center`}>
               <p
                 className={
-                  'flex items-center justify-center bg-opacity-90 hover:bg-opacity-100 text-sm sm:text-base relative text-gray-50 bg-burgundy shadow hover:shadow-lg mb-2 py-1 px-3 cursor-pointer'
+                  'flex items-center justify-center bg-opacity-90 hover:bg-opacity-100 text-sm sm:text-base relative text-gray-50 bg-burgundy shadow mb-2 py-1 px-3 cursor-pointer'
                 }
                 onClick={() => {
                   action('pause')

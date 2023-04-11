@@ -32,6 +32,13 @@
   dependencies:
     "@babel/types" "^7.12.13"
 
+"@babel/helper-annotate-as-pure@^7.16.0":
+  version "7.18.6"
+  resolved "https://registry.yarnpkg.com/@babel/helper-annotate-as-pure/-/helper-annotate-as-pure-7.18.6.tgz#eaa49f6f80d5a33f9a5dd2276e6d6e451be0a6bb"
+  integrity sha512-duORpUiYrEpzKIop6iNbjnwKLAKnJ47csTyRACyEmWj0QdUrm5aqNJGHSSEQSUAvNW0ojX0dOmK9dZduvkfeXA==
+  dependencies:
+    "@babel/types" "^7.18.6"
+
 "@babel/helper-function-name@^7.14.2":
   version "7.14.2"
   resolved "https://registry.yarnpkg.com/@babel/helper-function-name/-/helper-function-name-7.14.2.tgz#397688b590760b6ef7725b5f0860c82427ebaac2"
@@ -55,6 +62,13 @@
   dependencies:
     "@babel/types" "^7.13.12"
 
+"@babel/helper-module-imports@^7.16.0":
+  version "7.21.4"
+  resolved "https://registry.yarnpkg.com/@babel/helper-module-imports/-/helper-module-imports-7.21.4.tgz#ac88b2f76093637489e718a90cec6cf8a9b029af"
+  integrity sha512-orajc5T2PsRYUN3ZryCEFeMDYwyw09c/pZeaQEZPH0MpKzSvn3e0uXsDBu3k03VI+9DBiRo+l22BfKTpKwa/Wg==
+  dependencies:
+    "@babel/types" "^7.21.4"
+
 "@babel/helper-plugin-utils@^7.8.0":
   version "7.13.0"
   resolved "https://registry.yarnpkg.com/@babel/helper-plugin-utils/-/helper-plugin-utils-7.13.0.tgz#806526ce125aed03373bc416a828321e3a6a33af"
@@ -67,10 +81,20 @@
   dependencies:
     "@babel/types" "^7.12.13"
 
+"@babel/helper-string-parser@^7.19.4":
+  version "7.19.4"
+  resolved "https://registry.yarnpkg.com/@babel/helper-string-parser/-/helper-string-parser-7.19.4.tgz#38d3acb654b4701a9b77fb0615a96f775c3a9e63"
+  integrity sha512-nHtDoQcuqFmwYNYPz3Rah5ph2p8PFeFCsZk9A/48dPc/rGocJ5J3hAAZ7pb76VWX3fZKu+uEr/FhH5jLx7umrw==
+
 "@babel/helper-validator-identifier@^7.14.0", "@babel/helper-validator-identifier@^7.14.5":
   version "7.14.5"
   resolved "https://registry.yarnpkg.com/@babel/helper-validator-identifier/-/helper-validator-identifier-7.14.5.tgz#d0f0e277c512e0c938277faa85a3968c9a44c0e8"
   integrity sha512-5lsetuxCLilmVGyiLEfoHBRX8UCFD+1m2x3Rj97WrW3V7H3u4RWRXA4evMjImCsin2J2YT0QaVDGf+z8ondbAg==
+
+"@babel/helper-validator-identifier@^7.19.1":
+  version "7.19.1"
+  resolved "https://registry.yarnpkg.com/@babel/helper-validator-identifier/-/helper-validator-identifier-7.19.1.tgz#7eea834cf32901ffdc1a7ee555e2f9c27e249ca2"
+  integrity sha512-awrNfaMtnHUr653GgGEs++LlAvW6w+DcPrOliSMXWCKo597CwL5Acf/wWdNkf/tfEQE3mjkeD1YOVZOUV/od1w==
 
 "@babel/highlight@^7.10.4":
   version "7.14.5"
@@ -154,6 +178,15 @@
   integrity sha512-lCj4aIs0xUefJFQnwwQv2Bxg7Omd6bgquZ6LGC+gGMh6/s5qDVfjuCMlDmYQ15SLsWHd9n+X3E75lKIhl5Lkiw==
   dependencies:
     "@babel/helper-validator-identifier" "^7.14.0"
+    to-fast-properties "^2.0.0"
+
+"@babel/types@^7.18.6", "@babel/types@^7.21.4":
+  version "7.21.4"
+  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.21.4.tgz#2d5d6bb7908699b3b416409ffd3b5daa25b030d4"
+  integrity sha512-rU2oY501qDxE8Pyo7i/Orqma4ziCOrby0/9mvbDUGEfvZjb279Nk9k19e2fiCxHbRRpY2ZyrgW1eq22mvmOIzA==
+  dependencies:
+    "@babel/helper-string-parser" "^7.19.4"
+    "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
 "@contentful/rich-text-react-renderer@14.1.1":
@@ -585,6 +618,17 @@ axios@^0.21.0, axios@^0.21.1:
     "@babel/helper-module-imports" "^7.0.0"
     babel-plugin-syntax-jsx "^6.18.0"
     lodash "^4.17.11"
+
+babel-plugin-styled-components@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-styled-components/-/babel-plugin-styled-components-2.1.1.tgz#cd977cc0ff8410d5cbfdd142e42576e9c8794b87"
+  integrity sha512-c8lJlszObVQPguHkI+akXv8+Jgb9Ccujx0EetL7oIvwU100LxO6XAGe45qry37wUL40a5U9f23SYrivro2XKhA==
+  dependencies:
+    "@babel/helper-annotate-as-pure" "^7.16.0"
+    "@babel/helper-module-imports" "^7.16.0"
+    babel-plugin-syntax-jsx "^6.18.0"
+    lodash "^4.17.21"
+    picomatch "^2.3.0"
 
 babel-plugin-syntax-jsx@6.18.0, babel-plugin-syntax-jsx@^6.18.0:
   version "6.18.0"
@@ -3335,6 +3379,11 @@ picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.2.3:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.0.tgz#f1f061de8f6a4bf022892e2d128234fb98302972"
   integrity sha512-lY1Q/PiJGC2zOv/z391WOTD+Z02bCgsFfvxoXXf6h7kv9o+WmsmzYqrAwY63sNgOxE4xEdq0WyUnXfKeBrSvYw==
+
+picomatch@^2.3.0:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.1.tgz#3ba3833733646d9d3e4995946c1365a67fb07a42"
+  integrity sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==
 
 pify@^2.0.0:
   version "2.3.0"
