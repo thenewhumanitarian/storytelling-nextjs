@@ -38,7 +38,7 @@ const ImageGrid = ({ images }) => {
 	// if (containerWidth >= 1500) columns = 4
 
 	return (
-		<div className={'my-5'}>
+		<div>
 			{/* <Gallery photos={photos} onClick={openLightbox} renderImage={imageRenderer} /> */}
 			<Gallery photos={photos} onClick={openLightbox} />
 			<ModalGateway>

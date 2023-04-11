@@ -57,11 +57,8 @@ export default function Feed({ entries, lang }) {
 												src={activityItem.imageUrl}
 												alt=''
 											/>
-
-											<span className='absolute -bottom-0.5 -right-1 rounded-tl bg-white px-0.5 py-px'>
-												<span className='relative w-5 h-5 overflow-hidden text-gray-400 bg-white rounded-full' aria-hidden='true'>
-													<span className={'w-6 block'}>{activityItem.icon}</span>
-												</span>
+											<span className={'absolute bottom-0 right-0 bg-white rounded-full w-6 h-6 flex justify-center items-center'}>
+												<span className={'w-4 h-4 mb-3 mr-0.5 block'}>{activityItem.icon}</span>
 											</span>
 										</div>
 										<div className='flex-1 min-w-0'>

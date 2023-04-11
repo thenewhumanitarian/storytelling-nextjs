@@ -47,11 +47,13 @@ const LiveBlogEntry = ({ liveBlogEntryCollection, liveBlogData, lang }) => {
 					</ul>
 				</div>
 
-				<div className='grid grid-cols-1 col-span-7 xl:col-span-5 gap-y-10'>
+				<div className='grid grid-cols-1 col-span-7 gap-0 xl:col-span-5'>
 					<h1>{liveBlogEntryCollection.title}</h1>
-					{liveBlogEntryCollection.blogEntryContentCollection.items.map((entry, i) => {
-						return <DynamicBlogContentComponent key={`blog-entry-content-${i}`} data={entry} />
-					})}
+					<div className={'mt-8 grid grid-cols-1 gap-y-1'}>
+						{liveBlogEntryCollection.blogEntryContentCollection.items.map((entry, i) => {
+							return <DynamicBlogContentComponent key={`blog-entry-content-${i}`} data={entry} />
+						})}
+					</div>
 				</div>
 			</div>
 		</div>

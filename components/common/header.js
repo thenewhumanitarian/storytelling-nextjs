@@ -169,7 +169,7 @@ const Header = (props) => {
 				{props.shareProps && <ShareIcons shareProps={props.shareProps} inverted={props.inverted} />}
 			</div>
 
-			<a className='relative flex items-center justify-center w-full h-full logo' href='https://www.thenewhumanitarian.org' title='The New Humanitarian'>
+			<a className='absolute left-0 flex items-center justify-center w-full h-full logo' href='https://www.thenewhumanitarian.org' title='The New Humanitarian'>
 				<svg
 					xmlns='http://www.w3.org/2000/svg'
 					id='ANIMATED-LOGO'
@@ -280,7 +280,7 @@ const Header = (props) => {
 				</svg>
 			</a>
 
-			<div className='site-header__right'>
+			<div className='flex site-header__right'>
 				<div className='flex-1 text-base site-header__tagline'>
 					<span className={props.inverted ? 'text-white' : ''}>{props.tagline || 'Journalism from the heart of crises'}</span>
 				</div>
