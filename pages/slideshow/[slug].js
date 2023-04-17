@@ -104,7 +104,7 @@ export const getStaticProps = async (context) => {
 
 	return {
 		props: { slideshow: slideshow.data.imageSliderCollection.items[0] },
-		revalidate: 60 * 30,
+		revalidate: 60 * 60,
 	}
 }
 
