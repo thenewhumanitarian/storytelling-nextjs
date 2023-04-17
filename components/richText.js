@@ -39,7 +39,7 @@ const RichtextComponent = (props) => {
 					</Link>
 				)
 			},
-			[BLOCKS.PARAGRAPH]: (node, children) => <p className={'mb-4'}>{children}</p>,
+			[BLOCKS.PARAGRAPH]: (node, children) => <p>{children}</p>,
 			[BLOCKS.HEADING_6]: (node, children) => <p>{children}</p>,
 			[BLOCKS.HR]: () => <hr className={'mt-5 mb-8'} />,
 			[BLOCKS.EMBEDDED_ASSET]: (node) => {
