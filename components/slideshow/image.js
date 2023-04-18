@@ -1,6 +1,10 @@
 import Image from 'next/image'
 
 const SlideshowImage = ({ el, nextEl }) => {
+	if (el.image) {
+		console.log(`${el.image?.url}?w=20`)
+	}
+
 	return (
 		<>
 			{nextEl && (
@@ -19,12 +23,13 @@ const SlideshowImage = ({ el, nextEl }) => {
 			<Image
 				src={el.image?.url}
 				className={'pointer-events-none'}
-				// width={el.image?.width}
-				// height={el.image?.height}
 				alt={el.image?.description}
 				layout={'fill'}
 				key={`el.sys.id`}
-				// placeholder={'blur'}
+				// width={el.image?.width}
+				// height={el.image?.height}
+				placeholder={'blur'}
+				blurDataURL={`${el.image?.url}?w=5`}
 			/>
 		</>
 	)
