@@ -481,7 +481,7 @@ p:not([class]) {
 
 @media only screen and (max-width: 37.5em) {
 	p:not([class]) {
-		/* font-size: 1.4rem; */
+		font-size: 0.93rem;
 		line-height: 1.642;
 	}
 }

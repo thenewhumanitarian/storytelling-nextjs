@@ -10,7 +10,8 @@ export default async function (req, res) {
 
   try {
     await client.getAsset(id).then((asset) => {
-      console.log(asset.fields.file.details)
+      // console.log(asset.fields.file.details)
+
       const assetDetails = {
         url: asset.fields.file.url,
         width: asset.fields.file.details.image.width,

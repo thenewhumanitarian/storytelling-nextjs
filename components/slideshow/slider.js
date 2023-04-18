@@ -43,14 +43,14 @@ const SliderComponent = ({ elements, ua }) => {
 	const [isInIframe, setIsInIframe] = useState(false)
 	const [iframeHeight, setIframeHeight] = useState((100 / 16) * 9)
 
-	useEffect(() => {
-		if (window !== window.parent) {
-			setIsInIframe(true)
-			console.log('Is in iframe!')
-		} else {
-			console.log('Is not in iframe!')
-		}
-	}, [])
+	// useEffect(() => {
+	// 	if (window !== window.parent) {
+	// 		setIsInIframe(true)
+	// 		console.log('Is in iframe!')
+	// 	} else {
+	// 		console.log('Is not in iframe!')
+	// 	}
+	// }, [])
 
 	useEffect(() => {
 		if (elements[imageIndex].iframeHeight || elements.iframeHeightMobile) {
@@ -124,10 +124,11 @@ const SliderComponent = ({ elements, ua }) => {
 					data-iframe-height={true}
 					style={{
 						backgroundColor: isInIframe ? '#282828' : 'transparent',
+						width: '100%',
 					}}
 				>
 					<div
-						className={'relative w-full overflow-hidden m-0 p-0'}
+						className={'relative overflow-hidden m-0 p-0'}
 						style={{
 							height: 0,
 							width: '100%',
@@ -181,7 +182,7 @@ const SliderComponent = ({ elements, ua }) => {
 						{elements[imageIndex].credit && (
 							<div
 								className={
-									'absolute text-sm bottom-0 left-0 text-black py-1 px-2 bg-white bg-opacity-60 hover:bg-opacity-100 transition-all duration-300'
+									'absolute text-xs bottom-0 left-0 text-black py-1 px-2 bg-white bg-opacity-60 hover:bg-opacity-100 transition-all duration-300'
 								}
 							>
 								{elements[imageIndex].credit}

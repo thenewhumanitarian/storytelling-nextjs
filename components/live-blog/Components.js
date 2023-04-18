@@ -5,7 +5,7 @@ import ImageGrid from '@components/live-blog/images'
 
 const DynamicBlogContentComponent = ({ data }) => {
 	const type = data.__typename
-	console.log(type)
+	// console.log(type)
 
 	if (type === 'LiveBlogContentText') {
 		return (
@@ -32,7 +32,7 @@ const DynamicBlogContentComponent = ({ data }) => {
 	}
 
 	if (type === 'LiveBlogContentImageGrid') {
-		console.log(data)
+		// console.log(data)
 		return (
 			<>
 				<ImageGrid images={data.imagesCollection.items} />

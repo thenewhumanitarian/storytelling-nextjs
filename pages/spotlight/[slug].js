@@ -3,7 +3,7 @@ import { callContentful } from '@utils/contentfulHelper'
 import SpotlightComponent from '@components/spotlight/spotlight'
 
 const Spotlight = ({ spotlight }) => {
-  console.log(spotlight)
+  // console.log(spotlight)
 
   return (
     <div data-iframe-height={true} className={'w-full overflow-hidden h-auto'}>

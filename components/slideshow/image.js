@@ -1,14 +1,10 @@
 import Image from 'next/image'
 
 const SlideshowImage = ({ el, nextEl }) => {
-	if (el.image) {
-		console.log(`${el.image?.url}?w=20`)
-	}
-
 	return (
-		<>
+		<div className={'w-full'}>
 			{nextEl && (
-				<div className={'absolute top-0 left-0 w-full h-full opacity-0'}>
+				<div className={'top-0 left-0 w-full h-full opacity-0'}>
 					<Image
 						src={nextEl.image?.url}
 						className={'pointer-events-none'}
@@ -26,12 +22,13 @@ const SlideshowImage = ({ el, nextEl }) => {
 				alt={el.image?.description}
 				layout={'fill'}
 				key={`el.sys.id`}
-				// width={el.image?.width}
-				// height={el.image?.height}
 				placeholder={'blur'}
 				blurDataURL={`${el.image?.url}?w=5`}
+				// style={{ minWidth: '100%' }}
+				// width={el.image?.width}
+				// height={el.image?.height}
 			/>
-		</>
+		</div>
 	)
 }
 
