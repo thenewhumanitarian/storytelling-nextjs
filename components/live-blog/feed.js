@@ -9,6 +9,10 @@ function classNames(...classes) {
 export default function Feed({ entries, lang }) {
 	// console.log(entries)
 
+	if (!lang) {
+		lang = 'en'
+	}
+
 	const activity = entries.map((entry, i) => {
 		let icon = <IconNewsReport />
 
