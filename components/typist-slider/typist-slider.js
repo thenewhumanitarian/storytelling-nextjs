@@ -12,7 +12,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import 'react-typist/dist/Typist.css'
 
 const Typist = dynamic(() => import('react-typist'), {
-	suspense: true,
+	// suspense: true,
 })
 
 const TypistElement = ({ item }) => {
