@@ -4,8 +4,8 @@ import { Helmet } from 'react-helmet'
 import { callContentful } from '@utils/contentfulHelper'
 import HeaderComponent from '@components/common/header'
 import Feed from '@components/live-blog/feed'
+import HorizontalTimelineComponent from '@components/horizontal-timeline'
 // import { IconAudio, IconMovie } from '@components/icons/media'
-// import HorizontalTimelineComponent from '@components/horizontal-timeline'
 
 const AllLiveBlogs = ({ liveBlogData }) => {
 	// console.log(liveBlogData)
@@ -24,8 +24,8 @@ const AllLiveBlogs = ({ liveBlogData }) => {
 
 			{/* Horizontal timeline */}
 			<div className={'w-full bg-gray-200 px-8 py-5 mt-24'}>
-				{/* <HorizontalTimelineComponent liveBlogs={liveBlogs} /> */}
-				<p className={'text-base text-burgundy'}>[Horizontal Timeline]</p>
+				<HorizontalTimelineComponent liveBlogs={liveBlogData.contentCollection.items} />
+				{/* <p className={'text-base text-burgundy'}>[Horizontal Timeline]</p> */}
 			</div>
 
 			{/* Grid for main content */}
