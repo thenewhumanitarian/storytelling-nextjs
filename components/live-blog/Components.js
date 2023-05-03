@@ -9,7 +9,7 @@ const DynamicBlogContentComponent = ({ data, lang }) => {
 
 	if (type === 'LiveBlogContentText') {
 		return (
-			<div className={'mb-8'}>
+			<div className={'mb-5'}>
 				<RichtextComponent content={data.text.json} />
 			</div>
 		)
@@ -17,8 +17,8 @@ const DynamicBlogContentComponent = ({ data, lang }) => {
 
 	if (type === 'LiveBlogContentVideo') {
 		return (
-			<div className={'mb-8'}>
-				<VideoPlayer el={data.video} />
+			<div className={'mb-5'}>
+				<VideoPlayer el={data} />
 			</div>
 		)
 	}
@@ -34,7 +34,7 @@ const DynamicBlogContentComponent = ({ data, lang }) => {
 	if (type === 'LiveBlogContentImageGrid') {
 		// console.log(data)
 		return (
-			<div className={'mb-8'}>
+			<div className={'mb-5'}>
 				<ImageGrid images={data.imagesCollection.items} />
 			</div>
 		)

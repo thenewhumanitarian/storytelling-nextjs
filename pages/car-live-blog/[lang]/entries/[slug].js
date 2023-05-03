@@ -57,7 +57,7 @@ const LiveBlogEntry = ({ liveBlogEntryCollection, liveBlogData, lang }) => {
 
 				<div className='grid grid-cols-1 col-span-7 gap-0 xl:col-span-5'>
 					<h1>{liveBlogEntryCollection.title}</h1>
-					<div className={'grid grid-cols-1 gap-y-1'}>
+					<div className={'grid grid-cols-1 gap-y-1 mt-5'}>
 						{liveBlogEntryCollection.blogEntryContentCollection.items.map((entry, i) => {
 							return <DynamicBlogContentComponent key={`blog-entry-content-${i}`} data={entry} lang={lang} />
 						})}
@@ -154,6 +154,7 @@ export const getStaticProps = async (ctx) => {
 						... on LiveBlogContentVideo {
 							__typename
 							title
+							youtubeId
 							video {
 								fileName
 								url

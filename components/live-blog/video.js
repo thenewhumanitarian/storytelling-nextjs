@@ -1,60 +1,84 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import ReactPlayer from 'react-player/lazy'
-import VisibilitySensor from 'react-visibility-sensor'
+import RichtextComponent from '@components/live-blog/text'
+// import VisibilitySensor from 'react-visibility-sensor'
 
-const VideoPlayer = ({ el, i, autoPlay }) => {
-	const [isPlaying, setIsPlaying] = useState(false)
-	const [userClicked, setUserClicked] = useState(false)
+const VideoPlayer = ({ el, i, autoPlay, lang }) => {
+	console.log(el)
 
-	function onChange(isVisible) {
-		setIsPlaying(isVisible)
+	if (el.youtubeId) {
+		return (
+			<>
+				<div className={`bg-black p-3 flex flex-col items-center justify-center ${el.caption?.json ? '' : 'mb-8'}`}>
+					<div className={'relative w-full block h-0 pt-16/9'}>
+						<ReactPlayer
+							width={'100%'}
+							config={{
+								youtube: {
+									playerVars: {
+										cc_lang_pref: lang || 'en',
+										cc_load_policy: 1,
+										showinfo: 0,
+										modestbranding: 1,
+										rel: 0,
+									},
+								},
+							}}
+							controls
+							playsinline
+							url={`https://www.youtube.com/embed/${el.youtubeId}`}
+						/>
+						{el.credit && (
+							<div className={'absolute left-0 bottom-0 bg-white opacity-80 hover:opacity-100 px-1'}>
+								<span>{el.credit}</span>
+							</div>
+						)}
+					</div>
+				</div>
+				{el.caption?.json && (
+					<p className={'px-1 py-2'}>
+						<RichtextComponent content={el.caption.json} />
+					</p>
+				)}
+			</>
+		)
 	}
 
-	/* Activate autoplay if set in Contentful */
-	useEffect(() => {
-		setUserClicked(autoPlay)
-	}, [autoPlay])
-
-	return (
-		<VisibilitySensor onChange={onChange}>
-			<div
-				onClick={() => {
-					if (userClicked) {
-						return
-					}
-					setUserClicked(true)
-				}}
-			>
-				{el.url && (
-					<ReactPlayer
-						controls
-						key={`video-element-${i}`}
-						playing={isPlaying && userClicked}
-						playsinline
-						// url={el?.url || el.mediaUrl?.replace('https', 'http') || el.videoUrl?.replace('https', 'http') || el.video?.url}
-						url={el?.url}
-						style={{
-							position: 'relative',
-							width: '100%',
-							zIndex: 1,
-						}}
-						width={'100%'}
-						height={'100%'}
-						config={{
-							youtube: {
-								playerVars: {
-									showinfo: 0,
-									modestbranding: 1,
-									rel: 0,
+	if (el.video?.url) {
+		return (
+			<>
+				<div className={`bg-black p-3 flex flex-col items-center justify-center ${el.caption?.json ? '' : 'mb-8'}`}>
+					<div className={'relative w-full block h-0 pt-16/9'}>
+						<ReactPlayer
+							width={'100%'}
+							config={{
+								youtube: {
+									playerVars: {
+										cc_lang_pref: lang || 'en',
+										cc_load_policy: 1,
+									},
 								},
-							},
-						}}
-					/>
+							}}
+							controls
+							playsinline
+							url={`${el.video.url}`}
+						/>
+						{el.credit && (
+							<div className={'absolute left-0 bottom-0 bg-white opacity-80 hover:opacity-100 px-1'}>
+								<span>{el.credit}</span>
+							</div>
+						)}
+					</div>
+				</div>
+				{el.caption?.json && (
+					<p className={'px-1 py-2'}>
+						<RichtextComponent content={el.caption.json} />
+					</p>
 				)}
-			</div>
-		</VisibilitySensor>
-	)
+			</>
+		)
+	}
 }
 
 export default VideoPlayer

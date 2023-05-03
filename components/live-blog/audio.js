@@ -3,7 +3,7 @@ import ReactPlayer from 'react-player'
 import RichtextComponent from '@components/live-blog/text'
 
 const AudioPlayerComponent = ({ el, lang }) => {
-	console.log(el)
+	// console.log(el)
 
 	if (el.youtubeId) {
 		return (
@@ -17,6 +17,9 @@ const AudioPlayerComponent = ({ el, lang }) => {
 									playerVars: {
 										cc_lang_pref: lang || 'en',
 										cc_load_policy: 1,
+										showinfo: 0,
+										modestbranding: 1,
+										rel: 0,
 									},
 								},
 							}}
