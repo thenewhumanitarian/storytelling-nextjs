@@ -4,9 +4,9 @@ import { Helmet } from 'react-helmet'
 import { callContentful } from '@utils/contentfulHelper'
 import HeaderComponent from '@components/common/header'
 import DynamicBlogContentComponent from '@components/live-blog/Components'
+import HorizontalTimelineComponent from '@components/horizontal-timeline'
 // import Feed from '@components/live-blog/feed'
 // import { IconAudio, IconMovie } from '@components/icons/media'
-// import HorizontalTimelineComponent from '@components/horizontal-timeline'
 
 const LiveBlogEntry = ({ liveBlogEntryCollection, liveBlogData, lang }) => {
 	return (
@@ -22,15 +22,16 @@ const LiveBlogEntry = ({ liveBlogEntryCollection, liveBlogData, lang }) => {
 			<HeaderComponent />
 
 			{/* Horizontal timeline */}
-			<div className={'w-full bg-gray-200 px-8 py-5 mt-24'}>
-				{/* <HorizontalTimelineComponent liveBlogs={liveBlogs} /> */}
-				<p className={'text-base text-burgundy'}>[Horizontal Timeline]</p>
+			<div className={'relative w-full bg-gray-100 px-0 py-5 mt-24'}>
+				<HorizontalTimelineComponent liveBlogs={liveBlogData.contentCollection.items} />
+				<div className={'absolute right-0 top-0 w-24 h-full bg-gradient-to-r from-transparent to-gray-100'} />
+				{/* <p className={'text-base text-burgundy'}>[Horizontal Timeline]</p> */}
 			</div>
 
 			{/* Grid for main content */}
 			<div className='grid grid-flow-col grid-cols-9 gap-8 px-8 mt-10'>
 				<div className='col-span-2'>
-					<Link href={'/car-live-blog/en'}>
+					<Link href={`${lang === 'en' ? '/car-live-blog/en' : '/car-live-blog/fr'}`}>
 						<button className={'bg-burgundy px-3 py-1 text-white font-bold mb-5'}>{lang === 'en' ? '← Back to overview' : '← Retour'}</button>
 					</Link>
 					<h2>{liveBlogData.title}</h2>
@@ -44,14 +45,21 @@ const LiveBlogEntry = ({ liveBlogEntryCollection, liveBlogData, lang }) => {
 						<li>
 							<Link href={'#'}>Send us your feedback</Link>
 						</li>
+						<li className={'border-t mt-2 pt-2 border-black'}>
+							<Link href={`${lang === 'en' ? `/car-live-blog/fr` : `/car-live-blog/en`}`}>
+								<button className={'bg-burgundy px-3 py-1 text-white font-bold mt-2 opacity-70 hover:opacity-100'}>
+									{lang === 'en' ? 'Lire en français' : 'Read in English'}
+								</button>
+							</Link>
+						</li>
 					</ul>
 				</div>
 
 				<div className='grid grid-cols-1 col-span-7 gap-0 xl:col-span-5'>
 					<h1>{liveBlogEntryCollection.title}</h1>
-					<div className={'mt-8 grid grid-cols-1 gap-y-1'}>
+					<div className={'grid grid-cols-1 gap-y-1'}>
 						{liveBlogEntryCollection.blogEntryContentCollection.items.map((entry, i) => {
-							return <DynamicBlogContentComponent key={`blog-entry-content-${i}`} data={entry} />
+							return <DynamicBlogContentComponent key={`blog-entry-content-${i}`} data={entry} lang={lang} />
 						})}
 					</div>
 				</div>
@@ -94,6 +102,7 @@ export const getStaticProps = async (ctx) => {
 						... on LiveBlogEntry {
 							title
 							slug
+							date
 							summary
 							type
 							blogEntryAuthor {
@@ -157,6 +166,7 @@ export const getStaticProps = async (ctx) => {
 						... on LiveBlogContentAudio {
 							__typename
 							title
+							youtubeId
 							audio {
 								fileName
 								url

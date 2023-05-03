@@ -1,47 +1,55 @@
 import { Fragment } from 'react'
 import { TagIcon, UserCircleIcon } from '@heroicons/react/20/solid'
 import { IconNewsReport, IconAudio, IconMovie, IconPhotoGallery } from '@components/icons/media'
+import moment from 'moment'
 
 function classNames(...classes) {
 	return classes.filter(Boolean).join(' ')
 }
 
 export default function Feed({ entries, lang }) {
-	// console.log(entries)
+	console.log(entries)
 
 	if (!lang) {
 		lang = 'en'
 	}
 
-	const activity = entries.map((entry, i) => {
-		let icon = <IconNewsReport />
+	const activity = entries
+	.sort((a, b) => moment(b.date) - moment(a.date))
+	.map((entry, i) => {
+			let icon = <IconNewsReport />
 
-		if (entry.type === 'Video') {
-			icon = <IconMovie />
-		}
+			if (entry.type === 'Video') {
+				icon = <IconMovie />
+			}
 
-		if (entry.type === 'Audio') {
-			icon = <IconAudio />
-		}
+			if (entry.type === 'Audio') {
+				icon = <IconAudio />
+			}
 
-		if (entry.type === 'Photo essay') {
-			icon = <IconPhotoGallery />
-		}
+			if (entry.type === 'Photo essay') {
+				icon = <IconPhotoGallery />
+			}
 
-		return {
-			id: i,
-			type: 'comment',
-			title: entry.title,
-			slug: entry.slug,
-			person: { name: entry.blogEntryAuthor.name, href: '#' },
-			imageUrl: entry.blogEntryAuthor.image.url,
-			comment:
-				'Outcomes greenwashing strategy thought partnership, citizen-centered outcomes mobilize collective impact. Gender rights best practices policymaker segmentation move the needle society. Impact, social entrepreneurship change-makers NGO systems thinking, ideate replicable ideate compassion low-hanging fruit problem-solvers innovate outcomes replicable.',
-			summary: entry.summary,
-			date: '2h ago',
-			icon: icon,
-		}
-	})
+			const dateOneDayAgo = moment(new Date()).subtract(1, 'days')
+			const dateIsOld = moment(entry.date).isBefore(dateOneDayAgo)
+
+			let datePublished = dateIsOld ? moment(entry.date).format('DD MMMM YY') : moment(entry.date).fromNow()
+
+			return {
+				id: i,
+				type: 'comment',
+				title: entry.title,
+				slug: entry.slug,
+				person: { name: entry.blogEntryAuthor.name, href: '#' },
+				imageUrl: entry.blogEntryAuthor.image.url,
+				comment:
+					'Outcomes greenwashing strategy thought partnership, citizen-centered outcomes mobilize collective impact. Gender rights best practices policymaker segmentation move the needle society. Impact, social entrepreneurship change-makers NGO systems thinking, ideate replicable ideate compassion low-hanging fruit problem-solvers innovate outcomes replicable.',
+				summary: entry.summary,
+				date: datePublished || '',
+				icon: icon,
+			}
+		})
 
 	return (
 		<div className='flow-root'>

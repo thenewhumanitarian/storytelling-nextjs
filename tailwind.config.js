@@ -9,6 +9,7 @@ module.exports = {
 			spacing: {
 				'1/3': '33%',
 				'1/2': '50%',
+				'16/9': '56.25%',
 				full: '100%',
 			},
 			colors: {
@@ -21,5 +22,6 @@ module.exports = {
 			},
 		},
 	},
+	plugins: [require('@tailwindcss/line-clamp')],
 	// plugins: [require('@tailwindcss/typography')],
 }

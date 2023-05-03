@@ -1,21 +1,36 @@
 import Link from 'next/link'
 import HorizontalScroll from 'react-scroll-horizontal'
+import moment from 'moment'
+// import { motion, AnimatePresence } from 'framer-motion'
 
 const HorizontalTimelineComponent = ({ liveBlogs }) => {
-	const blogEntries = liveBlogs.map((el) => {
-		return (
-			<li key={el.slug} className={'relative float-left pr-10 w-64 flex-none'}>
-				<Link href={`/slideshow/${el.slug}`}>
-					<p className={'pl-2 mt-3 font-bold cursor-pointer hover:text-burgundy'}>{el.title}</p>
-				</Link>
-				<div className={'w-3 h-3 bg-burgundy rounded-full absolute -top-2 left-0'} />
-			</li>
-		)
-	})
+	const blogEntries = liveBlogs
+		.sort((a, b) => moment(b.date) - moment(a.date))
+		.map((el) => {
+			// console.log(el)
+
+			const dateOneDayAgo = moment(new Date()).subtract(1, 'days')
+			const dateIsOld = moment(el.date).isBefore(dateOneDayAgo)
+
+			let datePublished = dateIsOld ? moment(el.date).format('DD MMMM YY') : moment(el.date).fromNow()
+
+			return (
+				<li key={el.slug} className={'pr-10 w-64 snap-center'}>
+					<Link href={`/car-live-blog/en/entries/${el.slug}`}>
+						<div className={'pl-4 mt-2'}>
+							<span className={'text-base'}>{datePublished}</span>
+							<p className={'font-bold cursor-pointer hover:text-burgundy line-clamp-2'}>{el.title}</p>
+						</div>
+					</Link>
+					<div className={'w-1 h-3 bg-burgundy absolute top-0'} />
+				</li>
+			)
+		})
 
 	return (
-		<ul className={'border-t-4 border-black w-full flex h-24 -z-1'}>
-			<HorizontalScroll reverseScroll>
+		<ul className={'relative border-t-4 border-black w-full flex h-24 px-5'}>
+			<HorizontalScroll reverseScroll className={'snap-x snap-mandatory'}>
+				{blogEntries}
 				{blogEntries}
 				{blogEntries}
 				{blogEntries}
