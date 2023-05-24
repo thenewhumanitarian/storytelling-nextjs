@@ -1,21 +1,21 @@
-import Link from 'next/link'
+// import Link from 'next/link'
 import { Helmet } from 'react-helmet'
 // import { useRouter } from 'next/router'
 
 import { callContentful } from '@utils/contentfulHelper'
 import HeaderComponent from '@components/common/header'
-import Feed from '@components/live-blog/feed'
+// import Feed from '@components/live-blog/feed'
 import HorizontalTimelineComponent from '@components/horizontal-timeline'
 // import { IconAudio, IconMovie } from '@components/icons/media'
 
 const AllLiveBlogs = ({ lang, liveBlogData }) => {
-	console.log(liveBlogData, lang)
+	// console.log(liveBlogData, lang)
 
 	return (
 		<div>
 			<Helmet
 				htmlAttributes={{
-					lang: lang === 'en' ? 'en-GB' : 'fr-FR',
+					lang: lang || 'en-GB',
 				}}
 			>
 				<meta name='viewport' content='width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no' />
@@ -31,7 +31,7 @@ const AllLiveBlogs = ({ lang, liveBlogData }) => {
 			</div>
 
 			{/* Grid for main content */}
-			<div className='grid grid-flow-col grid-cols-9 gap-8 px-8 mt-10'>
+			{/* <div className='grid grid-flow-col grid-cols-9 gap-8 px-8 mt-10'>
 				<div className='col-span-2'>
 					<h2>{liveBlogData.title}</h2>
 					<ul className={'list-none m-0 grid pt-2'}>
@@ -56,13 +56,13 @@ const AllLiveBlogs = ({ lang, liveBlogData }) => {
 							</Link>
 						</li>
 					</ul>
-				</div>
+				</div> */}
 
-				<div className='grid grid-cols-1 col-span-7 xl:col-span-5 gap-y-10'>
+			{/* <div className='grid grid-cols-1 col-span-7 xl:col-span-7 gap-y-10'>
 					<h2>Latest entries</h2>
 					<Feed lang={lang} entries={liveBlogData.contentCollection.items} />
-				</div>
-			</div>
+				</div> */}
+			{/* </div> */}
 		</div>
 	)
 }

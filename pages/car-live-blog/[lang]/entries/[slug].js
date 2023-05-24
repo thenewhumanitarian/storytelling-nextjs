@@ -23,7 +23,7 @@ const LiveBlogEntry = ({ liveBlogEntryCollection, liveBlogData, lang }) => {
 
 			{/* Horizontal timeline */}
 			<div className={'relative w-full bg-gray-100 px-0 py-5 mt-24'}>
-				<HorizontalTimelineComponent liveBlogs={liveBlogData.contentCollection.items} />
+				<HorizontalTimelineComponent liveBlogs={liveBlogData.contentCollection.items} lang={lang} />
 				<div className={'absolute right-0 top-0 w-24 h-full bg-gradient-to-r from-transparent to-gray-100'} />
 				{/* <p className={'text-base text-burgundy'}>[Horizontal Timeline]</p> */}
 			</div>
@@ -47,7 +47,11 @@ const LiveBlogEntry = ({ liveBlogEntryCollection, liveBlogData, lang }) => {
 						</li>
 						<li className={'border-t mt-2 pt-2 border-black'}>
 							<Link href={`${lang === 'en' ? `/car-live-blog/fr` : `/car-live-blog/en`}`}>
-								<button className={'bg-burgundy px-3 py-1 text-white font-bold mt-2 opacity-70 hover:opacity-100'}>
+								<button
+									className={
+										'bg-transparent border-2 border-burgundy px-3 py-1 text-burgundy font-bold mt-2 hover:bg-burgundy hover:text-white transition-all duration-100 ease-in-out'
+									}
+								>
 									{lang === 'en' ? 'Lire en français' : 'Read in English'}
 								</button>
 							</Link>
