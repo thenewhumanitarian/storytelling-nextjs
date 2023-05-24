@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet'
 
 import { callContentful } from '@utils/contentfulHelper'
-import EmbedFeed from '@components/live-blog/embedFeed'
+import EmbeddedFeed from '@components/live-blog/embeddedFeed'
 // import { IconAudio, IconMovie } from '@components/icons/media'
 
 const AllLiveBlogs = ({ lang, liveBlogData }) => {
@@ -16,7 +16,7 @@ const AllLiveBlogs = ({ lang, liveBlogData }) => {
 			>
 				<meta name='viewport' content='width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no' />
 			</Helmet>
-			<EmbedFeed lang={lang} entries={liveBlogData.contentCollection.items} />
+			<EmbeddedFeed lang={lang} entries={liveBlogData.contentCollection.items} />
 		</div>
 	)
 }
