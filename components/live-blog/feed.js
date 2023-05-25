@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { Fragment } from 'react'
 import { TagIcon, UserCircleIcon } from '@heroicons/react/20/solid'
 import { IconNewsReport, IconAudio, IconMovie, IconPhotoGallery } from '@components/icons/media'
@@ -16,8 +15,8 @@ export default function Feed({ entries, lang }) {
 	}
 
 	const activity = entries
-		.sort((a, b) => moment(b.date) - moment(a.date))
-		.map((entry, i) => {
+	.sort((a, b) => moment(b.date) - moment(a.date))
+	.map((entry, i) => {
 			let icon = <IconNewsReport />
 
 			if (entry.type === 'Video') {
@@ -54,17 +53,19 @@ export default function Feed({ entries, lang }) {
 
 	return (
 		<div className='flow-root'>
-			<ul role='list' className='absolute top-0 left-0 flex flex-col justify-around w-full h-full p-5 m-0 space-y-5 list-none bg-white' style={{background: 'linear-gradient(41deg, rgba(159,62,82,0.3912158613445378) 0%, rgba(255,255,255,0.5592830882352942) 21%, rgba(255,255,255,0.47805059523809523) 48%, rgba(159,62,82,0.486453956582633) 100%)'}}>
-				{activity.slice(0, 3).map((activityItem, activityItemIdx) => (
+			<ul role='list' className='p-0 m-0 -mb-8 list-none'>
+				{activity.map((activityItem, activityItemIdx) => (
 					<li key={activityItem.id}>
-						<div className='relative'>
-							{activityItemIdx !== 2 ? <span className='absolute left-8 top-5 -ml-px h-full w-0.5 bg-gray-200' aria-hidden='true' /> : null}
+						<div className='relative pb-8'>
+							{activityItemIdx !== activity.length - 1 ? (
+								<span className='absolute left-8 top-5 -ml-px h-full w-0.5 bg-gray-200' aria-hidden='true' />
+							) : null}
 							<div className='relative flex items-start space-x-3'>
 								{activityItem.type === 'comment' ? (
 									<>
 										<div className='relative'>
 											<img
-												className='flex items-center justify-center object-cover w-16 h-16 bg-gray-400 rounded-full ring-2 ring-gray-100'
+												className='flex items-center justify-center object-cover w-16 h-16 bg-gray-400 rounded-full ring-8 ring-white'
 												src={activityItem.imageUrl}
 												alt=''
 											/>
@@ -74,9 +75,9 @@ export default function Feed({ entries, lang }) {
 										</div>
 										<div className='flex-1 min-w-0'>
 											<div>
-												<div className='flex items-center justify-between w-full gap-x-4'>
+												<div className='flex items-center justify-between w-full gap-8 gap-x-4'>
 													<a href={`${lang}/entries/${activityItem.slug}`} className='font-serif text-burgundy'>
-														<h3 className={'text-xl mb-0 mt-1 line-clamp-1'}>{activityItem.title}</h3>
+														<h3 className={'text-2xl mb-0 mt-1'}>{activityItem.title}</h3>
 													</a>
 													{/* <span className={'block w-6 opacity-40 absolute top-0 right-0'}>{activityItem.icon}</span> */}
 												</div>
@@ -84,13 +85,16 @@ export default function Feed({ entries, lang }) {
 													Posted {activityItem.date} by {activityItem.person.name}
 												</p>
 											</div>
+											<div className='mt-2 text-black'>
+												<p className={'text-base'}>{activityItem.summary}</p>
+											</div>
 										</div>
 									</>
 								) : activityItem.type === 'assignment' ? (
 									<>
 										<div>
 											<div className='relative px-1'>
-												<div className='flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full ring-2 ring-gray-100'>
+												<div className='flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full ring-8 ring-white'>
 													<UserCircleIcon className='w-5 h-5 text-gray-500' aria-hidden='true' />
 												</div>
 											</div>
@@ -112,7 +116,7 @@ export default function Feed({ entries, lang }) {
 									<>
 										<div>
 											<div className='relative px-1'>
-												<div className='flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full ring-2 ring-gray-100'>
+												<div className='flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full ring-8 ring-white'>
 													<TagIcon className='w-5 h-5 text-gray-500' aria-hidden='true' />
 												</div>
 											</div>
@@ -149,7 +153,6 @@ export default function Feed({ entries, lang }) {
 						</div>
 					</li>
 				))}
-				<li className={'cursor-pointer underline hover:text-burgundy font-bold'}><Link href={'#'}><p className={'text-center'}>See all entries</p></Link></li>
 			</ul>
 		</div>
 	)
