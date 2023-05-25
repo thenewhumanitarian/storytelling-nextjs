@@ -67,7 +67,7 @@ export default function Feed({ entries, lang }) {
 										className='flex items-center justify-center object-cover w-16 h-16 bg-gray-400 ring-2 ring-transparent'
 										src={activityItem.imageUrl}
 										alt=''
-									/>
+									/> 
 									<span className={'absolute bottom-0 right-0 bg-white  w-6 h-6 flex justify-center items-center'}>
 										<span className={'w-4 h-4 mb-3 mr-0.5 block'}>{activityItem.icon}</span>
 									</span>
