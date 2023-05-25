@@ -51,7 +51,7 @@ export default function Feed({ entries, lang }) {
 		<div className='flow-root'>
 			<ul
 				role='list'
-				className='absolute top-0 left-0 flex flex-col justify-around w-full h-full p-5 m-0 space-y-0 list-none bg-white divide-y'
+				className='absolute top-0 left-0 flex flex-col justify-around w-full h-full p-4 m-0 space-y-0 list-none bg-white divide-y'
 				// style={{
 				// 	background:
 				// 		'linear-gradient(41deg, rgba(159,62,82,0.3912158613445378) 0%, rgba(255,255,255,0.5592830882352942) 21%, rgba(255,255,255,0.47805059523809523) 48%, rgba(159,62,82,0.486453956582633) 100%)',
@@ -76,7 +76,7 @@ export default function Feed({ entries, lang }) {
 									<div>
 										<div className='flex items-center justify-between w-full gap-x-4'>
 											<a href={`${lang}/entries/${activityItem.slug}`} className='font-serif text-burgundy'>
-												<h3 className={'text-xl mb-0 mt-1 line-clamp-1'}>{activityItem.title}</h3>
+												<h3 className={'text-base font-bold mb-0 mt-1 line-clamp-1'}>{activityItem.title}</h3>
 											</a>
 											{/* <span className={'block w-6 opacity-40 absolute top-0 right-0'}>{activityItem.icon}</span> */}
 										</div>
