@@ -7,6 +7,25 @@ const ImageGrid = ({ images }) => {
 	const [currentImage, setCurrentImage] = useState(0)
 	const [viewerIsOpen, setViewerIsOpen] = useState(false)
 
+	const customStyles = {
+		container: (base) => ({
+			...base,
+			backgroundColor: '#000',
+		}),
+		view: (base) => ({
+			...base,
+			'.react-images__footer__caption > span': {
+				color: 'red',
+				fontSize: '2rem',
+			},
+			'& > img': {
+				maxHeight: '90vh',
+				margin: '5vh auto',
+				boxShadow: '0 2px 5px rgba(0, 0, 0, 0.15)',
+			},
+		}),
+	}
+
 	const openLightbox = useCallback((event, { photo, index }) => {
 		setCurrentImage(index)
 		setViewerIsOpen(true)
@@ -21,7 +40,7 @@ const ImageGrid = ({ images }) => {
 		src: image.url,
 		height: image.height,
 		width: image.width,
-    title: image.description || undefined
+		title: image.description || undefined,
 	}))
 
 	// const imageRenderer = useCallback(
@@ -45,6 +64,7 @@ const ImageGrid = ({ images }) => {
 				{viewerIsOpen ? (
 					<Modal onClose={closeLightbox}>
 						<Carousel
+							styles={customStyles}
 							currentIndex={currentImage}
 							views={photos.map((x) => ({
 								...x,

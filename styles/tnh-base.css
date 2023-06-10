@@ -5630,3 +5630,16 @@ textarea {
 .donate-banner--footer .btn {
 	padding: 14px 25px;
 }
+
+.react-images__footer__caption span {
+	position: absolute;
+	bottom: -1rem;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	padding: 1rem 2rem;
+	font-size: 1.2rem;
+	line-height: 1;
+	font-family: 'Roboto', sans-serif;
+	background: rgba(0, 0, 0, 0.75);
+}
