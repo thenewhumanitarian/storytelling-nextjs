@@ -1,3 +1,5 @@
+import { ArticleProvider } from '@store/articleContext'
+
 import '@styles/reset.css'
 import '@styles/tnh-base.css'
 import '@styles/index.css'
@@ -5,7 +7,11 @@ import '@styles/index.css'
 // import '@styles/timeline.scss'
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+	return (
+		<ArticleProvider>
+			<Component {...pageProps} />
+		</ArticleProvider>
+	)
 }
 
 export default MyApp

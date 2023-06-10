@@ -9,8 +9,8 @@ import HeaderComponent from '@components/common/header'
 import HorizontalTimelineComponent from '@components/horizontal-timeline'
 // import { IconAudio, IconMovie } from '@components/icons/media'
 
-const AllLiveBlogs = ({ lang, liveBlogData, liveBlogPages }) => {
-	// console.log(liveBlogData, lang)
+const AllLiveBlogs = ({ lang, liveBlogPageData, liveBlogPages, pageContent }) => {
+	console.log(pageContent)
 
 	return (
 		<div>
@@ -26,7 +26,7 @@ const AllLiveBlogs = ({ lang, liveBlogData, liveBlogPages }) => {
 
 			{/* Horizontal timeline */}
 			<div className={'relative w-full bg-gray-100 px-0 py-5 mt-24'}>
-				<HorizontalTimelineComponent liveBlogs={liveBlogData.contentCollection.items} lang={lang} />
+				<HorizontalTimelineComponent liveBlogs={liveBlogPageData.contentCollection.items} lang={lang} />
 				<div className={'absolute right-0 top-0 w-24 h-full bg-gradient-to-r from-transparent to-gray-100'} />
 				{/* <p className={'text-base text-burgundy'}>[Horizontal Timeline]</p> */}
 			</div>
@@ -37,7 +37,7 @@ const AllLiveBlogs = ({ lang, liveBlogData, liveBlogPages }) => {
 					<Link href={`${lang === 'en' ? '/car-live-blog/en' : '/car-live-blog/fr'}`}>
 						<button className={'bg-burgundy px-3 py-1 text-white font-bold mb-5'}>{lang === 'en' ? '← Back to overview' : '← Retour'}</button>
 					</Link>
-					<h2>{liveBlogData.title}</h2>
+					<h2>{liveBlogPageData.title}</h2>
 					<ul className={'list-none m-0 grid pt-2'}>
 						{liveBlogPages.map((el, i) => {
 							return (
@@ -60,9 +60,10 @@ const AllLiveBlogs = ({ lang, liveBlogData, liveBlogPages }) => {
 					</ul>
 				</div>
 
-				{/* <div className='grid grid-cols-1 col-span-7 xl:col-span-7 gap-y-10'>
-					<h2>Latest entries</h2>
-					<Feed lang={lang} entries={liveBlogData.contentCollection.items} />
+				{/* <div className={'grid grid-cols-1 gap-y-1 mt-5'}>
+					{liveBlogData.items.map((entry, i) => {
+						return <DynamicBlogContentComponent key={`blog-entry-content-${i}`} data={entry} lang={lang} />
+					})}
 				</div> */}
 			</div>
 		</div>
@@ -138,8 +139,76 @@ export const getStaticProps = async (ctx) => {
 
 	const liveBlogPages = await callContentful(pagesQuery)
 
+	const pageContentQuery = `{
+		liveBlogPageCollection(locale: "${lang}", limit: 1, where: { slug: "${slug}" }) {
+			{
+				items {
+					title
+					blogPageContentCollection {
+						items {
+							... on LiveBlogContentText {
+								__typename
+								title
+								text {
+									json
+								}
+							}
+							... on LiveBlogContentVideo {
+								__typename
+								title
+								youtubeId
+								video {
+									fileName
+									url
+								}
+								caption {
+									json
+								}
+								credit
+							}
+							... on LiveBlogContentAudio {
+								__typename
+								title
+								youtubeId
+								audio {
+									fileName
+									url
+								}
+								caption {
+									json
+								}
+								credit
+							}
+							... on LiveBlogContentImageGrid {
+								__typename
+								imagesCollection {
+									items {
+										fileName
+										url
+										width
+										height
+										title
+										description
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}`
+
+	const pageContent = await callContentful(pageContentQuery)
+
 	return {
-		props: { lang, liveBlogData: liveBlog.data.liveBlogCollection.items[0], liveBlogPages: liveBlogPages.data.liveBlogPageCollection.items },
+		props: {
+			lang,
+			liveBlogPageData: liveBlog.data.liveBlogCollection.items[0],
+			liveBlogPages: liveBlogPages.data.liveBlogPageCollection.items,
+			// pageContent: pageContent.data.liveBlogPageCollection.items[0],
+			pageContent: pageContent,
+		},
 		revalidate: 60,
 	}
 }
