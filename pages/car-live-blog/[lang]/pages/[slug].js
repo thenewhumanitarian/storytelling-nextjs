@@ -1,6 +1,7 @@
 // import Link from 'next/link'
 import { Helmet } from 'react-helmet'
 // import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 import { callContentful } from '@utils/contentfulHelper'
 import HeaderComponent from '@components/common/header'
@@ -8,7 +9,7 @@ import HeaderComponent from '@components/common/header'
 import HorizontalTimelineComponent from '@components/horizontal-timeline'
 // import { IconAudio, IconMovie } from '@components/icons/media'
 
-const AllLiveBlogs = ({ lang, liveBlogData }) => {
+const AllLiveBlogs = ({ lang, liveBlogData, liveBlogPages }) => {
 	// console.log(liveBlogData, lang)
 
 	return (
@@ -31,19 +32,20 @@ const AllLiveBlogs = ({ lang, liveBlogData }) => {
 			</div>
 
 			{/* Grid for main content */}
-			{/* <div className='grid grid-flow-col grid-cols-9 gap-8 px-8 mt-10'>
+			<div className='grid grid-flow-col grid-cols-9 gap-8 px-8 mt-10'>
 				<div className='col-span-2'>
+					<Link href={`${lang === 'en' ? '/car-live-blog/en' : '/car-live-blog/fr'}`}>
+						<button className={'bg-burgundy px-3 py-1 text-white font-bold mb-5'}>{lang === 'en' ? '← Back to overview' : '← Retour'}</button>
+					</Link>
 					<h2>{liveBlogData.title}</h2>
 					<ul className={'list-none m-0 grid pt-2'}>
-						<li>
-							<Link href={'#'}>Why are we doing this</Link>
-						</li>
-						<li>
-							<Link href={'#'}>What is it about</Link>
-						</li>
-						<li>
-							<Link href={'#'}>Send us your feedback</Link>
-						</li>
+						{liveBlogPages.map((el, i) => {
+							return (
+								<li>
+									<Link href={`/car-live-blog/${lang}/pages/${el.slug}`}>{el.title}</Link>
+								</li>
+							)
+						})}
 						<li className={'border-t mt-2 pt-2 border-black'}>
 							<Link href={`${lang === 'en' ? `/car-live-blog/fr` : `/car-live-blog/en`}`}>
 								<button
@@ -56,13 +58,13 @@ const AllLiveBlogs = ({ lang, liveBlogData }) => {
 							</Link>
 						</li>
 					</ul>
-				</div> */}
+				</div>
 
-			{/* <div className='grid grid-cols-1 col-span-7 xl:col-span-7 gap-y-10'>
+				{/* <div className='grid grid-cols-1 col-span-7 xl:col-span-7 gap-y-10'>
 					<h2>Latest entries</h2>
 					<Feed lang={lang} entries={liveBlogData.contentCollection.items} />
 				</div> */}
-			{/* </div> */}
+			</div>
 		</div>
 	)
 }
@@ -125,10 +127,19 @@ export const getStaticProps = async (ctx) => {
 
 	const liveBlog = await callContentful(query)
 
-	console.log(liveBlog)
+	const pagesQuery = `{
+		liveBlogPageCollection(locale: "${lang}") {
+			items {
+				title
+				slug
+			}
+		}
+	}`
+
+	const liveBlogPages = await callContentful(pagesQuery)
 
 	return {
-		props: { lang, liveBlogData: liveBlog.data.liveBlogCollection.items[0] },
+		props: { lang, liveBlogData: liveBlog.data.liveBlogCollection.items[0], liveBlogPages: liveBlogPages.data.liveBlogPageCollection.items },
 		revalidate: 60,
 	}
 }

@@ -8,8 +8,8 @@ import Feed from '@components/live-blog/feed'
 import HorizontalTimelineComponent from '@components/horizontal-timeline'
 // import { IconAudio, IconMovie } from '@components/icons/media'
 
-const AllLiveBlogs = ({ lang, liveBlogData }) => {
-	console.log(liveBlogData, lang)
+const AllLiveBlogs = ({ lang, liveBlogData, liveBlogPages }) => {
+	console.log(liveBlogPages)
 
 	return (
 		<div>
@@ -35,7 +35,14 @@ const AllLiveBlogs = ({ lang, liveBlogData }) => {
 				<div className='col-span-2'>
 					<h2>{liveBlogData.title}</h2>
 					<ul className={'list-none m-0 grid pt-2'}>
-						<li>
+						{liveBlogPages.map((el, i) => {
+							return (
+								<li>
+									<Link href={`${lang}/pages/${el.slug}`}>{el.title}</Link>
+								</li>
+							)
+						})}
+						{/* <li>
 							<Link href={'#'}>Why are we doing this</Link>
 						</li>
 						<li>
@@ -43,7 +50,7 @@ const AllLiveBlogs = ({ lang, liveBlogData }) => {
 						</li>
 						<li>
 							<Link href={'#'}>Send us your feedback</Link>
-						</li>
+						</li> */}
 						<li className={'border-t mt-2 pt-2 border-black'}>
 							<Link href={`${lang === 'en' ? `/car-live-blog/fr` : `/car-live-blog/en`}`}>
 								<button
@@ -125,10 +132,19 @@ export const getStaticProps = async (ctx) => {
 
 	const liveBlog = await callContentful(query)
 
-	console.log(liveBlog)
+	const pagesQuery = `{
+		liveBlogPageCollection(locale: "${lang}") {
+			items {
+				title
+				slug
+			}
+		}
+	}`
+
+	const liveBlogPages = await callContentful(pagesQuery)
 
 	return {
-		props: { lang, liveBlogData: liveBlog.data.liveBlogCollection.items[0] },
+		props: { lang, liveBlogData: liveBlog.data.liveBlogCollection.items[0], liveBlogPages: liveBlogPages.data.liveBlogPageCollection.items },
 		revalidate: 60,
 	}
 }

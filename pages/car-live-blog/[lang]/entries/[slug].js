@@ -5,10 +5,11 @@ import { callContentful } from '@utils/contentfulHelper'
 import HeaderComponent from '@components/common/header'
 import DynamicBlogContentComponent from '@components/live-blog/Components'
 import HorizontalTimelineComponent from '@components/horizontal-timeline'
+import ArticleChecker from '@components/live-blog/articleChecker'
 // import Feed from '@components/live-blog/feed'
 // import { IconAudio, IconMovie } from '@components/icons/media'
 
-const LiveBlogEntry = ({ liveBlogEntryCollection, liveBlogData, lang }) => {
+const LiveBlogEntry = ({ liveBlogEntryCollection, liveBlogData, lang, liveBlogPages }) => {
 	return (
 		<div>
 			<Helmet
@@ -36,15 +37,13 @@ const LiveBlogEntry = ({ liveBlogEntryCollection, liveBlogData, lang }) => {
 					</Link>
 					<h2>{liveBlogData.title}</h2>
 					<ul className={'list-none m-0 grid pt-2'}>
-						<li>
-							<Link href={'#'}>Why are we doing this</Link>
-						</li>
-						<li>
-							<Link href={'#'}>What is it about</Link>
-						</li>
-						<li>
-							<Link href={'#'}>Send us your feedback</Link>
-						</li>
+						{liveBlogPages.map((el, i) => {
+							return (
+								<li>
+									<Link href={`/car-live-blog/${lang}/pages/${el.slug}`}>{el.title}</Link>
+								</li>
+							)
+						})}
 						<li className={'border-t mt-2 pt-2 border-black'}>
 							<Link href={`${lang === 'en' ? `/car-live-blog/fr` : `/car-live-blog/en`}`}>
 								<button
@@ -60,6 +59,7 @@ const LiveBlogEntry = ({ liveBlogEntryCollection, liveBlogData, lang }) => {
 				</div>
 
 				<div className='grid grid-cols-1 col-span-7 gap-0 xl:col-span-5'>
+					<ArticleChecker slug={liveBlogEntryCollection.slug} setIsRead={true} invisible={true} />
 					<h1>{liveBlogEntryCollection.title}</h1>
 					<div className={'grid grid-cols-1 gap-y-1 mt-5'}>
 						{liveBlogEntryCollection.blogEntryContentCollection.items.map((entry, i) => {
@@ -202,11 +202,23 @@ export const getStaticProps = async (ctx) => {
 
 	const liveBlogEntry = await callContentful(query)
 
+	const pagesQuery = `{
+		liveBlogPageCollection(locale: "${lang}") {
+			items {
+				title
+				slug
+			}
+		}
+	}`
+
+	const liveBlogPages = await callContentful(pagesQuery)
+
 	return {
 		props: {
 			lang,
 			liveBlogEntryCollection: liveBlogEntry.data.liveBlogEntryCollection.items[0],
 			liveBlogData: liveBlogEntry.data.liveBlogCollection.items[0],
+			liveBlogPages: liveBlogPages.data.liveBlogPageCollection.items,
 		},
 		revalidate: 60,
 	}
