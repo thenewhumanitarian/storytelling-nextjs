@@ -2,7 +2,6 @@ import { Helmet } from 'react-helmet'
 
 import { callContentful } from '@utils/contentfulHelper'
 import EmbeddedFeed from '@components/live-blog/embeddedFeed'
-// import { IconAudio, IconMovie } from '@components/icons/media'
 
 const AllLiveBlogs = ({ lang, liveBlogData }) => {
 	console.log(liveBlogData, lang)

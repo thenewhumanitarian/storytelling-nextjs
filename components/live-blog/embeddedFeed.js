@@ -3,6 +3,7 @@ import { Fragment } from 'react'
 import { TagIcon, UserCircleIcon } from '@heroicons/react/20/solid'
 import { IconNewsReport, IconAudio, IconMovie, IconPhotoGallery } from '@components/icons/media'
 import moment from 'moment'
+import ArticleChecker from '@components/live-blog/articleChecker'
 
 function classNames(...classes) {
 	return classes.filter(Boolean).join(' ')
@@ -55,7 +56,7 @@ export default function Feed({ entries, lang }) {
 				// style={{
 				// 	background:
 				// 		'linear-gradient(41deg, rgba(159,62,82,0.3912158613445378) 0%, rgba(255,255,255,0.5592830882352942) 21%, rgba(255,255,255,0.47805059523809523) 48%, rgba(159,62,82,0.486453956582633) 100%)',
-				// }}
+				// }}f
 			>
 				{activity.slice(0, 3).map((activityItem, activityItemIdx) => (
 					<li key={activityItem.id} className={'pt-3'}>
@@ -67,7 +68,7 @@ export default function Feed({ entries, lang }) {
 										className='flex items-center justify-center object-cover w-16 h-16 bg-gray-400 ring-2 ring-transparent'
 										src={activityItem.imageUrl}
 										alt=''
-									/> 
+									/>
 									<span className={'absolute bottom-0 right-0 bg-white  w-6 h-6 flex justify-center items-center'}>
 										<span className={'w-4 h-4 mb-3 mr-0.5 block'}>{activityItem.icon}</span>
 									</span>
@@ -80,9 +81,12 @@ export default function Feed({ entries, lang }) {
 											</a>
 											{/* <span className={'block w-6 opacity-40 absolute top-0 right-0'}>{activityItem.icon}</span> */}
 										</div>
-										<p className='mt-0.5 text-gray-500'>
-											Posted {activityItem.date} by {activityItem.author.name}
-										</p>
+										<div className={'flex flex-row gap-2'}>
+											<ArticleChecker slug={activityItem.slug} />
+											<p className='mt-0.5 text-gray-500'>
+												Posted {activityItem.date} by {activityItem.author.name}
+											</p>
+										</div>
 									</div>
 								</div>
 							</div>

@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 import { callContentful } from '@utils/contentfulHelper'
 import HeaderComponent from '@components/common/header'
-// import Feed from '@components/live-blog/feed'
+import DynamicBlogContentComponent from '@components/live-blog/Components'
 import HorizontalTimelineComponent from '@components/horizontal-timeline'
 // import { IconAudio, IconMovie } from '@components/icons/media'
 
@@ -32,7 +32,7 @@ const AllLiveBlogs = ({ lang, liveBlogPageData, liveBlogPages, pageContent }) =>
 			</div>
 
 			{/* Grid for main content */}
-			<div className='grid grid-flow-col grid-cols-9 gap-8 px-8 mt-10'>
+			<div className='grid items-start grid-flow-col grid-cols-9 gap-8 px-8 mt-10'>
 				<div className='col-span-2'>
 					<Link href={`${lang === 'en' ? '/car-live-blog/en' : '/car-live-blog/fr'}`}>
 						<button className={'bg-burgundy px-3 py-1 text-white font-bold mb-5'}>{lang === 'en' ? '← Back to overview' : '← Retour'}</button>
@@ -60,11 +60,14 @@ const AllLiveBlogs = ({ lang, liveBlogPageData, liveBlogPages, pageContent }) =>
 					</ul>
 				</div>
 
-				{/* <div className={'grid grid-cols-1 gap-y-1 mt-5'}>
-					{liveBlogData.items.map((entry, i) => {
-						return <DynamicBlogContentComponent key={`blog-entry-content-${i}`} data={entry} lang={lang} />
-					})}
-				</div> */}
+				<div className='grid grid-cols-1 col-span-7 gap-0 xl:col-span-5'>
+					<h1>{pageContent.title}</h1>
+					<div className={'grid grid-cols-1 gap-y-1 mt-5'}>
+						{pageContent.blogPageContentCollection.items.map((entry, i) => {
+							return <DynamicBlogContentComponent key={`blog-entry-content-${i}`} data={entry} lang={lang} />
+						})}
+					</div>
+				</div>
 			</div>
 		</div>
 	)
@@ -80,15 +83,15 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async (ctx) => {
-	let slug = 'car-blog-english'
-	const lang = ctx.params.lang
+	let { lang, slug } = ctx.params
 
+	let blogSlug = 'car-blog-english'
 	if (lang === 'fr') {
-		slug = 'car-blog-french'
+		blogSlug = 'car-blog-french'
 	}
 
 	const query = `{
-	liveBlogCollection(locale: "${lang}", limit: 1, where: { slug: "${slug}" }) {
+	liveBlogCollection(locale: "${lang}", limit: 1, where: { slug: "${blogSlug}" }) {
 			items {
 				title
 				slug
@@ -140,8 +143,11 @@ export const getStaticProps = async (ctx) => {
 	const liveBlogPages = await callContentful(pagesQuery)
 
 	const pageContentQuery = `{
-		liveBlogPageCollection(locale: "${lang}", limit: 1, where: { slug: "${slug}" }) {
-			{
+			liveBlogPageCollection(
+				locale: "${lang}"
+				limit: 1
+				where: { slug: "${slug}" }
+			) {
 				items {
 					title
 					blogPageContentCollection {
@@ -196,7 +202,6 @@ export const getStaticProps = async (ctx) => {
 					}
 				}
 			}
-		}
 	}`
 
 	const pageContent = await callContentful(pageContentQuery)
@@ -207,7 +212,7 @@ export const getStaticProps = async (ctx) => {
 			liveBlogPageData: liveBlog.data.liveBlogCollection.items[0],
 			liveBlogPages: liveBlogPages.data.liveBlogPageCollection.items,
 			// pageContent: pageContent.data.liveBlogPageCollection.items[0],
-			pageContent: pageContent,
+			pageContent: pageContent.data.liveBlogPageCollection.items[0],
 		},
 		revalidate: 60,
 	}

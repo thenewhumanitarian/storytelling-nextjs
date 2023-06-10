@@ -30,7 +30,7 @@ const LiveBlogEntry = ({ liveBlogEntryCollection, liveBlogData, lang, liveBlogPa
 			</div>
 
 			{/* Grid for main content */}
-			<div className='grid grid-flow-col grid-cols-9 gap-8 px-8 mt-10'>
+			<div className='grid items-start grid-flow-col grid-cols-9 gap-8 px-8 mt-10'>
 				<div className='col-span-2'>
 					<Link href={`${lang === 'en' ? '/car-live-blog/en' : '/car-live-blog/fr'}`}>
 						<button className={'bg-burgundy px-3 py-1 text-white font-bold mb-5'}>{lang === 'en' ? '← Back to overview' : '← Retour'}</button>
