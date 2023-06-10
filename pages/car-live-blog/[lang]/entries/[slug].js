@@ -10,6 +10,8 @@ import ArticleChecker from '@components/live-blog/articleChecker'
 // import { IconAudio, IconMovie } from '@components/icons/media'
 
 const LiveBlogEntry = ({ liveBlogEntryCollection, liveBlogData, lang, liveBlogPages }) => {
+	console.log(liveBlogEntryCollection)
+
 	return (
 		<div>
 			<Helmet
@@ -18,6 +20,7 @@ const LiveBlogEntry = ({ liveBlogEntryCollection, liveBlogData, lang, liveBlogPa
 				}}
 			>
 				<meta name='viewport' content='width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+				{liveBlogEntryCollection.blogEntrySocialImage?.url && <meta property='og:image' content={liveBlogEntryCollection.blogEntrySocialImage.url} />}
 			</Helmet>
 
 			<HeaderComponent />
@@ -137,6 +140,9 @@ export const getStaticProps = async (ctx) => {
 				slug
 				summary
 				type
+				blogEntrySocialImage {
+					url
+				}
 				blogEntryAuthor {
 					name
 					image {
