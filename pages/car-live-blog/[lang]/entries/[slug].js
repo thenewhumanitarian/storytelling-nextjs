@@ -34,8 +34,9 @@ const LiveBlogEntry = ({ liveBlogEntryCollection, liveBlogData, lang, liveBlogPa
 			<div className='grid items-start grid-flow-col grid-cols-9 gap-8 px-8 mt-10'>
 				<Sidebar title={liveBlogData.title} lang={lang} liveBlogPages={liveBlogPages} />
 				<div className='relative grid grid-cols-1 col-span-7 gap-0 xl:col-span-5'>
-					<ArticleChecker slug={liveBlogEntryCollection.slug} setIsRead={true} showRemoveArticle={true} />
 					<h1>{liveBlogEntryCollection.title}</h1>
+					<p>Subtitle</p>
+					<ArticleChecker slug={liveBlogEntryCollection.slug} setIsRead={true} showRemoveArticle={true} className={'pt4'} />
 					<div className={'grid grid-cols-1 gap-y-1 mt-5'}>
 						{liveBlogEntryCollection.blogEntryContentCollection.items.map((entry, i) => {
 							return <DynamicBlogContentComponent key={`blog-entry-content-${i}`} data={entry} lang={lang} />

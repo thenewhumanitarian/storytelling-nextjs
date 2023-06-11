@@ -5,7 +5,7 @@ import ArticleFilter from '@components/live-blog/articleFilter'
 const Sidebar = ({ lang, title, liveBlogPages, showFilter, currentFilter }) => {
 	return (
 		<div className='col-span-2'>
-			{!showFilter || currentFilter && (
+			{currentFilter && (
 				<Link href={`${lang === 'en' ? '/car-live-blog/en' : '/car-live-blog/fr'}`}>
 					<button className={'bg-burgundy px-3 py-1 text-white font-bold mb-5'}>{lang === 'en' ? '← Back to overview' : '← Retour'}</button>
 				</Link>
