@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { Helmet } from 'react-helmet'
 
 import { callContentful } from '@utils/contentfulHelper'
@@ -6,12 +5,11 @@ import HeaderComponent from '@components/common/header'
 import DynamicBlogContentComponent from '@components/live-blog/Components'
 import HorizontalTimelineComponent from '@components/horizontal-timeline'
 import ArticleChecker from '@components/live-blog/articleChecker'
+import Sidebar from '@components/live-blog/sidebar'
 // import Feed from '@components/live-blog/feed'
 // import { IconAudio, IconMovie } from '@components/icons/media'
 
 const LiveBlogEntry = ({ liveBlogEntryCollection, liveBlogData, lang, liveBlogPages }) => {
-	console.log(liveBlogEntryCollection)
-
 	return (
 		<div>
 			<Helmet
@@ -34,35 +32,9 @@ const LiveBlogEntry = ({ liveBlogEntryCollection, liveBlogData, lang, liveBlogPa
 
 			{/* Grid for main content */}
 			<div className='grid items-start grid-flow-col grid-cols-9 gap-8 px-8 mt-10'>
-				<div className='col-span-2'>
-					<Link href={`${lang === 'en' ? '/car-live-blog/en' : '/car-live-blog/fr'}`}>
-						<button className={'bg-burgundy px-3 py-1 text-white font-bold mb-5'}>{lang === 'en' ? '← Back to overview' : '← Retour'}</button>
-					</Link>
-					<h2>{liveBlogData.title}</h2>
-					<ul className={'list-none m-0 grid pt-2'}>
-						{liveBlogPages.map((el, i) => {
-							return (
-								<li>
-									<Link href={`/car-live-blog/${lang}/pages/${el.slug}`}>{el.title}</Link>
-								</li>
-							)
-						})}
-						<li className={'border-t mt-2 pt-2 border-black'}>
-							<Link href={`${lang === 'en' ? `/car-live-blog/fr` : `/car-live-blog/en`}`}>
-								<button
-									className={
-										'bg-transparent border-2 border-burgundy px-3 py-1 text-burgundy font-bold mt-2 hover:bg-burgundy hover:text-white transition-all duration-100 ease-in-out'
-									}
-								>
-									{lang === 'en' ? 'Lire en français' : 'Read in English'}
-								</button>
-							</Link>
-						</li>
-					</ul>
-				</div>
-
-				<div className='grid grid-cols-1 col-span-7 gap-0 xl:col-span-5'>
-					<ArticleChecker slug={liveBlogEntryCollection.slug} setIsRead={true} invisible={true} />
+				<Sidebar title={liveBlogData.title} lang={lang} liveBlogPages={liveBlogPages} />
+				<div className='relative grid grid-cols-1 col-span-7 gap-0 xl:col-span-5'>
+					<ArticleChecker slug={liveBlogEntryCollection.slug} setIsRead={true} showRemoveArticle={true} />
 					<h1>{liveBlogEntryCollection.title}</h1>
 					<div className={'grid grid-cols-1 gap-y-1 mt-5'}>
 						{liveBlogEntryCollection.blogEntryContentCollection.items.map((entry, i) => {
@@ -114,6 +86,7 @@ export const getStaticProps = async (ctx) => {
 							type
 							blogEntryAuthor {
 								name
+								slug
 								image {
 									url
 								}

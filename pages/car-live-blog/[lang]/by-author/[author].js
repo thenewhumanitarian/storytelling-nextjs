@@ -7,7 +7,9 @@ import HeaderComponent from '@components/common/header'
 import Feed from '@components/live-blog/feed'
 import HorizontalTimelineComponent from '@components/horizontal-timeline'
 
-const AllLiveBlogs = ({ lang, liveBlogData, liveBlogPages, liveBlogAuthors }) => {
+const AllLiveBlogs = ({ lang, liveBlogData, liveBlogPages, liveBlogAuthors, author }) => {
+	const filteredByAuthor = liveBlogData.contentCollection.items.filter((item) => item.blogEntryAuthor.slug === author)
+
 	return (
 		<div>
 			<Helmet
@@ -22,17 +24,17 @@ const AllLiveBlogs = ({ lang, liveBlogData, liveBlogPages, liveBlogAuthors }) =>
 
 			{/* Horizontal timeline */}
 			<div className={'relative w-full bg-gray-100 px-0 py-5 mt-24'}>
-				<HorizontalTimelineComponent liveBlogs={liveBlogData.contentCollection.items} lang={lang} />
+				<HorizontalTimelineComponent liveBlogs={filteredByAuthor} lang={lang} />
 				<div className={'absolute right-0 top-0 w-24 h-full bg-gradient-to-r from-transparent to-gray-100'} />
 				{/* <p className={'text-base text-burgundy'}>[Horizontal Timeline]</p> */}
 			</div>
 
 			{/* Grid for main content */}
 			<div className='grid grid-flow-col grid-cols-9 gap-8 px-8 mt-10'>
-				<Sidebar title={liveBlogData.title} lang={lang} liveBlogPages={liveBlogPages} showFilter={liveBlogAuthors} />
+				<Sidebar title={liveBlogData.title} lang={lang} liveBlogPages={liveBlogPages} showFilter={liveBlogAuthors} currentFilter={author} />
 				<div className='grid grid-cols-1 col-span-7 xl:col-span-5 gap-y-10'>
 					<h2>Latest entries</h2>
-					<Feed lang={lang} entries={liveBlogData.contentCollection.items} />
+					<Feed lang={lang} entries={filteredByAuthor} />
 				</div>
 			</div>
 		</div>
@@ -50,7 +52,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (ctx) => {
 	let slug = 'car-blog-english'
-	const lang = ctx.params.lang
+	const { lang, author } = ctx.params
 
 	if (lang === 'fr') {
 		slug = 'car-blog-french'
@@ -132,6 +134,7 @@ export const getStaticProps = async (ctx) => {
 			liveBlogData: liveBlog.data.liveBlogCollection.items[0],
 			liveBlogPages: liveBlogPages.data.liveBlogPageCollection.items,
 			liveBlogAuthors: liveBlogAuthors.data.liveBlogAuthorCollection.items,
+			author: author,
 		},
 		revalidate: 60,
 	}

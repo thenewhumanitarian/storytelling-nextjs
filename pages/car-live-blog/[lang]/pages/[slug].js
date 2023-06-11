@@ -1,7 +1,7 @@
 // import Link from 'next/link'
 import { Helmet } from 'react-helmet'
 // import { useRouter } from 'next/router'
-import Link from 'next/link'
+import Sidebar from '@components/live-blog/sidebar'
 
 import { callContentful } from '@utils/contentfulHelper'
 import HeaderComponent from '@components/common/header'
@@ -33,33 +33,7 @@ const AllLiveBlogs = ({ lang, liveBlogPageData, liveBlogPages, pageContent }) =>
 
 			{/* Grid for main content */}
 			<div className='grid items-start grid-flow-col grid-cols-9 gap-8 px-8 mt-10'>
-				<div className='col-span-2'>
-					<Link href={`${lang === 'en' ? '/car-live-blog/en' : '/car-live-blog/fr'}`}>
-						<button className={'bg-burgundy px-3 py-1 text-white font-bold mb-5'}>{lang === 'en' ? '← Back to overview' : '← Retour'}</button>
-					</Link>
-					<h2>{liveBlogPageData.title}</h2>
-					<ul className={'list-none m-0 grid pt-2'}>
-						{liveBlogPages.map((el, i) => {
-							return (
-								<li>
-									<Link href={`/car-live-blog/${lang}/pages/${el.slug}`}>{el.title}</Link>
-								</li>
-							)
-						})}
-						<li className={'border-t mt-2 pt-2 border-black'}>
-							<Link href={`${lang === 'en' ? `/car-live-blog/fr` : `/car-live-blog/en`}`}>
-								<button
-									className={
-										'bg-transparent border-2 border-burgundy px-3 py-1 text-burgundy font-bold mt-2 hover:bg-burgundy hover:text-white transition-all duration-100 ease-in-out'
-									}
-								>
-									{lang === 'en' ? 'Lire en français' : 'Read in English'}
-								</button>
-							</Link>
-						</li>
-					</ul>
-				</div>
-
+				<Sidebar title={liveBlogPageData.title} lang={lang} liveBlogPages={liveBlogPages} />
 				<div className='grid grid-cols-1 col-span-7 gap-0 xl:col-span-5'>
 					<h1>{pageContent.title}</h1>
 					<div className={'grid grid-cols-1 gap-y-1 mt-5'}>

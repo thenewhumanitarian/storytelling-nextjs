@@ -23,5 +23,11 @@ export const ArticleProvider = ({ children }) => {
 		})
 	}
 
-	return <ArticleContext.Provider value={{ readArticles, addArticle }}>{children}</ArticleContext.Provider>
+	const removeArticle = (slug) => {
+		setReadArticles((prevArticles) => {
+			return prevArticles.filter((article) => article !== slug)
+		})
+	}
+
+	return <ArticleContext.Provider value={{ readArticles, addArticle, removeArticle }}>{children}</ArticleContext.Provider>
 }
