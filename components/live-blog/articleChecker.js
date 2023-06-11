@@ -11,23 +11,19 @@ const ArticleChecker = ({ slug, invisible, setIsRead, showRemoveArticle, classNa
 	}, [slug])
 
 	return (
-		<div className={className}>
-			<div className={invisible ? 'hidden' : ''}>
-				{!readArticles.includes(slug) && (
+		<div className={`${invisible || readArticles.includes(slug) ? 'hidden' : ''} ${className} pr-2`}>
+			{!readArticles.includes(slug) && (
+				<>
 					<button key={`new-${slug}`} className={'text-red-600 font-bold flex flex-row align-center'}>
 						<div key={`new--${slug}`} className={'flex items-center gap-1'}>
 							<span className={'rounded-full inline-block w-2 h-2 bg-red-600 animate-pulse duration-300'} />
 							<span>New</span>
 						</div>
 					</button>
-				)}
-			</div>
+				</>
+			)}
 			{showRemoveArticle && readArticles.includes(slug) && (
-				<button
-					onClick={() => removeArticle(slug)}
-					key={`read-${slug}`}
-					className={'text-gray-400 font-normal text-left inline hover:text-gray-900'}
-				>
+				<button onClick={() => removeArticle(slug)} key={`read-${slug}`} className={'text-gray-400 font-normal text-left inline hover:text-gray-900'}>
 					Mark as unread
 				</button>
 			)}

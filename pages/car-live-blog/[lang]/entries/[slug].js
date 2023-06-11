@@ -6,6 +6,7 @@ import DynamicBlogContentComponent from '@components/live-blog/Components'
 import HorizontalTimelineComponent from '@components/horizontal-timeline'
 import ArticleChecker from '@components/live-blog/articleChecker'
 import Sidebar from '@components/live-blog/sidebar'
+import RichtextComponent from '@components/richText'
 // import Feed from '@components/live-blog/feed'
 // import { IconAudio, IconMovie } from '@components/icons/media'
 
@@ -35,8 +36,8 @@ const LiveBlogEntry = ({ liveBlogEntryCollection, liveBlogData, lang, liveBlogPa
 				<Sidebar title={liveBlogData.title} lang={lang} liveBlogPages={liveBlogPages} />
 				<div className='relative grid grid-cols-1 col-span-7 gap-0 xl:col-span-5'>
 					<h1>{liveBlogEntryCollection.title}</h1>
-					<p>Subtitle</p>
-					<ArticleChecker slug={liveBlogEntryCollection.slug} setIsRead={true} showRemoveArticle={true} className={'pt4'} />
+					<RichtextComponent content={liveBlogEntryCollection.summary.json} />
+					<ArticleChecker slug={liveBlogEntryCollection.slug} setIsRead={true} showRemoveArticle className={'mt-4 pt-2 border-t'} />
 					<div className={'grid grid-cols-1 gap-y-1 mt-5'}>
 						{liveBlogEntryCollection.blogEntryContentCollection.items.map((entry, i) => {
 							return <DynamicBlogContentComponent key={`blog-entry-content-${i}`} data={entry} lang={lang} />
@@ -83,7 +84,7 @@ export const getStaticProps = async (ctx) => {
 							title
 							slug
 							date
-							summary
+							summary { json }
 							type
 							blogEntryAuthor {
 								name
@@ -112,7 +113,7 @@ export const getStaticProps = async (ctx) => {
 				title
 				date
 				slug
-				summary
+				summary { json }
 				type
 				blogEntrySocialImage {
 					url

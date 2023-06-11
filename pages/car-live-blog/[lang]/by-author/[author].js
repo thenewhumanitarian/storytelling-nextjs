@@ -30,9 +30,9 @@ const AllLiveBlogs = ({ lang, liveBlogData, liveBlogPages, liveBlogAuthors, auth
 			</div>
 
 			{/* Grid for main content */}
-			<div className='grid grid-flow-col grid-cols-9 gap-8 px-8 mt-10'>
+			<div className='grid items-start grid-flow-col grid-cols-9 gap-8 px-8 mt-10'>
 				<Sidebar title={liveBlogData.title} lang={lang} liveBlogPages={liveBlogPages} showFilter={liveBlogAuthors} currentFilter={author} />
-				<div className='grid grid-cols-1 col-span-7 xl:col-span-5 gap-y-10'>
+				<div className='grid items-start grid-cols-1 col-span-7 xl:col-span-5 gap-y-5'>
 					<h2>Latest entries</h2>
 					<Feed lang={lang} entries={filteredByAuthor} />
 				</div>
@@ -75,7 +75,8 @@ export const getStaticProps = async (ctx) => {
 						... on LiveBlogEntry {
 							title
 							slug
-							summary
+							summary { json }
+							subtitle
 							type
 							date
 							blogEntryAuthor {
