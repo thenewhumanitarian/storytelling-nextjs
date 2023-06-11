@@ -19,7 +19,7 @@ const ImageGrid = ({ images }) => {
 				fontSize: '2rem',
 			},
 			'& > img': {
-				maxHeight: '90vh',
+				maxHeight: '100vh',
 				margin: '5vh auto',
 				boxShadow: '0 2px 5px rgba(0, 0, 0, 0.15)',
 			},
