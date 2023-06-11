@@ -4,7 +4,7 @@ import HorizontalScroll from 'react-scroll-horizontal'
 import moment from 'moment'
 // import { motion, AnimatePresence } from 'framer-motion'
 
-const HorizontalTimelineComponent = ({ liveBlogs }) => {
+const HorizontalTimelineComponent = ({ liveBlogs, lang }) => {
 	const blogEntries = liveBlogs
 		.sort((a, b) => moment(b.date) - moment(a.date))
 		.map((el) => {
@@ -19,7 +19,7 @@ const HorizontalTimelineComponent = ({ liveBlogs }) => {
 						<div className={'pl-4 mt-2'}>
 							<div className={'flex flex-row justify-between'}>
 								<span className={'text-base'}>{datePublished}</span>
-								<ArticleChecker slug={el.slug} />
+								<ArticleChecker slug={el.slug} lang={lang} />
 							</div>
 							<p className={'font-bold cursor-pointer hover:text-burgundy line-clamp-2'}>{el.title}</p>
 						</div>

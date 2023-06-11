@@ -81,7 +81,8 @@ export const getStaticProps = async (ctx) => {
 						... on LiveBlogEntry {
 							title
 							slug
-							summary
+							summary { json }
+							subtitle
 							type
 							date
 							blogEntryAuthor {
