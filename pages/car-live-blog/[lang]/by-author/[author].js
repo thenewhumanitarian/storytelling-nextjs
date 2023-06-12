@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet'
 import { callContentful } from '@utils/contentfulHelper'
 import HeaderComponent from '@components/common/header'
 import Feed from '@components/live-blog/feed'
-import HorizontalTimelineComponent from '@components/horizontal-timeline'
+import HorizontalTimelineComponent from '@components/live-blog/horizontalTimeline'
 
 const AllLiveBlogs = ({ lang, liveBlogData, liveBlogPages, liveBlogAuthors, author }) => {
 	const filteredByAuthor = liveBlogData.contentCollection.items.filter((item) => item.blogEntryAuthor.slug === author)

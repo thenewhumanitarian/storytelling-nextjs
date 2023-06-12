@@ -6,12 +6,10 @@ import Sidebar from '@components/live-blog/sidebar'
 import { callContentful } from '@utils/contentfulHelper'
 import HeaderComponent from '@components/common/header'
 import DynamicBlogContentComponent from '@components/live-blog/Components'
-import HorizontalTimelineComponent from '@components/horizontal-timeline'
+import HorizontalTimelineComponent from '@components/live-blog/horizontalTimeline'
 // import { IconAudio, IconMovie } from '@components/icons/media'
 
 const AllLiveBlogs = ({ lang, liveBlogPageData, liveBlogPages, pageContent }) => {
-	console.log(pageContent)
-
 	return (
 		<div>
 			<Helmet

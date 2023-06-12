@@ -37,6 +37,7 @@ export default function Feed({ entries, lang }) {
 				person: { name: entry.blogEntryAuthor.name, href: '#' },
 				imageUrl: entry.blogEntryAuthor.image.url,
 				teaserImageUrl: entry.blogEntryAuthor.image.url,
+				headerImageUrl: entry.headerImage?.url,
 				comment:
 					'Outcomes greenwashing strategy thought partnership, citizen-centered outcomes mobilize collective impact. Gender rights best practices policymaker segmentation move the needle society. Impact, social entrepreneurship change-makers NGO systems thinking, ideate replicable ideate compassion low-hanging fruit problem-solvers innovate outcomes replicable.',
 				summary: entry.summary,
@@ -52,7 +53,7 @@ export default function Feed({ entries, lang }) {
 					if (i === 0) {
 						return (
 							<li key={activityItem.id}>
-								<div className='relative pb-8'>
+								<div className='relative pb-6 mb-5 border-b'>
 									<div className='relative flex items-start space-x-3'>
 										<div className='relative'>
 											<img
@@ -73,14 +74,18 @@ export default function Feed({ entries, lang }) {
 													{/* <span className={'block w-6 opacity-40 absolute top-0 right-0'}>{activityItem.icon}</span> */}
 												</div>
 												<div className={'flex flex-row gap-2 justify-start items-center'}>
-													<ArticleChecker slug={activityItem.slug} clickable={true} />
 													<p className='text-gray-500 '>
 														Posted {activityItem.date} by {activityItem.person.name}
 													</p>
+													<ArticleChecker slug={activityItem.slug} clickable={true} />
 												</div>
 											</div>
 											<div className='mt-2 text-black'>
 												<p className={'text-base line-clamp-1'}>{activityItem.subtitle}</p>
+											</div>
+											<div className={'max-w-lg rounded-xs'}>
+												{/* Header image for first post */}
+												<img src={`${activityItem.headerImageUrl}`} />
 											</div>
 										</div>
 									</div>
@@ -90,7 +95,7 @@ export default function Feed({ entries, lang }) {
 					} else {
 						return (
 							<li key={activityItem.id}>
-								<div className='relative pb-8'>
+								<div className='relative pb-2 mb-3 border-b'>
 									<div className='relative flex items-start space-x-3'>
 										<div className='relative'>
 											<img
@@ -111,10 +116,10 @@ export default function Feed({ entries, lang }) {
 													{/* <span className={'block w-6 opacity-40 absolute top-0 right-0'}>{activityItem.icon}</span> */}
 												</div>
 												<div className={'flex flex-row gap-2 justify-start items-center'}>
-													<ArticleChecker slug={activityItem.slug} clickable={true} />
 													<p className='text-gray-500 '>
 														Posted {activityItem.date} by {activityItem.person.name}
 													</p>
+													<ArticleChecker slug={activityItem.slug} />
 												</div>
 											</div>
 											<div className='mt-2 text-black'>

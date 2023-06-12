@@ -14,7 +14,7 @@ const ArticleChecker = ({ slug, invisible, setIsRead, showRemoveArticle, classNa
 		<div className={className}>
 			<div className={invisible ? 'hidden' : ''}>
 				{!readArticles.includes(slug) && (
-					<button key={`new-${slug}`} className={'text-red-600 font-bold flex flex-row align-center'}>
+					<button key={`new-${slug}`} className={'text-red-600 font-bold flex flex-row align-center cursor-default'}>
 						<div key={`new--${slug}`} className={'flex items-center gap-1'}>
 							<span className={'rounded-full inline-block w-2 h-2 bg-red-600 animate-pulse duration-300'} />
 							{lang === 'en' || !lang ? 'New' : 'Nouveau'}
