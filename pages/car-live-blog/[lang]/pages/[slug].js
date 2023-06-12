@@ -25,7 +25,7 @@ const AllLiveBlogs = ({ lang, liveBlogPageData, liveBlogPages, pageContent }) =>
 			<HeaderComponent />
 
 			{/* Horizontal timeline */}
-			<div className={'relative w-full bg-gray-100 px-0 py-5 mt-24'}>
+			<div className={'relative w-full px-0 py-5 mt-24 border-b'}>
 				<HorizontalTimelineComponent liveBlogs={liveBlogPageData.contentCollection.items} lang={lang} />
 				<div className={'absolute right-0 top-0 w-24 h-full bg-gradient-to-r from-transparent to-gray-100'} />
 				{/* <p className={'text-base text-burgundy'}>[Horizontal Timeline]</p> */}

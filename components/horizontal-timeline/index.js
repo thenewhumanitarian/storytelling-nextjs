@@ -15,7 +15,7 @@ const HorizontalTimelineComponent = ({ liveBlogs, lang }) => {
 
 			return (
 				<li key={el.slug} className={'pr-10 w-64 snap-center'}>
-					<Link href={`/car-live-blog/en/entries/${el.slug}`}>
+					<Link href={`/car-live-blog/${lang}/entries/${el.slug}`}>
 						<div className={'pl-4 mt-2'}>
 							<div className={'flex flex-row justify-between'}>
 								<span className={'text-base'}>{datePublished}</span>
@@ -30,12 +30,18 @@ const HorizontalTimelineComponent = ({ liveBlogs, lang }) => {
 		})
 
 	return (
-		<ul className={'relative border-t-4 border-black w-full flex h-24 px-5'}>
-			<HorizontalScroll reverseScroll className={'snap-x snap-mandatory'}>
-				{blogEntries}
-				{blogEntries}
-			</HorizontalScroll>
-		</ul>
+		<>
+			<div className={'text-center'}>
+				<h1 className={'pb-4 m-0'}>The CAR Live Blog</h1>
+				<p className={'m-0 pb-6 -mt-2'}>Some subtitle</p>
+			</div>
+			<ul className={'relative border-t-4 border-black w-full flex h-24 px-5'}>
+				<HorizontalScroll reverseScroll className={'snap-x snap-mandatory'}>
+					{blogEntries}
+					{blogEntries}
+				</HorizontalScroll>
+			</ul>
+		</>
 	)
 }
 
