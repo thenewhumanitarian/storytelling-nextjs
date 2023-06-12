@@ -86,9 +86,6 @@ export const getStaticProps = async (ctx) => {
 								description {
 									json
 								}
-								image {
-									url
-								}
 							}
 						}
 					}

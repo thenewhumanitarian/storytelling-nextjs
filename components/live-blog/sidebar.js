@@ -1,8 +1,9 @@
 import Link from 'next/link'
 import LanguageSwitch from '@components/live-blog/languageSwitch'
 import ArticleFilter from '@components/live-blog/articleFilter'
+import ArticleAuthorInfo from '@components/live-blog/articleAuthorInfo'
 
-const Sidebar = ({ lang, title, liveBlogPages, showFilter, currentFilter, hideBackButton }) => {
+const Sidebar = ({ lang, title, liveBlogPages, showFilter, currentFilter, hideBackButton, author }) => {
 	return (
 		<div className='col-span-2'>
 			{!hideBackButton && (
@@ -21,6 +22,7 @@ const Sidebar = ({ lang, title, liveBlogPages, showFilter, currentFilter, hideBa
 				})}
 				<LanguageSwitch lang={lang} baseUrl={'/car-live-blog'} />
 				{showFilter && <ArticleFilter lang={lang} authors={showFilter} currentFilter={currentFilter} />}
+				{author && <ArticleAuthorInfo lang={lang} author={author} />}
 			</ul>
 		</div>
 	)

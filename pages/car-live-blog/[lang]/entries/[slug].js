@@ -11,6 +11,8 @@ import RichtextComponent from '@components/richText'
 // import { IconAudio, IconMovie } from '@components/icons/media'
 
 const LiveBlogEntry = ({ liveBlogEntryCollection, liveBlogData, lang, liveBlogPages }) => {
+	console.log(liveBlogEntryCollection.blogEntryAuthor)
+
 	return (
 		<div>
 			<Helmet
@@ -33,7 +35,7 @@ const LiveBlogEntry = ({ liveBlogEntryCollection, liveBlogData, lang, liveBlogPa
 
 			{/* Grid for main content */}
 			<div className='grid items-start grid-flow-col grid-cols-9 gap-8 px-8 mt-10'>
-				<Sidebar title={liveBlogData.title} lang={lang} liveBlogPages={liveBlogPages} />
+				<Sidebar title={liveBlogData.title} lang={lang} liveBlogPages={liveBlogPages} author={liveBlogEntryCollection.blogEntryAuthor} />
 				<div className='relative grid grid-cols-1 col-span-7 gap-0 xl:col-span-5'>
 					<h1>{liveBlogEntryCollection.title}</h1>
 					<RichtextComponent content={liveBlogEntryCollection.summary.json} />
@@ -95,9 +97,6 @@ export const getStaticProps = async (ctx) => {
 								description {
 									json
 								}
-								image {
-									url
-								}
 							}
 						}
 					}
@@ -120,8 +119,10 @@ export const getStaticProps = async (ctx) => {
 				}
 				blogEntryAuthor {
 					name
+					slug
 					image {
 						fileName
+						url
 					}
 					description {
 						json
