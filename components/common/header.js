@@ -10,7 +10,7 @@ const SiteHeader = styled.header`
 	display: flex;
 	align-items: center;
 	position: fixed;
-	z-index: 9999;
+	z-index: 1111;
 	top: 0;
 
 	.logo {
@@ -169,7 +169,11 @@ const Header = (props) => {
 				{props.shareProps && <ShareIcons shareProps={props.shareProps} inverted={props.inverted} />}
 			</div>
 
-			<a className='absolute left-0 flex items-center justify-center w-full h-full logo' href='https://www.thenewhumanitarian.org' title='The New Humanitarian'>
+			<a
+				className='absolute left-0 flex items-center justify-center w-full h-full logo'
+				href='https://www.thenewhumanitarian.org'
+				title='The New Humanitarian'
+			>
 				<svg
 					xmlns='http://www.w3.org/2000/svg'
 					id='ANIMATED-LOGO'
