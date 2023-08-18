@@ -29,13 +29,12 @@ const RichtextComponent = (props) => {
 		renderNode: {
 			[INLINES.HYPERLINK]: (node) => {
 				return (
-					<Link href={node.data.uri}>
-						<a
-							target={`${node.data.uri.indexOf(website_url) > -1 ? '_parent' : '_blank'}`}
-							rel={`${node.data.uri.startsWith(website_url) ? '' : 'noopener noreferrer'}`}
-						>
-							{node.content[0].value}
-						</a>
+					<Link
+						href={node.data.uri}
+						target={`${node.data.uri.indexOf(website_url) > -1 ? '_parent' : '_blank'}`}
+						rel={`${node.data.uri.startsWith(website_url) ? '' : 'noopener noreferrer'}`}
+					>
+						{node.content[0].value}
 					</Link>
 				)
 			},

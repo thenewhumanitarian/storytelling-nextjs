@@ -10,9 +10,7 @@ const AllTypistSliders = ({ typistSliders }) => {
 				{typistSliders.map((el) => {
 					return (
 						<li key={el.slug}>
-							<Link href={`/typist-slider/${el.slug}`}>
-								<a>{el.title}</a>
-							</Link>
+							<Link href={`/typist-slider/${el.slug}`}>{el.title}</Link>
 						</li>
 					)
 				})}

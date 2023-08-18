@@ -11,9 +11,7 @@ const AllBeforeAndAfterSliders = ({ sliders }) => {
 					return (
 						<li key={el.slug}>
 							<Link href={`/before-and-after/${el.slug}`}>
-								<a>
-									<p className={'text-base'}>{el.title}</p>
-								</a>
+								<p className={'text-base'}>{el.title}</p>
 							</Link>
 						</li>
 					)

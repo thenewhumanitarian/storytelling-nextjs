@@ -34,13 +34,11 @@ const TypistElement = ({ item }) => {
 				<h3 className={'inline opacity-0'}>{item.quote}</h3>
 			</div>
 			<div className={'text-center'}>
-				<Link href={item.link}>
-					<a target={'_top'}>
-						Read more{' '}
-						<span className={'inline-block w-4 h-4'}>
-							<ArrowDownIcon />
-						</span>
-					</a>
+				<Link href={item.link} target={'_top'}>
+					Read more{' '}
+					<span className={'inline-block w-4 h-4'}>
+						<ArrowDownIcon />
+					</span>
 				</Link>
 			</div>
 		</div>

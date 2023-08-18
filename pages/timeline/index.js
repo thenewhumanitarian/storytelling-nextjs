@@ -11,9 +11,7 @@ const AllTimelines = ({ timelines }) => {
 					return (
 						<li key={el.slug}>
 							<Link href={`/timeline/${el.slug}`}>
-								<a>
-									<p className={'text-base'}>{el.title}</p>
-								</a>
+								<p className={'text-base'}>{el.title}</p>
 							</Link>
 						</li>
 					)

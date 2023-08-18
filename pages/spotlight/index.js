@@ -11,9 +11,7 @@ const AllSpotlights = ({ spotlights }) => {
 					return (
 						<li key={el.slug}>
 							<Link href={`/spotlight/${el.slug}`}>
-								<a>
-									<p className={'text-base'}>{el.title}</p>
-								</a>
+								<p className={'text-base'}>{el.title}</p>
 							</Link>
 						</li>
 					)
