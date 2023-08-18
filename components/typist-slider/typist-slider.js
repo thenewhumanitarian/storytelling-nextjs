@@ -1,34 +1,22 @@
 // import { Suspense } from 'react'
 import { useState, useEffect } from 'react'
 
-import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 
 import { ArrowDownIcon, ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/solid'
 
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 
-import 'react-typist/dist/Typist.css'
-
-const Typist = dynamic(() => import('react-typist'), {
-	// suspense: true,
-})
+import Typist from 'react-typist-component'
 
 const TypistElement = ({ item }) => {
 	return (
 		<div>
 			<div className={'sm:mt-10 sm:mb-8'}>
-				<Typist
-					cursor={{
-						show: true,
-						blink: true,
-						element: '|',
-						hideWhenDone: false,
-						hideWhenDoneDelay: 0,
-					}}
-				>
-					<h3 className={'inline absolute top-0 left-0'}>{item.quote}</h3>
+				{/* <Typist sentences={['First Sentence', 'Second Sentence', 'Third Sentence']} loop={false} /> */}
+				<Typist typingDelay={100} cursor={<span className='cursor'>|</span>}>
+					<h3>{item.quote}</h3>
 				</Typist>
 				<h3 className={'inline-block absolute top-0 left-0 opacity-25 text-burgundy'}>{item.quote}</h3>
 				<h3 className={'inline opacity-0'}>{item.quote}</h3>
@@ -60,7 +48,7 @@ const HeadElement = ({ item, onClick, isCurrent, className }) => {
 					className={'w-full h-full object-cover absolute top-0 left-0'}
 					layout={'fill'}
 					placeholder={'blur'}
-					blurDataURL={`${url}?w=8`}
+					blurDataURL={`${item.image.url}?w=8`}
 					src={item.image.url}
 					alt={item.image.description || 'No alt text found'}
 				/>

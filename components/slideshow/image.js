@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from "next/legacy/image"
 
 const SlideshowImage = ({ el, nextEl }) => {
 	return (
@@ -18,12 +18,12 @@ const SlideshowImage = ({ el, nextEl }) => {
 			)}
 			<Image
 				src={el.image?.url}
+				blurDataURL={`${el.image?.url}?w=5`}
 				className={'pointer-events-none'}
 				alt={el.image?.description}
 				layout={'fill'}
 				key={`el.sys.id`}
 				placeholder={'blur'}
-				blurDataURL={`${el.image?.url}?w=5`}
 				// style={{ minWidth: '100%' }}
 				// width={el.image?.width}
 				// height={el.image?.height}

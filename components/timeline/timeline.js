@@ -5,8 +5,8 @@ import moment from 'moment'
 
 import FadeInWhenVisible from '@components/timeline/reveal'
 
-import loadable from '@loadable/component'
-const TimeRangeComponent = loadable(() => import('react-timeline-range-slider'))
+// import loadable from '@loadable/component'
+// const TimeRangeComponent = loadable(() => import('react-timeline-range-slider'))
 
 import TimelineItem from '@components/timeline/item'
 
@@ -19,9 +19,6 @@ const TimelineComponent = ({ content }) => {
     end,
     showRangeSlider,
     showCategories,
-    events,
-    alignment,
-    toggleAll,
   } = content
 
   const [error, setError] = useState(false) // Range
@@ -121,7 +118,7 @@ const TimelineComponent = ({ content }) => {
 
   return (
     <div className={'timeline-wrapper'}>
-      {content.showRangeSlider && (
+      {/* {content.showRangeSlider && (
         <div className={'max-w-4xl mx-auto mb-8'} style={styles.range}>
           <h3 className={'text-center mb-4'}>Select a time period:</h3>
           <TimeRangeComponent
@@ -135,7 +132,7 @@ const TimelineComponent = ({ content }) => {
             formatTick={(ms) => moment(ms).format('Y')}
           />
         </div>
-      )}
+      )} */}
       {/* <AnimateSharedLayout> */}
       <div className={'pl-8 ml-8 border-l-2 border-gray-300'}>
         {/* {items.map((el, i) => {

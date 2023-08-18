@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import ArticleChecker from '@components/live-blog/articleChecker'
-import HorizontalScroll from 'react-scroll-horizontal'
+// import HorizontalScroll from 'react-scroll-horizontal'
 import moment from 'moment'
 // import { motion, AnimatePresence } from 'framer-motion'
 
@@ -36,10 +36,10 @@ const HorizontalTimelineComponent = ({ liveBlogs, lang }) => {
 				<p className={'m-0 pb-6 -mt-2'}>Some subtitle</p>
 			</div>
 			<ul className={'relative border-t-4 border-black w-full flex h-24 px-5'}>
-				<HorizontalScroll reverseScroll className={'snap-x snap-mandatory'}>
+				{/* <HorizontalScroll reverseScroll className={'snap-x snap-mandatory'}>
 					{blogEntries}
 					{blogEntries}
-				</HorizontalScroll>
+				</HorizontalScroll> */}
 			</ul>
 		</>
 	)

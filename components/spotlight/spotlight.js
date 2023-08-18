@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from "next/legacy/image"
 
 import { motion, AnimatePresence } from 'framer-motion'
 import Stories, { WithSeeMore } from 'ssr-react-insta-stories'
@@ -112,6 +112,7 @@ const SpotlightComponent = ({ content }) => {
 									loading={'eager'}
 									placeholder={'blur'}
 									src={items[nextImage].image.url}
+									blurDataURL={`${items[nextImage].image.url}?w=5`}
 									alt={items[nextImage].image.description || 'No alt text found'}
 								/>
 							</div>
@@ -121,6 +122,7 @@ const SpotlightComponent = ({ content }) => {
 								priority
 								loading={'eager'}
 								placeholder={'blur'}
+								blurDataURL={`${img.image?.url}?w=5`}
 								src={img.image.url}
 								alt={img.image.description || 'No alt text found'}
 							/>
