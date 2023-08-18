@@ -53,7 +53,7 @@ export default function Feed({ entries, lang }) {
 					if (i === 0) {
 						return (
 							<li key={activityItem.id}>
-								<div className='relative pb-6 mb-5 border-b'>
+								<div className={`${activityItem.headerImageUrl ? 'relative pb-6 mb-5 border-b' : 'relative pb-2 mb-3 border-b'}`}>
 									<div className='relative flex items-start space-x-3'>
 										<div className='relative'>
 											<img
@@ -83,10 +83,12 @@ export default function Feed({ entries, lang }) {
 											<div className='mt-2 text-black'>
 												<p className={'text-base line-clamp-1'}>{activityItem.subtitle}</p>
 											</div>
-											<div className={'max-w-lg rounded-xs'}>
-												{/* Header image for first post */}
-												<img src={`${activityItem.headerImageUrl}`} />
-											</div>
+											{activityItem.headerImageUrl && (
+												<div className={'max-w-lg rounded-xs'}>
+													{/* Header image for first post */}
+													<img src={`${activityItem.headerImageUrl}`} />
+												</div>
+											)}
 										</div>
 									</div>
 								</div>

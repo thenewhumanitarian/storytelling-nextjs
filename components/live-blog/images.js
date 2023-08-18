@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react'
 
 import Gallery from 'react-photo-gallery'
 import Carousel, { Modal, ModalGateway } from 'react-images'
+/* Use this: http://react-responsive-carousel.js.org/ */
 
 const ImageGrid = ({ images }) => {
 	const [currentImage, setCurrentImage] = useState(0)
