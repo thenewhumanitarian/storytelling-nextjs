@@ -10,7 +10,7 @@ const AllTimeMachines = ({ timemachines }) => {
 				{timemachines.map((el) => {
 					return (
 						<li key={el.slug}>
-							<Link href={`/slideshow/${el.slug}`}>{el.title}</Link>
+							<Link href={`/time-machine/${el.slug}`}>{el.title}</Link>
 						</li>
 					)
 				})}
@@ -23,21 +23,21 @@ export default AllTimeMachines
 
 export const getStaticProps = async () => {
 	const query = `{
-    imageSliderCollection {
-      items {
-        sys {
-          id
-        }
-        title
-        slug
-      }
-    }
+		timeMachineCollection {
+			items {
+				sys {
+					id
+				}
+				title
+				slug
+			}
+		}
   }`
 
 	const timemachines = await callContentful(query)
 
 	return {
-		props: { timemachines: timemachines.data.imageSliderCollection.items },
+		props: { timemachines: timemachines.data.timeMachineCollection.items },
 		revalidate: 60,
 	}
 }
