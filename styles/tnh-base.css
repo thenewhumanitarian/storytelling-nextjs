@@ -305,7 +305,7 @@ body {
 	font-family: 'Roboto', sans-serif;
 	font-size: 1.6rem;
 	color: #000;
-	overflow-x: hidden;
+	overflow: hidden;
 }
 
 @media only screen and (max-width: 37.5em) {
