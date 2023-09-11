@@ -27,10 +27,11 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 		})
 
 		setIsHover(false)
-		setIsAnimating(false)
-
+		
 		// Navigate after animation completes
 		router.push(`/time-machine/${slug}/${nextUrl}`)
+		
+		setIsAnimating(false)
 	}
 
 	const spring = isHover ? { type: 'spring', stiffness: 500, damping: 30 } : { type: 'linear', duration: 0.25, delay: 0.25 }
@@ -124,7 +125,7 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 								</motion.div>
 							)}
 						</motion.div>
-						<h2 className={'absolute font-bold text-2xl text-center z-10 text-white '}>Click to read more...</h2>
+						<h2 className={'absolute font-bold text-2xl text-center z-10 text-white text-xl'}>Click to read more...</h2>
 					</div>
 				) : (
 					<div class='absolute flex flex-col items-center justify-center w-full h-full bg-white bg-opacity-50 rounded-full'>
@@ -148,7 +149,7 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 						</div>
 						<div className={'flex flex-row justify-end items-center'}>
 							{/* <Link target={'_blank'} href={currentStory?.link}> */}
-							<button className={'bg-burgundy font-bold text-white px-3 py-1 mt-4'}>Read more →</button>
+							<button className={'bg-burgundy font-bold text-white px-3 py-1 mt-4 text-base'}>Read more →</button>
 							{/* </Link> */}
 						</div>
 					</motion.div>
