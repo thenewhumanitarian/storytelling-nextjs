@@ -42,12 +42,14 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 				opacity: [0.8, 1, 0.8],
 				/* rotate: [0, 2, -2, 0], */
 				transition: { duration: 3, repeat: Infinity },
+				border: 'solid 10px #9f3e52'
 		  }
 		: {
 				opacity: 1,
 				scale: 1,
 				delay: 2,
 				duration: 2,
+				border: 'dashed 10px #9f3e52'
 		  }
 
 	useEffect(() => {
@@ -102,11 +104,11 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 				animate={breatheAnimation}
 				initial={{ scale: 0, opacity: 0 }}
 				transition={spring}
-				class='relative rounded-full w-80 h-80 border-8 border-white z-50 cursor-pointer'
+				className='relative z-50 w-56 h-56 border-8 rounded-full shadow-xl cursor-pointer border-burgundy sm:w-80 sm:h-80'
 			>
 				{isHover ? (
 					<div
-						class='absolute flex flex-col items-center justify-center w-full h-full bg-white bg-opacity-50 rounded-full'
+						class='absolute flex flex-col items-center justify-center w-full h-full bg-white bg-opacity-80 rounded-full'
 						onClick={() => handleTransition(currentStory.slug)}
 					>
 						<motion.div animate={controls} className='relative top-0 left-0 w-full h-full overflow-hidden bg-transparent rounded-full'>
@@ -125,12 +127,12 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 								</motion.div>
 							)}
 						</motion.div>
-						<h2 className={'absolute font-bold text-2xl text-center z-10 text-white text-xl'}>Click to read more...</h2>
+						<h2 className={'absolute font-bold text-base text-center z-10 text-white sm:text-xl'}>Click to read more...</h2>
 					</div>
 				) : (
 					<div class='absolute flex flex-col items-center justify-center w-full h-full bg-white bg-opacity-50 rounded-full'>
-						<h2 className={'font-bold text-3xl text-center'}>Explore stories</h2>
-						<p>Move your mouse over this circle...</p>
+						<h2 className={'font-bold text-xl sm:text-3xl text-center'}>Explore stories</h2>
+						<p className={'hidden sm:block'}>Move your mouse over this circle...</p>
 					</div>
 				)}
 			</motion.div>
@@ -141,16 +143,16 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 						initial={{ y: '100%' }}
 						animate={{ y: 0 }}
 						exit={{ y: '100%' }}
-						className={'absolute bottom-0 left-0 w-full h-30 bg-white bg-opacity-80 p-4'}
+						className={'absolute bottom-0 left-0 w-full h-30 bg-white bg-opacity-90 p-4 z-50'}
 					>
 						<div>
-							<h2 className={'font-bold line-clamp-1'}>{currentStory?.title}</h2>
-							<p className={'line-clamp-2'}>{currentStory?.description}</p>
+							<h2 className={'text-base sm:text-xl font-bold line-clamp-1 mb-0'}>{currentStory?.title}</h2>
+							<p className={'text-base sm:text-lg line-clamp-1 sm:line-clamp-2'}>{currentStory?.description}</p>
 						</div>
 						<div className={'flex flex-row justify-end items-center'}>
-							{/* <Link target={'_blank'} href={currentStory?.link}> */}
+							<Link target={'_blank'} href={currentStory?.link}>
 							<button className={'bg-burgundy font-bold text-white px-3 py-1 mt-4 text-base'}>Read more →</button>
-							{/* </Link> */}
+							</Link>
 						</div>
 					</motion.div>
 				)}
