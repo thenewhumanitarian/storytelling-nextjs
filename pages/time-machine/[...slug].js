@@ -63,7 +63,7 @@ export async function getStaticProps({ params }) {
 		props: {
 			chosenStory, // This prop has the complete data of the chosen story.
 			restOfStories, // This prop has the complete data of the other stories.
-      slug
+			slug,
 		},
 		revalidate: 60 * 60,
 	}

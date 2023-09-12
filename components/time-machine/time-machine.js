@@ -9,6 +9,8 @@ import { motion, useAnimation, AnimatePresence } from 'framer-motion'
 
 const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 	const [isHover, setIsHover] = useState(false)
+	const [hasClicked, setHasClicked] = useState(false)
+	const [isMobile, setIsMobile] = useState(false)
 	const [currentStory, setCurrentStory] = useState(chosenStory)
 
 	const controls = useAnimation()
@@ -16,8 +18,42 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 
 	const router = useRouter()
 
+	useEffect(() => {
+		// 1. Using the window object for screen width
+		const handleResize = () => {
+			if (window.innerWidth <= 768) {
+				setIsMobile(true)
+			} else {
+				setIsMobile(false)
+			}
+		}
+
+		// Initially set the value on component mount
+		handleResize()
+
+		// Update on window resize
+		window.addEventListener('resize', handleResize)
+
+		// 2. Using the user agent
+		const userAgent = typeof window.navigator === 'undefined' ? '' : navigator.userAgent
+		const mobile = Boolean(userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i))
+
+		if (mobile) setIsMobile(true)
+
+		// Cleanup
+		return () => {
+			window.removeEventListener('resize', handleResize)
+		}
+	}, [])
+
 	const handleTransition = async (nextUrl) => {
+		if (isMobile && !isHover) {
+			setIsHover(true)
+			return
+		}
+
 		setIsAnimating(true)
+		setHasClicked(true)
 
 		// Trigger the animation
 		await controls.start({
@@ -27,11 +63,12 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 		})
 
 		setIsHover(false)
-		
+
 		// Navigate after animation completes
 		router.push(`/time-machine/${slug}/${nextUrl}`)
-		
+
 		setIsAnimating(false)
+		setHasClicked(false)
 	}
 
 	const spring = isHover ? { type: 'spring', stiffness: 500, damping: 30 } : { type: 'linear', duration: 0.25, delay: 0.25 }
@@ -42,14 +79,14 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 				opacity: [0.8, 1, 0.8],
 				/* rotate: [0, 2, -2, 0], */
 				transition: { duration: 3, repeat: Infinity },
-				border: 'solid 10px #9f3e52'
+				border: 'solid 10px #9f3e52',
 		  }
 		: {
 				opacity: 1,
 				scale: 1,
 				delay: 2,
 				duration: 2,
-				border: 'dashed 10px #9f3e52'
+				border: 'dashed 10px #9f3e52',
 		  }
 
 	useEffect(() => {
@@ -88,9 +125,11 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 		}
 	}, [isHover, isAnimating])
 
+	console.log(currentStory)
+
 	return (
 		<div className={'relative h-screen w-screen flex items-center justify-center'}>
-			<motion.div initial={{ opacity: 0, scale: 2 }} animate={{ scale: 1, opacity: isAnimating ? 0 : isHover ? 0.5 : 1 }}>
+			<motion.div initial={{ opacity: 0, scale: 2 }} animate={{ scale: 1, opacity: hasClicked ? 0 : isHover && !isMobile ? 0.5 : 1 }}>
 				<Image
 					src={chosenStory.image.url}
 					alt={chosenStory.image.description || 'Time Machine Story Image'} // Use the description as the alt text or provide a default.
@@ -101,28 +140,31 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 			<motion.div
 				onHoverStart={() => setIsHover(true)}
 				onHoverEnd={() => setIsHover(false)}
+				// onTapCancel={() => setIsHover(false)}
+				onTapStart={() => handleTransition(currentStory.slug)}
+				// onTapEnd={() => handleTransition(currentStory.slug)}
 				animate={breatheAnimation}
 				initial={{ scale: 0, opacity: 0 }}
 				transition={spring}
-				className='relative z-50 w-56 h-56 border-8 rounded-full shadow-xl cursor-pointer border-burgundy sm:w-80 sm:h-80'
+				className='relative z-50 w-56 h-56 border-8 rounded-full shadow-xl cursor-pointer border-burgundy sm:w-80 sm:h-80 user-select-none'
 			>
 				{isHover ? (
 					<div
-						class='absolute flex flex-col items-center justify-center w-full h-full bg-white bg-opacity-80 rounded-full'
+						class='absolute flex flex-col items-center justify-center w-full h-full bg-white bg-opacity-80 rounded-full user-select-none'
 						onClick={() => handleTransition(currentStory.slug)}
 					>
 						<motion.div animate={controls} className='relative top-0 left-0 w-full h-full overflow-hidden bg-transparent rounded-full'>
 							{currentStory && (
-								<motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }}>
+								<motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }} className={'user-select-none'}>
 									<Image
 										src={currentStory.image.url}
-										className={'absolute top-0 left-0 w-full h-full bg-cover object-cover pointer-events-none'}
-										alt={currentStory.image.description || 'Story Image'}
-										// width={currentStory.image.width}
-										// height={currentStory.image.height}
+										className={'absolute top-0 left-0 w-full h-full bg-cover object-cover pointer-events-none user-select-none'}
+										alt={currentStory.image.description || 'Story image'}
 										layout='fill'
 										placeholder='blur'
 										blurDataURL={currentStory.image.url} // Replace with a low-res or base64 version for actual blur-up effect
+										// width={currentStory.image.width}
+										// height={currentStory.image.height}
 									/>
 								</motion.div>
 							)}
@@ -130,9 +172,10 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 						<h2 className={'absolute font-bold text-base text-center z-10 text-white sm:text-xl'}>Click to read more...</h2>
 					</div>
 				) : (
-					<div class='absolute flex flex-col items-center justify-center w-full h-full bg-white bg-opacity-50 rounded-full'>
+					<div class='absolute flex flex-col items-center justify-center w-full h-full bg-white bg-opacity-50 rounded-full user-select-none'>
 						<h2 className={'font-bold text-xl sm:text-3xl text-center'}>Explore stories</h2>
 						<p className={'hidden sm:block'}>Move your mouse over this circle...</p>
+						<p className={'block sm:hidden'}>Hold down to shuffle</p>
 					</div>
 				)}
 			</motion.div>
@@ -151,7 +194,7 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 						</div>
 						<div className={'flex flex-row justify-end items-center'}>
 							<Link target={'_blank'} href={currentStory?.link}>
-							<button className={'bg-burgundy font-bold text-white px-3 py-1 mt-4 text-base'}>Read more →</button>
+								<button className={'bg-burgundy font-bold text-white px-3 py-1 mt-4 text-base'}>Read more →</button>
 							</Link>
 						</div>
 					</motion.div>
