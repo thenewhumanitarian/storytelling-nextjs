@@ -86,7 +86,7 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 				scale: 1,
 				delay: 2,
 				duration: 2,
-				border: 'dashed 10px #9f3e52',
+				border: isMobile ? 'solid 10px #9f3e52' : 'dashed 10px #9f3e52',
 		  }
 
 	useEffect(() => {
@@ -128,7 +128,7 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 	console.log(currentStory)
 
 	return (
-		<div className={'relative h-screen w-screen flex items-center justify-center'}>
+		<div className={'relative h-screen h-screen-ios w-screen flex items-center justify-center'}>
 			<motion.div initial={{ opacity: 0, scale: 2 }} animate={{ scale: 1, opacity: hasClicked ? 0 : isHover && !isMobile ? 0.5 : 1 }}>
 				<Image
 					src={chosenStory.image.url}

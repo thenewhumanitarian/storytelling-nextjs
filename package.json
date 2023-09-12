@@ -50,6 +50,7 @@
     "@fullhuman/postcss-purgecss": "^2.3.0",
     "@loadable/babel-plugin": "^5.13.2",
     "@loadable/webpack-plugin": "^5.15.0",
+    "@rvxlab/tailwind-plugin-ios-full-height": "^1.1.0",
     "autoprefixer": "^10.2.6",
     "contentful-import": "^7.8.7",
     "postcss": "^8.3.0",

@@ -15,7 +15,7 @@ const TimelineItem = ({ data }) => {
 		<div className={'mb-8'}>
 			<div className={'flex flex-row items-center justify-start relative cursor-pointer'}>
 				{title && (
-					<h3 className={'text-burgundy font-normal text-3xl'} onClick={() => setIsOpen(!isOpen)}>
+					<h3 className={'text-burgundy font-bold text-xl sm:text-2xl'} onClick={() => setIsOpen(!isOpen)}>
 						{title}
 					</h3>
 				)}
@@ -27,10 +27,11 @@ const TimelineItem = ({ data }) => {
 						'absolute flex justify-center items-center -left-14 rounded-full w-12 h-12 border-2 border-gray-200 bg-gray-100 p-3 text-gray-500'
 					}
 				>
-					{!data.icon && <CalendarIcon />}
+					<CalendarIcon />
+					{/* {!data.icon && <CalendarIcon />}
 					{data.icon === 'bullet' && <BulletIcon />}
 					{data.icon === 'calendar' && <CalendarIcon />}
-					{data.icon === 'list' && <ListIcon />}
+					{data.icon === 'list' && <ListIcon />} */}
 				</div>
 			</div>
 			<AnimatePresence>
@@ -45,7 +46,9 @@ const TimelineItem = ({ data }) => {
 						}}
 						transition={{ duration: 0.6, ease: [0.04, 0.62, 0.23, 0.98] }}
 					>
-						<RichtextComponent content={text} />
+						<div className={'px-2'}>
+							<RichtextComponent content={text} />
+						</div>
 					</motion.div>
 				)}
 			</AnimatePresence>
