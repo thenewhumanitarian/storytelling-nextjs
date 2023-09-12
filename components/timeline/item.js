@@ -4,7 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 import RichtextComponent from '@components/richText'
 import { ChevronDown, ChevronRight } from '@components/icons/chevrons'
-import CalendarIcon, { BulletIcon, ListIcon } from '@components/icons/timeline'
+// import CalendarIcon, { BulletIcon, ListIcon } from '@components/icons/timeline'
+import CalendarIcon from '@components/icons/timeline'
 
 const TimelineItem = ({ data }) => {
 	const { title, text, openByDefault } = data
