@@ -7,22 +7,28 @@ import Link from 'next/link'
 import { motion, useAnimation, AnimatePresence } from 'framer-motion'
 
 const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
-	
 	const [isHover, setIsHover] = useState(false)
 	const [hasClicked, setHasClicked] = useState(false)
 	const [isMobile, setIsMobile] = useState(false)
 	const [currentStory, setCurrentStory] = useState(chosenStory)
-	
+
 	const controls = useAnimation()
 	const [isAnimating, setIsAnimating] = useState(false)
-	
+
 	const router = useRouter()
-	
+
 	console.log(currentStory)
-	
+
 	// useEffect(() => {
-	// 	setHasClicked(false)
-	// }, [chosenStory.sys.id])
+	// 	if (currentStory?.image?.url) {
+	// 		const preloadImage = new Image()
+	// 		// preloadImage.src = currentStory.image.url
+	// 	}
+	// }, [currentStory])
+
+	useEffect(() => {
+		setHasClicked(false)
+	}, [chosenStory.sys.id])
 
 	useEffect(() => {
 		// 1. Using the window object for screen width
@@ -132,12 +138,12 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 
 	return (
 		<div className={'relative h-screen h-screen-ios w-screen flex items-center justify-center bg-black'}>
-			<motion.div initial={{ opacity: 1, scale: 1 }} animate={{ scale: 1, opacity: hasClicked ? 0 : isHover && !isMobile ? 0.5 : 1 }}>
+			<motion.div initial={{ opacity: 1, scale: 1 }} animate={{ scale: 1, opacity: hasClicked ? 0.5 : isHover && !isMobile ? 0.5 : 1 }}>
 				<Image
-					src={chosenStory.image.url}
-					blurDataURL={`${chosenStory.image.url}?w=20&q=50`}
+					src={hasClicked ? currentStory.image.url : chosenStory.image.url}
+					blurDataURL={`${hasClicked ? currentStory.image.url : chosenStory.image.url}?w=20&q=50`}
 					placeholder='blur'
-					alt={chosenStory.image.description || 'Time Machine Story Image'} // Use the description as the alt text or provide a default.
+					alt={currentStory.image.description || 'Time Machine Story Image'} // Use the description as the alt text or provide a default.
 					layout='fill'
 					objectFit='cover' // This will ensure the image covers the entire viewport without distortion.
 				/>
