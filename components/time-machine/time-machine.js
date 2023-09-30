@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import Image from "next/legacy/image"
+import Image from 'next/legacy/image'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 
@@ -157,7 +157,9 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 								<motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }} className={'user-select-none'}>
 									<Image
 										src={currentStory.image.url}
-										className={'absolute top-0 left-0 w-full h-full bg-cover object-cover pointer-events-none user-select-none'}
+										className={`absolute top-0 left-0 w-full h-full bg-cover object-cover pointer-events-none user-select-none ${
+											hasClicked ? 'opacity-0' : 'opacity-100'
+										}}`}
 										alt={currentStory.image.description || 'Story image'}
 										layout='fill'
 										placeholder='blur'
