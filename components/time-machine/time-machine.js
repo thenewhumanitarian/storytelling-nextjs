@@ -17,7 +17,8 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 
 	const router = useRouter()
 
-	console.log(currentStory)
+	console.log(chosenStory.sys.id)
+	console.log(currentStory.sys.id)
 
 	// useEffect(() => {
 	// 	if (currentStory?.image?.url) {
@@ -26,9 +27,9 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 	// 	}
 	// }, [currentStory])
 
-	useEffect(() => {
-		setHasClicked(false)
-	}, [chosenStory.sys.id])
+	// useEffect(() => {
+	// 	setHasClicked(false)
+	// }, [chosenStory])
 
 	useEffect(() => {
 		// 1. Using the window object for screen width
@@ -196,7 +197,7 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 					>
 						<h2 className={'font-bold text-xl sm:text-3xl text-center'}>Explore stories</h2>
 						<p className={'hidden sm:block'}>Move your mouse over this circle...</p>
-						<p className={'block sm:hidden'}>Tap once down to shuffle...</p>
+						<p className={'block sm:hidden'}>Tap once to shuffle...</p>
 					</div>
 				)}
 			</motion.div>
