@@ -86,7 +86,8 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 				scale: 1,
 				delay: 2,
 				duration: 2,
-				border: isMobile ? 'solid 10px #9f3e52' : 'dashed 10px #9f3e52',
+				// border: isMobile ? 'solid 10px #9f3e52' : 'dashed 10px #9f3e52',
+				border: 'solid 10px #9f3e52',
 		  }
 
 	useEffect(() => {
@@ -125,8 +126,6 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 		}
 	}, [isHover, isAnimating])
 
-	console.log(currentStory)
-
 	return (
 		<div className={'relative h-screen h-screen-ios w-screen flex items-center justify-center'}>
 			<motion.div initial={{ opacity: 0, scale: 2 }} animate={{ scale: 1, opacity: hasClicked ? 0 : isHover && !isMobile ? 0.5 : 1 }}>
@@ -140,8 +139,8 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 			<motion.div
 				onHoverStart={() => setIsHover(true)}
 				onHoverEnd={() => setIsHover(false)}
-				// onTapCancel={() => setIsHover(false)}
 				onTapStart={() => handleTransition(currentStory.slug)}
+				// onTapCancel={() => setIsHover(false)}
 				// onTapEnd={() => handleTransition(currentStory.slug)}
 				animate={breatheAnimation}
 				initial={{ scale: 0, opacity: 0 }}
@@ -189,12 +188,12 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 						className={'absolute bottom-0 left-0 w-full h-30 bg-white bg-opacity-90 p-4 z-50'}
 					>
 						<div>
-							<h2 className={'text-base sm:text-xl font-bold line-clamp-1 mb-0'}>{currentStory?.title}</h2>
+							<h2 className={'text-base md:text-3xl font-normal line-clamp-1 mb-0'}>{currentStory?.title}</h2>
 							<p className={'text-base sm:text-lg line-clamp-1 sm:line-clamp-2'}>{currentStory?.description}</p>
 						</div>
 						<div className={'flex flex-row justify-end items-center'}>
 							<Link target={'_blank'} href={currentStory?.link}>
-								<button className={'bg-burgundy font-bold text-white px-3 py-1 mt-4 text-base'}>Read more →</button>
+								<button className={'bg-burgundy font-bold text-white px-3 py-1 mt-4 text-base md:text-xl'}>Read more →</button>
 							</Link>
 						</div>
 					</motion.div>
