@@ -17,6 +17,10 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 
 	const router = useRouter()
 
+	// useEffect(() => {
+	// 	setHasClicked(false)
+	// }, [slug])
+
 	useEffect(() => {
 		// 1. Using the window object for screen width
 		const handleResize = () => {
@@ -79,15 +83,12 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 				opacity: [0.8, 1, 0.8],
 				/* rotate: [0, 2, -2, 0], */
 				transition: { duration: 3, repeat: Infinity },
-				border: 'solid 10px #9f3e52',
 		  }
 		: {
 				opacity: 1,
 				scale: 1,
 				delay: 2,
 				duration: 2,
-				// border: isMobile ? 'solid 10px #9f3e52' : 'dashed 10px #9f3e52',
-				border: 'solid 10px #9f3e52',
 		  }
 
 	useEffect(() => {
@@ -127,10 +128,12 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 	}, [isHover, isAnimating])
 
 	return (
-		<div className={'relative h-screen h-screen-ios w-screen flex items-center justify-center'}>
+		<div className={'relative h-screen h-screen-ios w-screen flex items-center justify-center bg-black'}>
 			<motion.div initial={{ opacity: 0, scale: 2 }} animate={{ scale: 1, opacity: hasClicked ? 0 : isHover && !isMobile ? 0.5 : 1 }}>
 				<Image
 					src={chosenStory.image.url}
+					blurDataURL={`${chosenStory.image.url}?w=20&q=50`}
+					placeholder='blur'
 					alt={chosenStory.image.description || 'Time Machine Story Image'} // Use the description as the alt text or provide a default.
 					layout='fill'
 					objectFit='cover' // This will ensure the image covers the entire viewport without distortion.
@@ -145,21 +148,25 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 				animate={breatheAnimation}
 				initial={{ scale: 0, opacity: 0 }}
 				transition={spring}
-				className='relative z-50 w-56 h-56 border-8 rounded-full shadow-xl cursor-pointer border-burgundy sm:w-80 sm:h-80 user-select-none'
+				className={`relative z-50 w-56 h-56 border-8 rounded-full shadow-xl cursor-pointer border-burgundy sm:w-80 sm:h-80 user-select-none transition-all ${
+					hasClicked && 'border-none'
+				}`}
 			>
 				{isHover ? (
 					<div
-						className='absolute flex flex-col items-center justify-center w-full h-full bg-white rounded-full bg-opacity-80 user-select-none'
+						className={`absolute flex flex-col items-center justify-center w-full h-full bg-white rounded-full bg-opacity-80 user-select-none transition-opacity ${
+							hasClicked ? 'opacity-0' : 'opacity-100'
+						}`}
 						onClick={() => handleTransition(currentStory.slug)}
 					>
 						<motion.div animate={controls} className='relative top-0 left-0 w-full h-full overflow-hidden bg-transparent rounded-full'>
 							{currentStory && (
-								<motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }} className={'user-select-none'}>
+								<motion.div animate={{ opacity: hasClicked ? 0 : 1 }} initial={{ opacity: 0 }} className={'user-select-none'}>
 									<Image
 										src={currentStory.image.url}
-										className={`absolute top-0 left-0 w-full h-full bg-cover object-cover pointer-events-none user-select-none ${
+										className={`absolute top-0 left-0 w-full h-full bg-cover object-cover pointer-events-none user-select-none transition-opacity ${
 											hasClicked ? 'opacity-0' : 'opacity-100'
-										}}`}
+										}`}
 										alt={currentStory.image.description || 'Story image'}
 										layout='fill'
 										placeholder='blur'
@@ -173,10 +180,14 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 						<h2 className={'absolute font-bold text-base text-center z-10 text-white sm:text-xl'}>Click to read more...</h2>
 					</div>
 				) : (
-					<div className='absolute flex flex-col items-center justify-center w-full h-full bg-white bg-opacity-50 rounded-full user-select-none'>
+					<div
+						className={`absolute flex flex-col items-center justify-center w-full h-full bg-white rounded-full user-select-none ${
+							hasClicked ? 'bg-opacity-100' : 'bg-opacity-50'
+						}`}
+					>
 						<h2 className={'font-bold text-xl sm:text-3xl text-center'}>Explore stories</h2>
 						<p className={'hidden sm:block'}>Move your mouse over this circle...</p>
-						<p className={'block sm:hidden'}>Hold down to shuffle</p>
+						<p className={'block sm:hidden'}>Tap once down to shuffle...</p>
 					</div>
 				)}
 			</motion.div>
