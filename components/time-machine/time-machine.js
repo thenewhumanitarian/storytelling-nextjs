@@ -68,6 +68,8 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 		setIsAnimating(true)
 		setHasClicked(true)
 
+		router.prefetch(`/time-machine/${slug}/${nextUrl}`)
+
 		// Trigger the animation
 		await controls
 			.start({
@@ -78,7 +80,7 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 			.then(() => {
 				setIsHover(false)
 				// Navigate after animation completes
-				router.replace(`/time-machine/${slug}/${nextUrl}`)
+				router.push(`/time-machine/${slug}/${nextUrl}`)
 
 				setIsAnimating(false)
 				setHasClicked(false)
@@ -141,7 +143,8 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 		<div className={'relative h-screen h-screen-ios w-screen flex items-center justify-center bg-black'}>
 			<motion.div initial={{ opacity: 1, scale: 1 }} animate={{ scale: 1, opacity: hasClicked ? 0.5 : isHover && !isMobile ? 0.5 : 1 }}>
 				<Image
-					src={hasClicked ? currentStory.image.url : chosenStory.image.url}
+					// src={hasClicked ? currentStory.image.url : chosenStory.image.url}
+					src={chosenStory.image.url}
 					blurDataURL={`${hasClicked ? currentStory.image.url : chosenStory.image.url}?w=20&q=50`}
 					placeholder='blur'
 					alt={currentStory.image.description || 'Time Machine Story Image'} // Use the description as the alt text or provide a default.
@@ -159,7 +162,7 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 				initial={{ scale: 0, opacity: 0 }}
 				transition={spring}
 				className={`relative z-50 w-56 h-56 border-8 rounded-full shadow-xl cursor-pointer border-burgundy sm:w-80 sm:h-80 user-select-none transition-all ${
-					hasClicked && 'border-none'
+					hasClicked && 'border-none opacity-0'
 				}`}
 			>
 				{isHover ? (
