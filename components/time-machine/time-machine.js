@@ -146,7 +146,8 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 				<Image
 					// src={hasClicked ? currentStory.image.url : chosenStory.image.url}
 					src={chosenStory.image.url}
-					blurDataURL={`${hasClicked ? currentStory.image.url : chosenStory.image.url}?w=20&q=50`}
+					// blurDataURL={`${hasClicked ? currentStory.image.url : chosenStory.image.url}?w=20&q=50`}
+					blurDataURL={`${chosenStory.image.url}?w=20&q=50`}
 					placeholder='blur'
 					alt={currentStory.image.description || 'Time Machine Story Image'} // Use the description as the alt text or provide a default.
 					layout='fill'
