@@ -79,11 +79,12 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 			})
 			.then(() => {
 				setIsHover(false)
-				// Navigate after animation completes
-				router.push(`/time-machine/${slug}/${nextUrl}`)
-
+				
 				setIsAnimating(false)
 				setHasClicked(false)
+				
+				// Navigate after animation completes
+				router.push(`/time-machine/${slug}/${nextUrl}`)
 			})
 	}
 
