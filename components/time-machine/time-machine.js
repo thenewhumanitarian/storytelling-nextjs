@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import Image from 'next/image'
+import Image from "next/legacy/image"
 
 import { useRouter } from 'next/router'
 import Link from 'next/link'
@@ -150,7 +150,7 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 			>
 				{isHover ? (
 					<div
-						class='absolute flex flex-col items-center justify-center w-full h-full bg-white bg-opacity-80 rounded-full user-select-none'
+						className='absolute flex flex-col items-center justify-center w-full h-full bg-white rounded-full bg-opacity-80 user-select-none'
 						onClick={() => handleTransition(currentStory.slug)}
 					>
 						<motion.div animate={controls} className='relative top-0 left-0 w-full h-full overflow-hidden bg-transparent rounded-full'>
@@ -172,7 +172,7 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 						<h2 className={'absolute font-bold text-base text-center z-10 text-white sm:text-xl'}>Click to read more...</h2>
 					</div>
 				) : (
-					<div class='absolute flex flex-col items-center justify-center w-full h-full bg-white bg-opacity-50 rounded-full user-select-none'>
+					<div className='absolute flex flex-col items-center justify-center w-full h-full bg-white bg-opacity-50 rounded-full user-select-none'>
 						<h2 className={'font-bold text-xl sm:text-3xl text-center'}>Explore stories</h2>
 						<p className={'hidden sm:block'}>Move your mouse over this circle...</p>
 						<p className={'block sm:hidden'}>Hold down to shuffle</p>
