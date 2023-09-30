@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 
 import Image from "next/legacy/image"
-
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 
@@ -162,7 +161,7 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 										alt={currentStory.image.description || 'Story image'}
 										layout='fill'
 										placeholder='blur'
-										blurDataURL={currentStory.image.url} // Replace with a low-res or base64 version for actual blur-up effect
+										blurDataURL={`${currentStory.image.url}?w=20&q=50`} // Replace with a low-res or base64 version for actual blur-up effect
 										// width={currentStory.image.width}
 										// height={currentStory.image.height}
 									/>
