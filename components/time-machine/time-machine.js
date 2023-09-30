@@ -56,19 +56,20 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 		setHasClicked(true)
 
 		// Trigger the animation
-		await controls.start({
-			scale: 5, // "explode" effect
-			opacity: 1, // fade out
-			transition: { duration: 0.5 },
-		})
+		await controls
+			.start({
+				scale: 8, // "explode" effect
+				opacity: 1, // fade out
+				transition: { duration: 0.5 },
+			})
+			.then(() => {
+				setIsHover(false)
+				// Navigate after animation completes
+				router.push(`/time-machine/${slug}/${nextUrl}`)
 
-		setIsHover(false)
-
-		// Navigate after animation completes
-		router.push(`/time-machine/${slug}/${nextUrl}`)
-
-		setIsAnimating(false)
-		setHasClicked(false)
+				setIsAnimating(false)
+				setHasClicked(false)
+			})
 	}
 
 	const spring = isHover ? { type: 'spring', stiffness: 500, damping: 30 } : { type: 'linear', duration: 0.25, delay: 0.25 }
