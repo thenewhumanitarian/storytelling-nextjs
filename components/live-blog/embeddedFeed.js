@@ -5,7 +5,6 @@ import { Fragment } from 'react'
 import { TagIcon, UserCircleIcon } from '@heroicons/react/20/solid'
 import { IconNewsReport, IconAudio, IconMovie, IconPhotoGallery } from '@components/icons/media'
 import moment from 'moment'
-import ArticleChecker from '@components/live-blog/articleChecker'
 
 function classNames(...classes) {
 	return classes.filter(Boolean).join(' ')
