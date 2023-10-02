@@ -53,10 +53,10 @@ export default function Feed({ entries, lang }) {
 			<ul
 				role='list'
 				className='absolute top-0 left-0 flex flex-col justify-around w-full h-full p-4 m-0 space-y-0 list-none bg-white divide-y'
-				// style={{
-				// 	background:
-				// 		'linear-gradient(41deg, rgba(159,62,82,0.3912158613445378) 0%, rgba(255,255,255,0.5592830882352942) 21%, rgba(255,255,255,0.47805059523809523) 48%, rgba(159,62,82,0.486453956582633) 100%)',
-				// }}f
+			// style={{
+			// 	background:
+			// 		'linear-gradient(41deg, rgba(159,62,82,0.3912158613445378) 0%, rgba(255,255,255,0.5592830882352942) 21%, rgba(255,255,255,0.47805059523809523) 48%, rgba(159,62,82,0.486453956582633) 100%)',
+			// }}f
 			>
 				{activity.slice(0, 3).map((activityItem, activityItemIdx) => (
 					<li key={`${activityItem.id}-${activityItemIdx}`} className={'pt-3'}>

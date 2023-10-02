@@ -7,8 +7,6 @@ import HorizontalTimelineComponent from '@components/live-blog/horizontalTimelin
 import ArticleChecker from '@components/live-blog/articleChecker'
 import Sidebar from '@components/live-blog/sidebar'
 import RichtextComponent from '@components/richText'
-// import Feed from '@components/live-blog/feed'
-// import { IconAudio, IconMovie } from '@components/icons/media'
 
 const LiveBlogEntry = ({ liveBlogEntryCollection, liveBlogData, lang, liveBlogPages }) => {
 	console.log(liveBlogEntryCollection.blogEntryAuthor)

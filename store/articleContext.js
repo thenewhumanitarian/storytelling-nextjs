@@ -11,9 +11,7 @@ export const ArticleProvider = ({ children }) => {
 	})
 
 	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			window.localStorage.setItem('readArticles', JSON.stringify(readArticles))
-		}
+		window.localStorage.setItem('readArticles', JSON.stringify(readArticles))
 	}, [readArticles])
 
 	const addArticle = (slug) => {
