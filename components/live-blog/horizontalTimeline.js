@@ -1,8 +1,10 @@
+// import { useEffect, useState } from 'react'
+import ArticleChecker from '@components/live-blog/dynamicArticleChecker'
+
 import { useContext, useState, useEffect } from 'react';
 import moment from 'moment'
 import { useRouter } from 'next/router'
 import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
-import ArticleChecker from '@components/live-blog/articleChecker'
 import useDrag from './useDrag'
 import 'react-horizontal-scrolling-menu/dist/styles.css';
 
@@ -81,7 +83,7 @@ function HorizontalTimelineComponent({ liveBlogs, lang }) {
 					/>
 				))}
 			</ScrollMenu>
-		</div>
+		</div >
 	);
 }
 

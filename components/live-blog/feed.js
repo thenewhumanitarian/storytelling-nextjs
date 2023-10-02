@@ -1,4 +1,4 @@
-import ArticleChecker from '@components/live-blog/articleChecker'
+import ArticleChecker from '@components/live-blog/dynamicArticleChecker'
 import { IconNewsReport, IconAudio, IconMovie, IconPhotoGallery } from '@components/icons/media'
 import moment from 'moment'
 
@@ -77,7 +77,7 @@ export default function Feed({ entries, lang }) {
 													<p className='text-gray-500 '>
 														Posted {activityItem.date} by {activityItem.person.name}
 													</p>
-													<ArticleChecker slug={activityItem.slug} clickable={true} />
+													{/* <ArticleChecker slug={activityItem.slug} clickable={true} /> */}
 												</div>
 											</div>
 											<div className='mt-2 text-black'>
@@ -121,7 +121,7 @@ export default function Feed({ entries, lang }) {
 													<p className='text-gray-500 '>
 														Posted {activityItem.date} by {activityItem.person.name}
 													</p>
-													<ArticleChecker slug={activityItem.slug} />
+													{/* <ArticleChecker slug={activityItem.slug} /> */}
 												</div>
 											</div>
 											<div className='mt-2 text-black'>

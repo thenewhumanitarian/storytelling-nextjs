@@ -1,10 +1,15 @@
+// import { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic';
+
+const ReactPlayer = dynamic(() => import('react-player/lazy'), {
+	loading: () => <p>Loading...</p>, // Optional loading component
+	ssr: false // This line is important. It disables server-side rendering for this component.
+});
+
 import ReactAudioPlayer from 'react-audio-player'
-import ReactPlayer from 'react-player'
-import RichtextComponent from '@components/live-blog/text'
+// import ReactPlayer from 'react-player'
 
 const AudioPlayerComponent = ({ el, lang }) => {
-	// console.log(el)
-
 	if (el.youtubeId) {
 		return (
 			<>
@@ -34,16 +39,17 @@ const AudioPlayerComponent = ({ el, lang }) => {
 						)}
 					</div>
 				</div>
-				{el.caption?.json && (
+				{/* {el.caption?.json && (
 					<p className={'px-1 py-2'}>
 						<RichtextComponent content={el.caption.json} />
 					</p>
-				)}
+				)} */}
 			</>
 		)
+	} else {
+		return <ReactAudioPlayer className={'w-full mb-5'} src={el.audio.url} controls />
 	}
 
-	return <ReactAudioPlayer className={'w-full mb-5'} src={el.audio.url} controls />
 }
 
 export default AudioPlayerComponent

@@ -1,10 +1,12 @@
-import { Helmet } from 'react-helmet'
+import ArticleChecker from '@components/live-blog/dynamicArticleChecker'
 
+// import ArticleChecker from '@components/live-blog/articleChecker'
+
+import { Helmet } from 'react-helmet'
 import { callContentful } from '@utils/contentfulHelper'
 import HeaderComponent from '@components/common/header'
 import DynamicBlogContentComponent from '@components/live-blog/Components'
 import HorizontalTimelineComponent from '@components/live-blog/horizontalTimeline'
-import ArticleChecker from '@components/live-blog/articleChecker'
 import Sidebar from '@components/live-blog/sidebar'
 import RichtextComponent from '@components/richText'
 
@@ -25,7 +27,7 @@ const LiveBlogEntry = ({ liveBlogEntryCollection, liveBlogData, lang, liveBlogPa
 			<HeaderComponent />
 
 			{/* Horizontal timeline */}
-			<div className={'relative w-full border-b px-0 py-5 mt-24'}>
+			<div className={'relative w-full border-b px-0 py-5 mt-24'} style={{ borderBottom: '1px solid #ddd' }}>
 				<HorizontalTimelineComponent liveBlogs={liveBlogData.contentCollection.items} lang={lang} />
 				<div className={'absolute right-0 top-0 w-24 h-full bg-gradient-to-r from-transparent to-gray-100'} />
 				{/* <p className={'text-base text-burgundy'}>[Horizontal Timeline]</p> */}
