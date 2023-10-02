@@ -1,4 +1,4 @@
-/* a,
+a,
 abbr,
 acronym,
 address,
@@ -79,12 +79,12 @@ u,
 ul,
 var,
 video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
 
 article,
@@ -98,9 +98,10 @@ hgroup,
 menu,
 nav,
 section {
-  display: block;
-} */
+	display: block;
+}
 
+*/
 /* body {
   line-height: 1;
   background: transparent; 
@@ -356,7 +357,7 @@ body {
 }
 
 .button--secondary:hover,
-/* .button--secondary:focus {
+.button--secondary:focus {
 	background-color: #000;
 }
 
@@ -393,7 +394,7 @@ body {
 	padding: 1.5rem 4rem;
 	font-size: 1.6rem;
 	line-height: 2rem;
-} */
+}
 
 @font-face {
 	font-family: 'GT Sectra Regular';
