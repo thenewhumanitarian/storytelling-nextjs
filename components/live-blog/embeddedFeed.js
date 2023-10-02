@@ -59,7 +59,7 @@ export default function Feed({ entries, lang }) {
 				// }}f
 			>
 				{activity.slice(0, 3).map((activityItem, activityItemIdx) => (
-					<li key={activityItem.id} className={'pt-3'}>
+					<li key={`${activityItem.id}-${activityItemIdx}`} className={'pt-3'}>
 						<div className='relative'>
 							{/* {activityItemIdx !== 2 ? <span className='absolute left-8 top-5 -ml-px h-full w-0.5 bg-gray-200' aria-hidden='true' /> : null} */}
 							<div className='relative flex items-start space-x-3'>

@@ -112,7 +112,7 @@ export default function Feed({ entries, lang }) {
 										<div className='flex-1 min-w-0'>
 											<div>
 												<div className='flex items-center justify-between w-full gap-8 gap-x-4'>
-													<a href={`${lang}/entries/${activityItem.slug}`} className='font-serif text-burgundy'>
+													<a href={`/car-live-blog/${lang}/entries/${activityItem.slug}`} className='font-serif text-burgundy'>
 														<h3 className={'text-2xl mb-0 mt-1'}>{activityItem.title}</h3>
 													</a>
 													{/* <span className={'block w-6 opacity-40 absolute top-0 right-0'}>{activityItem.icon}</span> */}

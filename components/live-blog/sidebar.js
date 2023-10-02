@@ -15,7 +15,7 @@ const Sidebar = ({ lang, title, liveBlogPages, showFilter, currentFilter, hideBa
 			<ul className={'list-none m-0 grid pt-2'}>
 				{liveBlogPages.map((el, i) => {
 					return (
-						<li key={`live-blog-page-link-${i}`}>
+						<li key={`live-blog-page-link-${i}-${el.slug}`}>
 							<Link href={`/car-live-blog/${lang}/pages/${el.slug}`}>{el.title}</Link>
 						</li>
 					)
