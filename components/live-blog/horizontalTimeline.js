@@ -163,7 +163,7 @@ function Card({
 		>
 			<div className={'pointer-events-none'}>
 				<h3 className={'line-clamp-2 text-lg'}><a href={'#'}>{title}</a></h3>
-				{/* <ArticleChecker slug={itemSlug} lang={lang} /> */}
+				<ArticleChecker slug={itemSlug} lang={lang} />
 			</div>
 		</div>
 	);
