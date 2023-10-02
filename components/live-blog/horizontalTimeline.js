@@ -1,9 +1,10 @@
 // import { useEffect, useState } from 'react'
 import ArticleChecker from '@components/live-blog/dynamicArticleChecker'
 
-import { useContext, useState, useEffect } from 'react';
-import moment from 'moment'
+// import { useContext, useState, useEffect } from 'react';
+import { useContext } from 'react';
 import { useRouter } from 'next/router'
+import moment from 'moment'
 import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
 import useDrag from './useDrag'
 import 'react-horizontal-scrolling-menu/dist/styles.css';
@@ -11,9 +12,7 @@ import 'react-horizontal-scrolling-menu/dist/styles.css';
 function HorizontalTimelineComponent({ liveBlogs, lang }) {
 	const router = useRouter()
 
-	const [isHover, setIsHover] = useState(false)
-
-	let scrollPosition = 0;
+	// const [isHover, setIsHover] = useState(false)
 
 	// function lockScroll() {
 	// 	scrollPosition = window.pageYOffset;
@@ -49,22 +48,20 @@ function HorizontalTimelineComponent({ liveBlogs, lang }) {
 			if (scrollContainer.current) {
 				scrollContainer.current.scrollLeft += posDiff;
 			}
-		});
+		})
 
 	const handleItemClick = (slug) => () => {
 		if (dragging) {
 			return false;
 		}
-		// Push route to router
-		console.log(slug)
 
 		// Push URL to next/router
 		router.push(`/car-live-blog/${lang}/entries/${slug}`);
-
-	};
+	}
 
 	return (
-		<div onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)} className={'relative'}>
+		// <div onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)} className={'relative'}>
+		<div className={'relative'}>
 			<ScrollMenu
 				LeftArrow={LeftArrow}
 				RightArrow={RightArrow}
@@ -73,13 +70,14 @@ function HorizontalTimelineComponent({ liveBlogs, lang }) {
 				onMouseUp={() => dragStop}
 				onMouseMove={handleDrag}
 			>
-				{items.map(({ slug, title }) => (
+				{items.map(({ slug, title, date }) => (
 					<Card
 						itemSlug={slug} // NOTE: itemId is required for track items
 						title={title}
 						key={slug}
 						onClick={handleItemClick(slug)}
 						lang={lang}
+						date={date}
 					/>
 				))}
 			</ScrollMenu>
@@ -149,6 +147,7 @@ function Card({
 	itemSlug,
 	onClick,
 	title,
+	date,
 	lang
 }) {
 
@@ -164,7 +163,8 @@ function Card({
 			className="card inline-block w-64 px-3"
 		>
 			<div className={'pointer-events-none'}>
-				<h3 className={'line-clamp-2 text-lg'}><a href={'#'}>{title}</a></h3>
+				<h3 className={'line-clamp-2 text-lg mb-0 leading-snug'}><a href={'#'}>{title}</a></h3>
+				<p className={'text-gray-600 text-sm'}>{moment(date).format('D MMMM YYYY')}</p>
 				<ArticleChecker slug={itemSlug} lang={lang} />
 			</div>
 		</div>
