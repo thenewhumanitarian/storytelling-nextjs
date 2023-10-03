@@ -78,7 +78,7 @@ export default function Feed({ entries, lang }) {
 									<div>
 										<div className='flex items-center justify-between w-full gap-x-4'>
 											<a href={`/car-live-blog/${lang}/entries/${activityItem.slug}`} className='font-serif text-burgundy' target="_top">
-												<h3 className={'text-lg font-bold mb-0 mt-1 line-clamp-1'}>{activityItem.title}</h3>
+												<h3 className={'text-base font-normal mb-0 mt-1 line-clamp-1'}>{activityItem.title}</h3>
 											</a>
 											{/* <span className={'block w-6 opacity-40 absolute top-0 right-0'}>{activityItem.icon}</span> */}
 										</div>

@@ -19,6 +19,7 @@ module.exports = {
 			fontFamily: {
 				body: ['Roboto', 'Open Sans', 'ui-sans-serif'],
 				title: ['GT Sectra Bold', 'ui-serif'],
+				serif: ['GT Sectra Regular', 'ui-serif'],
 			},
 		},
 	},

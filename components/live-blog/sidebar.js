@@ -8,7 +8,7 @@ const Sidebar = ({ lang, title, liveBlogPages, showFilter, currentFilter, hideBa
 		<div className='col-span-2'>
 			{!hideBackButton && (
 				<Link href={`${lang === 'en' ? '/car-live-blog/en' : '/car-live-blog/fr'}`}>
-					<button className={'bg-burgundy px-3 py-1 text-white font-bold mb-5'}>{lang === 'en' ? '← Back to overview' : '← Retour'}</button>
+					<button className={'bg-burgundy px-3 py-2 text-white font-normal text-sm mb-5'}>{lang === 'en' ? '← Back to overview' : '← Retour'}</button>
 				</Link>
 			)}
 			<h2>{title}</h2>

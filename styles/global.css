@@ -1,3 +1,24 @@
+@font-face {
+    font-family: 'GT Sectra Regular';
+    src: url('../fonts/GT-Sectra-Fine-Regular.woff2') format('woff2'), url('../fonts/GT-Sectra-Fine-Regular.woff') format('woff'),
+        url('../fonts/GT-Sectra-Fine-Regular.eot') format('eot'), url('../fonts/GT-Sectra-Fine-Regular.otf') format('otf'),
+        url('../fonts/GT-Sectra-Fine-Regular.ttf') format('ttf');
+}
+
+@font-face {
+    font-family: 'GT Sectra Medium';
+    src: url('../fonts/GT-Sectra-Fine-Medium.woff2') format('woff2'), url('../fonts/GT-Sectra-Fine-Medium.woff') format('woff'),
+        url('../fonts/GT-Sectra-Fine-Medium.eot') format('eot'), url('../fonts/GT-Sectra-Fine-Medium.otf') format('otf'),
+        url('../fonts/GT-Sectra-Fine-Medium.ttf') format('ttf');
+}
+
+@font-face {
+    font-family: 'GT Sectra Bold';
+    src: url('../fonts/GT-Sectra-Fine-Bold.woff2') format('woff2'), url('../fonts/GT-Sectra-Fine-Bold.woff') format('woff'),
+        url('../fonts/GT-Sectra-Fine-Bold.eot') format('eot'), url('../fonts/GT-Sectra-Fine-Bold.otf') format('otf'),
+        url('../fonts/GT-Sectra-Fine-Bold.ttf') format('ttf');
+}
+
 .react-images__footer__caption span {
     position: absolute;
     bottom: -1rem;
