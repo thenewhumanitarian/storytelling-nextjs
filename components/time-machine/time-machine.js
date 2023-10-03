@@ -141,7 +141,7 @@ const TimeMachineComponent = ({ chosenStory, restOfStories, slug }) => {
 	}, [isHover, isAnimating])
 
 	return (
-		<div className={'relative h-screen h-screen-ios w-screen flex items-center justify-center bg-black'}>
+		<div className={'relative h-screen h-screen-ios w-screen flex items-center justify-center bg-burgundy'}>
 			<motion.div initial={{ opacity: 1, scale: 1 }} animate={{ scale: 1, opacity: hasClicked ? 0.5 : isHover && !isMobile ? 0.5 : 1 }}>
 				<Image
 					// src={hasClicked ? currentStory.image.url : chosenStory.image.url}

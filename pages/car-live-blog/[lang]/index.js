@@ -8,6 +8,18 @@ import Feed from '@components/live-blog/feed'
 import HorizontalTimelineComponent from '@components/live-blog/horizontalTimeline'
 
 const AllLiveBlogs = ({ lang, liveBlogData, liveBlogPages, liveBlogAuthors }) => {
+	const shareProps = {
+		title: 'The New Humanitarian | Live from the CAR', // TODO
+		url: 'https://vercel.thenewhumanitarian.org/car-live-blog/en', // TODO
+		socialTitle: 'The New Humanitarian | Live from the CAR', // TODO
+		socialDescription: 'Our journalism, impact, audience, and more.', // TODO
+		socialImage: 'https://www.thenewhumanitarian.org/s3/files/styles/responsive_large_2x/public/annualreport.png?itok=Y0cc4R4Y',
+		nodeId: null,
+		updatedTime: '2021-06-27T08:00:00+00:00',
+		modiefiedTime: '2021-06-27T08:00:00+00:00',
+		publishedTime: '2021-06-27T08:00:00+00:00',
+	}
+
 	return (
 		<div>
 			<Helmet
@@ -18,10 +30,10 @@ const AllLiveBlogs = ({ lang, liveBlogData, liveBlogPages, liveBlogAuthors }) =>
 				<meta name='viewport' content='width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no' />
 			</Helmet>
 
-			<HeaderComponent />
+			<HeaderComponent shareProps={shareProps} />
 
 			{/* Horizontal timeline */}
-			<div className={'relative w-full px-0 py-5 mt-24 border-b'} style={{ borderBottom: '1px solid #ddd' }}>
+			<div className={'relative w-full px-0 py-5 border-b'} style={{ borderBottom: '1px solid #ddd' }}>
 				<HorizontalTimelineComponent liveBlogs={liveBlogData.contentCollection.items} lang={lang} />
 				<div className={'absolute right-0 top-0 w-24 h-full bg-gradient-to-r from-transparent to-gray-100'} />
 				{/* <p className={'text-base text-burgundy'}>[Horizontal Timeline]</p> */}
