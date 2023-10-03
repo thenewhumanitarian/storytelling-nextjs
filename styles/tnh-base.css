@@ -5706,6 +5706,6 @@ textarea {
 }
 
 .react-horizontal-scrolling-menu--scroll-container {
-    column-gap: 0;
-    height: 92px !important;
+	column-gap: 0;
+	height: 92px !important;
 }
