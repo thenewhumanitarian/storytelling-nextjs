@@ -69,6 +69,8 @@ function HorizontalTimelineComponent({ liveBlogs, lang }) {
 				onMouseDown={() => dragStart}
 				onMouseUp={() => dragStop}
 				onMouseMove={handleDrag}
+				// scrollContainerClassName={'snap-x'}
+				// itemClassName={'snap-center'}
 			>
 				{items.map(({ slug, title, date }) => (
 					<Card
@@ -160,7 +162,7 @@ function Card({
 			}}
 			tabIndex={0}
 			key={`card-${itemSlug}`}
-			className="card inline-block w-64 px-3"
+			className="card inline-block w-64 px-3 snap-center flex-shrink-0"
 		>
 			<div className={'pointer-events-none'}>
 				<h3 className={'line-clamp-2 text-lg mb-0 leading-snug'}><a href={'#'}>{title}</a></h3>
