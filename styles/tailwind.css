@@ -50,10 +50,10 @@
 		@apply underline;
 	}
 
-	/* a:focus,
-	a:active {
-		@apply text-white bg-gray-600;
-	} */
+	a:active,
+	a:focus {
+		@apply bg-transparent;
+	}
 
 	iframe {
 		@apply w-full top-0 left-0 absolute h-full;
