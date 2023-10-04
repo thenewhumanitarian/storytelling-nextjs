@@ -57,11 +57,11 @@ export default function Feed({ entries, lang }) {
 									<div className='relative flex items-start space-x-3'>
 										<div className='relative'>
 											<img
-												className='flex items-center justify-center object-cover w-16 h-16 bg-gray-400 ring-8 ring-white'
+												className='flex items-center justify-center object-cover rounded-full w-12 h-12 sm:w-16 sm:h-16 bg-gray-400 ring-8 ring-white'
 												src={activityItem.imageUrl}
 												alt=''
 											/>
-											<span className={'absolute bottom-0 right-0 bg-white w-6 h-6 flex justify-center items-center'}>
+											<span className={'hidden sm:absolute bottom-0 right-0 bg-white w-6 h-6 flex justify-center items-center'}>
 												<span className={'w-4 h-4 mb-3 mr-0.5 block'}>{activityItem.icon}</span>
 											</span>
 										</div>
@@ -75,6 +75,7 @@ export default function Feed({ entries, lang }) {
 												</div>
 												<div className={'flex flex-row gap-2 justify-start items-center'}>
 													<p className='text-gray-500 font-normal'>
+														<span className={'block w-6 opacity-40 absolute top-0 right-0'}>{activityItem.icon}</span>
 														Posted {activityItem.date} by {activityItem.person.name}
 													</p>
 													<ArticleChecker slug={activityItem.slug} clickable={true} />
@@ -101,11 +102,11 @@ export default function Feed({ entries, lang }) {
 									<div className='relative flex items-start space-x-3'>
 										<div className='relative'>
 											<img
-												className='flex items-center justify-center object-cover w-16 h-16 bg-gray-400 ring-8 ring-white'
+												className='flex items-center justify-center object-cover w-12 h-12 rounded-full sm:w-16 sm:h-16 bg-gray-400 ring-8 ring-white'
 												src={activityItem.imageUrl}
 												alt=''
 											/>
-											<span className={'absolute bottom-0 right-0 bg-white w-6 h-6 flex justify-center items-center'}>
+											<span className={'hidden sm:absolute bottom-0 right-0 bg-white w-6 h-6 flex justify-center items-center'}>
 												<span className={'w-4 h-4 mb-3 mr-0.5 block'}>{activityItem.icon}</span>
 											</span>
 										</div>
@@ -113,12 +114,13 @@ export default function Feed({ entries, lang }) {
 											<div>
 												<div className='flex items-center justify-between w-full gap-8 gap-x-4'>
 													<a href={`/car-live-blog/${lang}/entries/${activityItem.slug}`} className='font-serif text-burgundy'>
-														<h3 className={'text-2xl mb-0 mt-1'}>{activityItem.title}</h3>
+														<h3 className={'text-lg sm:text-2xl mb-0 mt-1'}>{activityItem.title}</h3>
 													</a>
 													{/* <span className={'block w-6 opacity-40 absolute top-0 right-0'}>{activityItem.icon}</span> */}
 												</div>
 												<div className={'flex flex-row gap-2 justify-start items-center'}>
 													<p className='text-gray-500 '>
+														<span className={'block w-6 opacity-40 absolute top-0 right-0'}>{activityItem.icon}</span>
 														Posted {activityItem.date} by {activityItem.person.name}
 													</p>
 													{/* <ArticleChecker slug={activityItem.slug} /> */}

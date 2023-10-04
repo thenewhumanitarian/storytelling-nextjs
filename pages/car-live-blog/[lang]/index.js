@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet'
 import { callContentful } from '@utils/contentfulHelper'
 import HeaderComponent from '@components/common/header'
 import Feed from '@components/live-blog/feed'
-import HorizontalTimelineComponent from '@components/live-blog/horizontalTimeline'
+import HorizontalTimelineComponent from '@components/live-blog/timeline/horizontalTimeline'
 
 const AllLiveBlogs = ({ lang, liveBlogData, liveBlogPages, liveBlogAuthors }) => {
 	const shareProps = {
@@ -40,10 +40,10 @@ const AllLiveBlogs = ({ lang, liveBlogData, liveBlogPages, liveBlogAuthors }) =>
 			</div>
 
 			{/* Grid for main content */}
-			<div className='grid grid-flow-col grid-cols-9 gap-8 px-8 mt-10'>
-				<Sidebar title={liveBlogData.title} lang={lang} liveBlogPages={liveBlogPages} showFilter={liveBlogAuthors} hideBackButton />
-				<div className='grid items-start grid-cols-1 col-span-7 xl:col-span-5 gap-y-5'>
-					<h2>Latest entries</h2>
+			<div className='flex flex-col-reverse sm:grid sm:grid-flow-col sm:grid-cols-9 gap-8 px-3 sm:px-8 mt-3 sm:mt-10'>
+				<Sidebar className={'bg-burgundy sm:bg-transparent mt-3 mb-3 sm:mb-0 p-5 sm:p-0 text-white sm:text-inherit sm:pb-0 sm:mt-0'} title={liveBlogData.title} lang={lang} liveBlogPages={liveBlogPages} showFilter={liveBlogAuthors} hideBackButton />
+				<div className='mt-1 sm:mt-0 grid items-start grid-cols-1 col-span-7 xl:col-span-5 gap-y-5'>
+					<h2 className={'hidden sm:block'}>Latest entries</h2>
 					<Feed lang={lang} entries={liveBlogData.contentCollection.items} />
 				</div>
 			</div>

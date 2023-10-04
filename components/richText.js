@@ -11,7 +11,7 @@ import TweetComponent from '@components/embeddedTweet'
 const website_url = 'thenewhumanitarian.org'
 
 const RichtextComponent = (props) => {
-	const { content } = props
+	const { content, className } = props
 
 	const options = {
 		renderMark: {
@@ -78,7 +78,7 @@ const RichtextComponent = (props) => {
 		},
 	}
 
-	return <div>{documentToReactComponents(content, options)}</div>
+	return <div className={className}>{documentToReactComponents(content, options)}</div>
 }
 
 export default RichtextComponent

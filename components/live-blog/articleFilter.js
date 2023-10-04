@@ -5,7 +5,7 @@ const ArticleFilter = ({ authors, lang, currentFilter }) => {
 	const sortedAuthors = authors.sort((a, b) => a.slug.localeCompare(b.slug))
 
 	return (
-		<li className={'border-t mt-4 pt-3 border-black'} key={`li-${currentFilter}}`}>
+		<li className={'border-t mt-4 pt-3 border-white sm:border-black'} key={`li-${currentFilter}}`}>
 			<h3 className={'font-sans font-bold text-base'}>{filterText}</h3>
 			{sortedAuthors.map((el) => {
 				if (el.slug === currentFilter) {
@@ -13,7 +13,7 @@ const ArticleFilter = ({ authors, lang, currentFilter }) => {
 				}
 				return (
 					<Link href={`/car-live-blog/${lang}/by-author/${el.slug}`} key={`sidebar-link-${el.slug}`}>
-						<p className={'block cursor-pointer text-burgundy font-medium hover:underline'}>{el.name}</p>
+						<p className={'block cursor-pointer text-burgundy font-medium hover:underline text-white sm:text-inherit'}>{el.name}</p>
 					</Link>
 				)
 			})}

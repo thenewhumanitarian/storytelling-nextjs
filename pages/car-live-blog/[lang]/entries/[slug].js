@@ -6,7 +6,7 @@ import { Helmet } from 'react-helmet'
 import { callContentful } from '@utils/contentfulHelper'
 import HeaderComponent from '@components/common/header'
 import DynamicBlogContentComponent from '@components/live-blog/Components'
-import HorizontalTimelineComponent from '@components/live-blog/horizontalTimeline'
+import HorizontalTimelineComponent from '@components/live-blog/timeline/horizontalTimeline'
 import Sidebar from '@components/live-blog/sidebar'
 import RichtextComponent from '@components/richText'
 
@@ -34,10 +34,10 @@ const LiveBlogEntry = ({ liveBlogEntryCollection, liveBlogData, lang, liveBlogPa
 			</div>
 
 			{/* Grid for main content */}
-			<div className='grid items-start grid-flow-col grid-cols-9 gap-8 px-8 mt-10'>
+			<div className='flex flex-col-reverse sm:grid sm:grid-flow-col sm:grid-cols-9 gap-8 px-3 sm:px-8 mt-3 sm:mt-10'>
 				<Sidebar title={liveBlogData.title} lang={lang} liveBlogPages={liveBlogPages} author={liveBlogEntryCollection.blogEntryAuthor} />
 				<div className='relative grid grid-cols-1 col-span-7 gap-0 xl:col-span-5'>
-					<h1>{liveBlogEntryCollection.title}</h1>
+					<h1 className={'text-2xl sm:text-4xl'}>{liveBlogEntryCollection.title}</h1>
 					<RichtextComponent content={liveBlogEntryCollection.summary.json} />
 					<ArticleChecker lang={lang} slug={liveBlogEntryCollection.slug} setIsRead={true} showRemoveArticle className={'mt-4 pt-2 border-t'} />
 					<div className={'grid grid-cols-1 gap-y-1 mt-5'}>

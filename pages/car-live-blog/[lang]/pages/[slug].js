@@ -6,7 +6,7 @@ import Sidebar from '@components/live-blog/sidebar'
 import { callContentful } from '@utils/contentfulHelper'
 import HeaderComponent from '@components/common/header'
 import DynamicBlogContentComponent from '@components/live-blog/Components'
-import HorizontalTimelineComponent from '@components/live-blog/horizontalTimeline'
+import HorizontalTimelineComponent from '@components/live-blog/timeline/horizontalTimeline'
 // import { IconAudio, IconMovie } from '@components/icons/media'
 
 const AllLiveBlogs = ({ lang, liveBlogPageData, liveBlogPages, pageContent }) => {
@@ -30,7 +30,7 @@ const AllLiveBlogs = ({ lang, liveBlogPageData, liveBlogPages, pageContent }) =>
 			</div>
 
 			{/* Grid for main content */}
-			<div className='grid items-start grid-flow-col grid-cols-9 gap-8 px-8 mt-10'>
+			<div className='flex flex-col-reverse sm:grid sm:grid-flow-col sm:grid-cols-9 gap-8 px-3 sm:px-8 mt-3 sm:mt-10'>
 				<Sidebar title={liveBlogPageData.title} lang={lang} liveBlogPages={liveBlogPages} />
 				<div className='grid grid-cols-1 col-span-7 gap-0 xl:col-span-5'>
 					<h1>{pageContent.title}</h1>

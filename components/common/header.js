@@ -35,10 +35,15 @@ const Header = ({ dark, shareProps }) => {
 				<div class='flex justify-start gap-x-2 sm:gap-x-8 items-center'>
 					<div class={`${dark ? 'text-white' : 'text-black'} fill-current flex gap-3 items-center justify-start`}>
 						<div className='flex fpoex-col items-center align-stsart'>
+							<a rel={'noopener noreferrer'} target='_blank' className='block sm:hidden bg-burgundy px-2 py-1 text-white font-normal text-sm font-bold' href='https://www.thenewhumanitarian.org/membership'>
+								Donate
+							</a>
 							<a rel={'noopener noreferrer'} target='_blank' className='hidden sm:block bg-burgundy px-3 py-2 text-white font-normal text-sm font-bold' href='https://www.thenewhumanitarian.org/membership'>
 								Become a member
 							</a>
-							{shareProps && <ShareIcons shareProps={shareProps} inverted={dark} />}
+							<div className={'hidden sm:block'}>
+								{shareProps && <ShareIcons shareProps={shareProps} inverted={dark} />}
+							</div>
 						</div>
 					</div>
 				</div>

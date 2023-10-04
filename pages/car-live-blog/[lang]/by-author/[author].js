@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet'
 import { callContentful } from '@utils/contentfulHelper'
 import HeaderComponent from '@components/common/header'
 import Feed from '@components/live-blog/feed'
-import HorizontalTimelineComponent from '@components/live-blog/horizontalTimeline'
+import HorizontalTimelineComponent from '@components/live-blog/timeline/horizontalTimeline'
 
 const AllLiveBlogs = ({ lang, liveBlogData, liveBlogPages, liveBlogAuthors, author }) => {
 	const filteredByAuthor = liveBlogData.contentCollection.items.filter((item) => item.blogEntryAuthor.slug === author)
@@ -30,7 +30,7 @@ const AllLiveBlogs = ({ lang, liveBlogData, liveBlogPages, liveBlogAuthors, auth
 			</div>
 
 			{/* Grid for main content */}
-			<div className='grid items-start grid-flow-col grid-cols-9 gap-8 px-8 mt-10'>
+			<div className='flex flex-col-reverse sm:grid sm:grid-flow-col sm:grid-cols-9 gap-8 px-3 sm:px-8 mt-3 sm:mt-10'>
 				<Sidebar title={liveBlogData.title} lang={lang} liveBlogPages={liveBlogPages} showFilter={liveBlogAuthors} currentFilter={author} />
 				<div className='grid items-start grid-cols-1 col-span-7 xl:col-span-5 gap-y-5'>
 					<h2>Latest entries</h2>

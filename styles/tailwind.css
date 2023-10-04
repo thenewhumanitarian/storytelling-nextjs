@@ -52,7 +52,7 @@
 
 	a:active,
 	a:focus {
-		@apply bg-burgundy text-white;
+		@apply bg-transparent text-burgundy;
 	}
 
 	iframe {
