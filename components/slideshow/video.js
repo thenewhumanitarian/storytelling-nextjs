@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from 'react'
 
-import ReactPlayer from 'react-player/lazy'
+// import ReactPlayer from 'react-player/lazy'
+
+import dynamic from 'next/dynamic';
+
+const ReactPlayer = dynamic(() => import('react-player/lazy'), {
+	loading: () => <p>Loading...</p>, // Optional loading component
+	ssr: false // This line is important. It disables server-side rendering for this component.
+});
+
 import VisibilitySensor from 'react-visibility-sensor'
 
 const VideoPlayer = ({ el, i, autoPlay }) => {
