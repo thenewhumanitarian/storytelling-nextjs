@@ -80,7 +80,7 @@ export const getStaticProps = async (ctx) => {
 					url
 				}
 				shareText
-				contentCollection {
+				contentCollection(order: date_DESC) {
 					items {
 						... on LiveBlogEntry {
 							title

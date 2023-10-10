@@ -67,18 +67,15 @@ export default function Feed({ entries, lang }) {
 										</div>
 										<div className='flex-1 min-w-0'>
 											<div>
-												<div className='flex items-center justify-between w-full gap-8 gap-x-4'>
+												<div className='flex items-center justify-between w-full gap-8 gap-x-4 sm:pr-10'>
 													<a href={`/car-live-blog/${lang}/entries/${activityItem.slug}`} className='font-serif text-burgundy'>
 														<h3 className={'text-xl mb-0 mt-0'}>{activityItem.title}</h3>
 													</a>
 												</div>
-												<div className={'flex flex-row gap-2 justify-start items-center'}>
-													<p className='text-gray-500 font-normal'>
-														<span className={'hidden sm:block w-6 opacity-40 absolute top-0 right-0'}>{activityItem.icon}</span>
-														Posted {activityItem.date} by {activityItem.person.name}
-													</p>
-													{/* <ArticleChecker slug={activityItem.slug} clickable={true} /> */}
-												</div>
+												<p className='text-gray-500 font-normal'>
+													<span className={'hidden sm:block w-5 opacity-40 absolute top-0 right-0'}>{activityItem.icon}</span>
+													Posted {activityItem.date} by {activityItem.person.name}
+												</p>
 											</div>
 											<div className='mt-2 text-black'>
 												<p className={'text-base line-clamp-1'}>{activityItem.subtitle}</p>
@@ -111,17 +108,15 @@ export default function Feed({ entries, lang }) {
 										</div>
 										<div className='flex-1 min-w-0'>
 											<div>
-												<div className='flex items-center justify-between w-full gap-8 gap-x-4'>
+												<div className='flex items-center justify-between w-full gap-8 gap-x-4 sm:pr-10'>
 													<a href={`/car-live-blog/${lang}/entries/${activityItem.slug}`} className='font-serif text-burgundy'>
 														<h3 className={'text-lg sm:text-xl mb-0 mt-1'}>{activityItem.title}</h3>
 													</a>
 												</div>
-												<div className={'flex flex-row gap-2 justify-start items-center'}>
-													<p className='text-gray-500 '>
-														<span className={'hidden sm:block w-6 opacity-40 absolute top-0 right-0'}>{activityItem.icon}</span>
-														Posted {activityItem.date} by {activityItem.person.name}
-													</p>
-												</div>
+												<p className='text-gray-500 '>
+													<span className={'hidden sm:block w-5 opacity-40 absolute top-0 right-0 border'}>{activityItem.icon}</span>
+													Posted {activityItem.date} by {activityItem.person.name}
+												</p>
 											</div>
 											<div className='mt-2 text-black'>
 												<p className={'text-base line-clamp-1'}>{activityItem.subtitle}</p>
