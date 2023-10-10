@@ -15,3 +15,8 @@ These are the things that need doing.
 * Static pages in both languages from Contentful
 * Horizontal scroll on mobile
 * Integrate Contentful's metadata for social media shares
+
+# Notes of catch up call with group on 10 October 2023
+
+
+

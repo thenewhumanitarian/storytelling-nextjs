@@ -77,7 +77,7 @@ export default function Feed({ entries, lang }) {
 														<span className={'hidden sm:block w-6 opacity-40 absolute top-0 right-0'}>{activityItem.icon}</span>
 														Posted {activityItem.date} by {activityItem.person.name}
 													</p>
-													<ArticleChecker slug={activityItem.slug} clickable={true} />
+													{/* <ArticleChecker slug={activityItem.slug} clickable={true} /> */}
 												</div>
 											</div>
 											<div className='mt-2 text-black'>
