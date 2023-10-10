@@ -81,10 +81,8 @@ export default function Feed({ entries, lang }) {
 											<a href={`/car-live-blog/${lang}/entries/${activityItem.slug}`} className='font-serif text-white' target="_top">
 												<h3 className={'text-lg font-normal mb-0 mt-1 line-clamp-1'}>{activityItem.title}</h3>
 											</a>
-											{/* <span className={'block w-6 opacity-40 absolute top-0 right-0'}>{activityItem.icon}</span> */}
 										</div>
 										<div className={'flex flex-row items-center'}>
-											{/* <ArticleChecker slug={activityItem.slug} /> */}
 											<p className='mt-0.5 text-gray-500 text-white'>
 												Posted {activityItem.date} by {activityItem.author.name}
 											</p>

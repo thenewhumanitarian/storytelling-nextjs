@@ -11,7 +11,7 @@ const TwitterIcon = ({ text, url, inverted }) => {
 			href={`https://twitter.com/intent/tweet?text=${text}:%20${url}%20(@newhumanitarian)`}
 			className={'hover:bg-transparent focus:bg-transparent'}
 		>
-			<svg xmlns='http://www.w3.org/2000/svg' width='17' height='14' viewBox='0 0 17 14' className={'inline-block ml-3 mr-4'}>
+			<svg xmlns='http://www.w3.org/2000/svg' width='17' height='14' viewBox='0 0 17 14' className={'hidden sm:inline-block ml-3 mr-4'}>
 				<g fill='none' fillRule='evenodd' stroke='none' strokeWidth='1'>
 					<g fill={inverted ? '#fff' : '#282828'} fillRule='nonzero' transform='translate(0 -1)'>
 						<path d='M5.14 15a9.48 9.48 0 009.54-9.54v-.43a6.91 6.91 0 001.67-1.74 6.57 6.57 0 01-1.93.53A3.32 3.32 0 0015.89 2a6.86 6.86 0 01-2.13.81A3.35 3.35 0 008 5.07c0 .26.03.518.09.77a9.51 9.51 0 01-6.95-3.51 3.35 3.35 0 001 4.48 3.38 3.38 0 01-1.48-.42 3.35 3.35 0 002.69 3.33 3.3 3.3 0 01-1.52.06A3.37 3.37 0 005 12.11a6.75 6.75 0 01-4.2 1.43 7 7 0 01-.8 0A9.48 9.48 0 005.14 15'></path>
@@ -100,75 +100,73 @@ const ShareIcon = ({ inverted }) => {
 const ShareIcons = (props) => {
 	const [isActive, setIsActive] = useState(false)
 
+	const showShareIcons = () => {
+		setIsActive(true)
+	}
+
 	return (
 		<div className={'cursor-pointer'}>
 			<AnimateSharedLayout>
-				{/* <AnimatePresence> */}
 				{!isActive && (
 					<motion.div
 						layout
 						initial={{
 							opacity: 0,
-							y: 0,
 						}}
 						enter={{
 							opacity: 1,
-							y: 0,
 						}}
 						exit={{
 							opacity: 0,
-							y: 0,
 						}}
 						animate={{
 							opacity: 1,
-							y: 0,
 						}}
-						className={'sm:ml-4 w-full'}
-						onClick={() => setIsActive(true)}
+						transition={{
+							duration: 0.2,
+						}}
+						className={'sm:ml-4 w-full cursor:pointer'}
+						onClick={() => showShareIcons()}
 						style={{
 							color: props.inverted ? '#fff' : '#282828',
 						}}
 					>
-						<ShareIcon inverted={props.inverted} /> Share
+						<ShareIcon inverted={props.inverted} /> <span className={'hidden sm:inline'}>Share</span>
 					</motion.div>
 				)}
-				{/* </AnimatePresence> */}
-				<AnimatePresence>
-					{isActive && (
-						<motion.div
-							initial={{
-								x: -10,
-								opacity: 0,
-							}}
-							enter={{
-								x: 0,
-								opacity: 1,
-							}}
-							exit={{
-								x: -10,
-								opacity: 0,
-							}}
-							animate={{
-								x: 0,
-								opacity: 1,
-							}}
-							transition={{
-								// delay: 0.35,
-								duration: 0.3,
-								// type: 'spring',
-								// stiffness: 5,
-								// damping: 1,
-							}}
-							className={'sm:ml-4 w-full'}
-							onClick={() => setIsActive(true)}
-						>
-							<TwitterIcon text={encodeURI(props.shareProps.socialTitle)} url={props.shareProps.url} inverted={props.inverted} />
-							<FacebookIcon text={props.shareProps.socialTitle} url={props.shareProps.url} inverted={props.inverted} />
-							<WhatsappIcon text={props.shareProps.socialTitle} url={props.shareProps.url} inverted={props.inverted} />
-							{!isMobile && <MailIcon text={encodeURI(props.shareProps.socialTitle)} url={props.shareProps.url} inverted={props.inverted} />}
-						</motion.div>
-					)}
-				</AnimatePresence>
+				{isActive && (
+					<motion.div
+						initial={{
+							x: -10,
+							opacity: 0,
+						}}
+						enter={{
+							x: 0,
+							opacity: 1,
+						}}
+						exit={{
+							x: -10,
+							opacity: 0,
+						}}
+						animate={{
+							x: 0,
+							opacity: 1,
+						}}
+						transition={{
+							duration: 0.3,
+							delay: 0.3,
+							// type: 'spring',
+							// stiffness: 5,
+							// damping: 1,
+						}}
+						className={'sm:ml-4 w-full'}
+					>
+						<TwitterIcon text={encodeURI(props.shareProps.socialTitle)} url={props.shareProps.url} inverted={props.inverted} />
+						<FacebookIcon text={props.shareProps.socialTitle} url={props.shareProps.url} inverted={props.inverted} />
+						<WhatsappIcon text={props.shareProps.socialTitle} url={props.shareProps.url} inverted={props.inverted} />
+						<MailIcon text={encodeURI(props.shareProps.socialTitle)} url={props.shareProps.url} inverted={props.inverted} />
+					</motion.div>
+				)}
 			</AnimateSharedLayout>
 		</div>
 	)

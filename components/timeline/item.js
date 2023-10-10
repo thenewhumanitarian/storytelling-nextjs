@@ -29,10 +29,6 @@ const TimelineItem = ({ data }) => {
 					}
 				>
 					<CalendarIcon />
-					{/* {!data.icon && <CalendarIcon />}
-					{data.icon === 'bullet' && <BulletIcon />}
-					{data.icon === 'calendar' && <CalendarIcon />}
-					{data.icon === 'list' && <ListIcon />} */}
 				</div>
 			</div>
 			<AnimatePresence>

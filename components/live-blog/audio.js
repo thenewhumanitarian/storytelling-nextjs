@@ -13,7 +13,7 @@ const AudioPlayerComponent = ({ el, lang }) => {
 	if (el.youtubeId) {
 		return (
 			<>
-				<div className={`bg-burgundy p-3 flex flex-col items-center justify-center ${el.caption?.json ? 'mb-5' : 'mb-8'}`}>
+				<div className={`bg-burgundy p-1 flex flex-col items-center justify-center ${el.caption?.json ? 'mb-5' : 'mb-8'}`}>
 					<div className={'relative w-full block h-0 pt-16/9'}>
 						<ReactPlayer
 							width={'100%'}

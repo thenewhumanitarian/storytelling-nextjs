@@ -20,7 +20,7 @@ const AllLiveBlogs = ({ lang, liveBlogPageData, liveBlogPages, pageContent }) =>
 				<meta name='viewport' content='width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no' />
 			</Helmet>
 
-			<HeaderComponent />
+			<HeaderComponent lang={lang} />
 
 			{/* Horizontal timeline */}
 			<div className={'relative w-full px-0 py-5 border-b'} style={{ borderBottom: '1px solid #ddd' }}>
@@ -30,7 +30,7 @@ const AllLiveBlogs = ({ lang, liveBlogPageData, liveBlogPages, pageContent }) =>
 			</div>
 
 			{/* Grid for main content */}
-			<div className='flex flex-col-reverse sm:grid sm:grid-flow-col sm:grid-cols-9 gap-8 px-3 sm:px-8 mt-3 sm:mt-10'>
+			<div className='flex flex-col-reverse sm:grid sm:grid-flow-col sm:grid-cols-9 gap-8 px-3 sm:px-8 mt-3 sm:mt-10 items-start'>
 				<Sidebar title={liveBlogPageData.title} lang={lang} liveBlogPages={liveBlogPages} />
 				<div className='grid grid-cols-1 col-span-7 gap-0 xl:col-span-5'>
 					<h1>{pageContent.title}</h1>
