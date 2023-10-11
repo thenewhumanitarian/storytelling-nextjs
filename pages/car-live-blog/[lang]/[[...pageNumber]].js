@@ -65,30 +65,13 @@ const AllLiveBlogs = ({ lang, liveBlogData, liveBlogPages, liveBlogAuthors, live
 
 export default AllLiveBlogs
 
-export async function getStaticPaths() {
-	const paths = []
+export const getStaticPaths = async () => {
+	// Empty array to be filled with all the paths
+	let paths = []
 
-	// Fetch all the entries and then divide by number of items per page
-	// To get the number of pages
-	// Then create an array of paths for each page
-
-	const slugEN = 'car-blog-english'
-	const slugFR = 'car-blog-french'
-
-	const itemsPerPage = 2
-
-	const totalQueryEN = `{
-        liveBlogCollection(locale: "en", limit: 1, where: { slug: "${slugEN}" }) {
-			items {
-				contentCollection {
-					total
-                }
-            }
-        }
-    }`
-
-	const totalQueryFR = `{
-		liveBlogCollection(locale: "fr", limit: 1, where: { slug: "${slugFR}" }) {
+	// Querying all the English entries
+	const queryEN = `{
+		liveBlogCollection(locale: "en", limit: 1, where: { slug: "car-blog-english" }) {
 			items {
 				contentCollection {
 					total
@@ -97,29 +80,51 @@ export async function getStaticPaths() {
 		}
 	}`
 
-	const totalEntriesEN = await callContentful(totalQueryEN)
-	const numberOfEntriesEN = totalEntriesEN.data.liveBlogCollection.items[0].contentCollection.total
-	const numberOfPagesEN = Math.ceil(numberOfEntriesEN / itemsPerPage)
+	// Await English entries query response
+	const entriesEN = await callContentful(queryEN)
+	const totalEntriesEN = entriesEN.data.liveBlogCollection.items[0].contentCollection.total
 
-	const totalEntriesFR = await callContentful(totalQueryFR)
-	const numberOfEntriesFR = totalEntriesFR.data.liveBlogCollection.items[0].contentCollection.total
-	const numberOfPagesFR = Math.ceil(numberOfEntriesFR / itemsPerPage)
-
-	// Push page zero
-	paths.push({ params: { lang: 'en', pageNumber: '' } })
-	paths.push({ params: { lang: 'fr', pageNumber: '' } })
-
-	// Create a getStaticPaths path array based on the number of pages for both languages
-	for (let i = 0; i < numberOfPagesEN; i++) {
-		paths.push({ params: { lang: 'en', pageNumber: `${i}` } })
+	// Loop through slugs and add English entries to paths array
+	for (let i = 0; i < totalEntriesEN; i++) {
+		paths.push({
+			params: {
+				lang: 'en',
+				pageNumber: i + 1,
+			}
+		})
 	}
-	for (let i = 0; i < numberOfPagesFR; i++) {
-		paths.push({ params: { lang: 'fr', pageNumber: `${i}` } })
+
+	// Querying all the French entries
+	const queryFR = `{
+		liveBlogCollection(locale: "fr", limit: 1, where: { slug: "car-blog-french" }) {
+			items {
+				contentCollection {
+					total
+				}
+			}
+		}
+	}`
+
+	// Await French entries query response
+	const entriesFR = await callContentful(queryFR)
+	const totalEntriesFR = entriesFR.data.liveBlogCollection.items[0].contentCollection.total
+
+	// Loop through slugs and add French entries to paths array
+	for (let i = 0; i < totalEntriesFR; i++) {
+		paths.push({
+			params: {
+				lang: 'fr',
+				pageNumber: i + 1,
+			}
+		})
 	}
+
+	console.log(paths)
 
 	return {
-		paths: [],
-		fallback: 'blocking',
+		paths: [], //indicates that no page needs be created at build time
+		// paths: paths,
+		fallback: 'blocking', //indicates the type of fallback
 	}
 }
 
@@ -138,25 +143,17 @@ export const getStaticProps = async (ctx) => {
 
 	const totalQuery = `{
 		liveBlogCollection(locale: "${lang}", limit: 1, where: { slug: "${slug}" }) {
-		items {
-			contentCollection {
-					total
+			items {
+				contentCollection {
+						total
 				}
 			}
 		}
-	} `
+	}`
 
 	const totalEntries = await callContentful(totalQuery)
 
-	// console.log('Total entries')
 	const numberOfEntries = totalEntries.data.liveBlogCollection.items[0].contentCollection.total
-	// console.log(numberOfEntries)
-
-	// console.log('Skipped items')
-	// console.log(skip)
-
-	// console.log('Items per page')
-	// console.log(itemsPerPage)
 
 	const query = `{
 	liveBlogCollection(locale: "${lang}", limit: 1, where: { slug: "${slug}" }) {

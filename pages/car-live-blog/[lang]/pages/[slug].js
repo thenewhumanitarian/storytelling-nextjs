@@ -48,9 +48,61 @@ const AllLiveBlogs = ({ lang, liveBlogPageData, liveBlogPages, pageContent }) =>
 export default AllLiveBlogs
 
 export const getStaticPaths = async () => {
+	// Empty array to be filled with all the paths
+	let paths = []
+
+	// Querying all the English entries
+	const queryEN = `{
+		liveBlogPageCollection(locale: "en") {
+			items {
+				slug
+			}
+		}
+	}
+	`
+
+	// Await English entries query response
+	const pagesEN = await callContentful(queryEN)
+	const slugsEN = pagesEN.data.liveBlogPageCollection.items.map((el) => el.slug)
+
+	// Loop through slugs and add English entries to paths array
+	for (let i = 0; i < slugsEN.length; i++) {
+		paths.push({
+			params: {
+				lang: 'en',
+				slug: slugsEN[i],
+			}
+		})
+	}
+
+	// Querying all the French entries
+	const queryFR = `{
+			liveBlogPageCollection(locale: "fr") {
+				items {
+					slug
+				}
+			}
+		}
+		`
+
+	// Await French entries query response
+	const pagesFR = await callContentful(queryFR)
+	const slugsFR = pagesFR.data.liveBlogPageCollection.items.map((el) => el.slug)
+
+	// Loop through slugs and add French entries to paths array
+	for (let i = 0; i < pagesFR.length; i++) {
+		paths.push({
+			params: {
+				lang: 'fr',
+				slug: slugsFR[i],
+			}
+		})
+	}
+
 	return {
-		paths: [], // Indicates that no page needs be created at build time
-		fallback: 'blocking', // Indicates the type of fallback
+		// paths: [], //indicates that no page needs be created at build time
+		paths: paths,
+		fallback: 'blocking', //indicates the type of fallback
 	}
 }
 

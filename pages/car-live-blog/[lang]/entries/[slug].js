@@ -122,7 +122,7 @@ export const getStaticPaths = async () => {
 
 	// Await French entries query response
 	const entriesFR = await callContentful(queryFR)
-	const slugsFR = entriesEN.data.liveBlogCollection.items[0].contentCollection.items.map((el) => el.slug)
+	const slugsFR = entriesFR.data.liveBlogCollection.items[0].contentCollection.items.map((el) => el.slug)
 
 	// Loop through slugs and add French entries to paths array
 	for (let i = 0; i < entriesFR.length; i++) {
