@@ -31,7 +31,7 @@ const Header = ({ dark, shareProps, lang, hideBackButton }) => {
 	}, [])
 
 	return (
-		<header className={`${dark ? 'bg-black shadow-xs shadow-white' : 'bg-white'} flex items-center justify-between w-full cursor-default h-20 top-0 left-0 z-50`}>
+		<header className={`${dark ? 'bg-black shadow-xs shadow-white' : 'bg-white'} flex items-center justify-between w-screen cursor-default h-20 top-0 left-0 z-50`}>
 			<div className='grid grid-cols-3 items-center px-6 w-full'>
 				<div className='flex justify-start gap-x-2 sm:gap-x-8 items-center'>
 					<div className={`${dark ? 'text-white' : 'text-black'} fill-current flex gap-3 items-center justify-start`}>
@@ -41,19 +41,16 @@ const Header = ({ dark, shareProps, lang, hideBackButton }) => {
 									Donate
 								</a>
 							) : (
-								<Link href={`${lang === 'en' ? '/car-live-blog/en' : '/car-live-blog/fr'}`}>
+								<Link href={`${lang === 'en' ? '/car-live-blog/en/' : '/car-live-blog/fr/'}`}>
 									<button className={'block sm:hidden bg-burgundy px-2 py-1 text-white font-normal text-sm font-bold'}>
 										<span>{lang === 'en' ? '← ' : '← '}</span>
-										<span className={'hidden sm:block'}>{lang === 'en' ? 'Back to overview' : 'Retour'}</span>
+										<span className={'hidden sm:block'}>{lang === 'en' ? 'Overview' : 'Retour'}</span>
 									</button>
 								</Link>
 							)}
 							<a rel={'noopener noreferrer'} target='_blank' className='hidden sm:block bg-burgundy px-3 py-2 text-white font-normal text-sm font-bold' href='https://www.thenewhumanitarian.org/membership'>
 								Donate
 							</a>
-							{/* <div className={'hidden sm:block'}>
-								{shareProps && <ShareIcons shareProps={shareProps} inverted={dark} />}
-							</div> */}
 						</div>
 					</div>
 				</div>
@@ -133,6 +130,7 @@ const Header = ({ dark, shareProps, lang, hideBackButton }) => {
 								id='cursor'
 								style={{
 									fill: 'rgb(159, 62, 82)',
+									opacity: isBlinking ? 1 : 0,
 								}}
 								x='399.54'
 								y='48.81'

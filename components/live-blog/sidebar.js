@@ -7,8 +7,8 @@ const Sidebar = ({ lang, title, liveBlogPages, showFilter, currentFilter, hideBa
 	return (
 		<div className={`${className || ''} col-span-2 bg-burgundy sm:bg-transparent p-3 sm:p-0 w-full text-white sm:text-inherit`}>
 			{!hideBackButton && (
-				<Link href={`${lang === 'en' ? '/car-live-blog/en' : '/car-live-blog/fr'}`}>
-					<button className={'border-white border sm:border-none bg-burgundy px-3 py-2 text-white font-normal text-sm mb-5'}>{lang === 'en' ? '← Back to overview' : '← Retour'}</button>
+				<Link href={`${lang === 'en' ? '/car-live-blog/en/' : '/car-live-blog/fr/'}`}>
+					<button className={'border-white border sm:border-none bg-burgundy px-3 py-2 text-white font-normal text-sm mb-5'}>{lang === 'en' ? '← Overview' : '← Retour'}</button>
 				</Link>
 			)}
 			<h2 className={'text-white sm:text-black'}>{title}</h2>

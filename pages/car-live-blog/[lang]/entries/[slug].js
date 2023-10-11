@@ -37,9 +37,10 @@ const LiveBlogEntry = ({ liveBlogEntryCollection, liveBlogData, lang, liveBlogPa
 				{liveBlogEntryCollection.blogEntrySocialImage?.url && <meta property='og:image' content={liveBlogEntryCollection.blogEntrySocialImage.url} />}
 			</Helmet>
 
+			{/* Without shareProps so we don't show share buttons in the header */}
 			<HeaderComponent lang={lang} />
 
-			{/* Horizontal timeline */}
+			{/* Horizontal timeline show all the data, not only the paginated/filtered ones */}
 			<div className={'relative w-full border-b px-0 py-5'} style={{ borderBottom: '1px solid #ddd' }}>
 				<HorizontalTimelineComponent liveBlogs={liveBlogData.contentCollection.items} lang={lang} />
 				<div className={'absolute right-0 top-0 w-24 h-full bg-gradient-to-r from-transparent to-gray-100'} />
@@ -53,7 +54,7 @@ const LiveBlogEntry = ({ liveBlogEntryCollection, liveBlogData, lang, liveBlogPa
 					<RichtextComponent content={liveBlogEntryCollection.summary.json} />
 					<div className={'flex flex-row w-full justify-between mt-4 pt-2 border-t'}>
 						<ArticleChecker lang={lang} slug={liveBlogEntryCollection.slug} setIsRead={true} showRemoveArticle />
-						{/* <div className={'bg-burgundy px-2 text-white py-1'}>Share this post</div> */}
+						{/* Share buttons */}
 						<ShareIcons shareProps={shareProps} dark={false} allIcons={true} />
 					</div>
 					<div className={'grid grid-cols-1 gap-y-1 mt-5'}>
