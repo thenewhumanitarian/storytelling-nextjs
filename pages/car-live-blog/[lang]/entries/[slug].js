@@ -71,8 +71,72 @@ const LiveBlogEntry = ({ liveBlogEntryCollection, liveBlogData, lang, liveBlogPa
 export default LiveBlogEntry
 
 export const getStaticPaths = async () => {
+	// Empty array to be filled with all the paths
+	let paths = []
+
+	// Querying all the English entries
+	const queryEN = `{
+		liveBlogCollection(locale: "en", limit: 1, where: { slug: "car-blog-english" }) {
+			items {
+				contentCollection {
+					items {
+						... on LiveBlogEntry {
+							slug
+						}
+					}
+				}
+			}
+		}
+	}
+	`
+
+	// Await English entries query response
+	const entriesEN = await callContentful(queryEN)
+	const slugsEN = entriesEN.data.liveBlogCollection.items[0].contentCollection.items.map((el) => el.slug)
+
+	// Loop through slugs and add English entries to paths array
+	for (let i = 0; i < slugsEN.length; i++) {
+		paths.push({
+			params: {
+				lang: 'en',
+				slug: slugsEN[i],
+			}
+		})
+	}
+
+	// Querying all the French entries
+	const queryFR = `{
+			liveBlogCollection(locale: "fr", limit: 1, where: { slug: "car-blog-french" }) {
+				items {
+					contentCollection {
+						items {
+							... on LiveBlogEntry {
+								slug
+							}
+						}
+					}
+				}
+			}
+		}
+		`
+
+	// Await French entries query response
+	const entriesFR = await callContentful(queryFR)
+	const slugsFR = entriesEN.data.liveBlogCollection.items[0].contentCollection.items.map((el) => el.slug)
+
+	// Loop through slugs and add French entries to paths array
+	for (let i = 0; i < entriesFR.length; i++) {
+		paths.push({
+			params: {
+				lang: 'fr',
+				slug: slugsFR[i],
+			}
+		})
+	}
+
 	return {
-		paths: [], //indicates that no page needs be created at build time
+		// paths: [], //indicates that no page needs be created at build time
+		paths: paths,
 		fallback: 'blocking', //indicates the type of fallback
 	}
 }
