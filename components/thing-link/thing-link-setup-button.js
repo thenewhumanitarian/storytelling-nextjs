@@ -1,70 +1,16 @@
+import { useState } from 'react';
+
 import { motion, useDragControls } from 'framer-motion'; // Import useAnimation
 
 const ThingLinkSetupButton = ({ data, onUpdatePosition, containerRef }) => {
+    const [hasDragged, setHasDragged] = useState(false); // State to track if the button has been dragged
+
     const controls = useDragControls(); // Initialize drag controls
-
-    const pos = {
-        x: data.xPosition,
-        y: data.yPosition,
-    }
-
-    const getBackground = (colour) => {
-        let col = ''
-
-        switch (colour) {
-            case 'Burgundy':
-                col = 'bg-burgundy';
-                break;
-            case 'Green':
-                col = 'bg-green-400';
-                break;
-            case 'Blue':
-                col = 'bg-blue-400';
-                break;
-            case 'Black':
-                col = 'bg-black';
-                break;
-            case 'White':
-                col = 'bg-white';
-                break;
-            case 'Orange':
-                col = 'bg-orange-400';
-                break;
-            default:
-                col = 'bg-burgundy';
-                break;
-        }
-
-        return col
-    }
-
-    const colClass = getBackground(data.colour);
-
-    const getSize = (size) => {
-        let buttonSize = ''
-
-        switch (size) {
-            case 'Small':
-                buttonSize = 'w-5 h-5';
-                break;
-            case 'Medium':
-                buttonSize = 'w-10 h-10';
-                break;
-            case 'Large':
-                buttonSize = 'w-20 h-20';
-                break;
-            default:
-                buttonSize = 'w-10 h-10';
-                break;
-        }
-
-        return buttonSize
-    }
-
-    const sizeClass = getSize(data.size)
 
     const onDragEnd = (event, info) => {
         if (!containerRef.current) return;
+
+        console.log
 
         const containerRect = containerRef.current.getBoundingClientRect();
         const containerWidth = containerRect.width;
@@ -79,24 +25,29 @@ const ThingLinkSetupButton = ({ data, onUpdatePosition, containerRef }) => {
 
         // Update the position in the parent component
         onUpdatePosition(data.id, newX, newY);
-    };
+    }
 
     return (
         <motion.div
+            key={`draggable-thing-link-button-${data.id}`}
             style={{
-                left: `${data.xPosition}%`,
-                top: `${data.yPosition}%`,
-                zIndex: 9999,
-                transform: 'none', // Reset the transform property to its default value
+                // left: hasDragged ? null : `${data.xPosition}%`,
+                // top: hasDragged ? null : `${data.yPosition}%`,
+                // transform: 'none', // Reset the transform property to its default value
+                transform: hasDragged ? null : `translate(${data.xPosition}%, ${data.yPosition}%)`,
             }}
-            className={`cursor-pointer absolute ${colClass} ${sizeClass} ${data.className} z-40 rounded-full shadow-2xl border-white border-4 transform-none`}
+            className={`origin-center cursor-pointer absolute bg-red-500 bg-opacity-70 -left-5 -top-5 w-10 h-10 ${data.className} flex justify-center items-center z-50 shadow-2xl border-white border`}
             drag
             dragConstraints={containerRef}
-            dragElastic={0.2} // Add some elasticity for a smoother drag
+            onClick={() => { setHasDragged(true) }}
+            dragElastic={0} // Add some elasticity for a smoother drag
             dragControls={controls} // Use drag controls
             onDragEnd={onDragEnd}
-        />
-    );
-};
+            // onDrag={() => {setHasDragged(true)}}
+        >
+            <span className={'font-bold m-0 p-0 pb-1 text-xl'}>⌖</span>
+        </motion.div>
+    )
+}
 
 export default ThingLinkSetupButton;

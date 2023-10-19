@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 
 import ThingLinkSetupButton from './thing-link-setup-button'
 
@@ -8,10 +8,6 @@ const ThingLinkSetupComponent = ({ thinglink }) => {
     const [buttons, setButtons] = useState([])
     // const [clickedPosition, setClickedPosition] = useState({ x: 0, y: 0 });
     const containerRef = useRef(null);
-
-    useEffect(() => {
-        console.log(buttons)
-    }, [buttons])
 
     const initialButtonState = {
         size: 'Medium',
@@ -26,7 +22,17 @@ const ThingLinkSetupComponent = ({ thinglink }) => {
             button.id === id ? { ...button, xPosition: newX, yPosition: newY } : button
         );
         setButtons(updatedButtons);
-    }
+    };
+
+    // Function to calculate button position based on parent container size
+    const calculatePosition = (x, y) => {
+        if (!containerRef.current) return { x: 0, y: 0 };
+        const containerWidth = containerRef.current.offsetWidth;
+        const containerHeight = containerRef.current.offsetHeight;
+        const xPercent = (x / containerWidth) * 100;
+        const yPercent = (y / containerHeight) * 100;
+        return { x: xPercent, y: yPercent };
+    };
 
     const handleDivClick = (e) => {
         // Calculate the relative position of the click within the div
@@ -35,8 +41,8 @@ const ThingLinkSetupComponent = ({ thinglink }) => {
         const y = e.clientY - rect.top;
 
         // Calculate the x and y positions as percentages
-        // const xPercent = (x / rect.width) * 100;
-        // const yPercent = (y / rect.height) * 100;
+        const xPercent = (x / rect.width) * 100;
+        const yPercent = (y / rect.height) * 100;
 
         // Add a new button with the positions as percentages
         const newButton = {
