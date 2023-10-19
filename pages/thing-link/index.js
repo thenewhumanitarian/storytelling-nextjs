@@ -11,7 +11,7 @@ const AllThingLinks = ({ thinglinks }) => {
 					return (
 						<li key={el.slug} className={'border border-slate-500 p-5 hover:bg-slate-200'}>
 							<p className={'text-base'}><Link href={`/thing-link/${el.slug}`}>{el.title}</Link></p>
-							<p><Link className={'text-slate-500 font-normal'} href={`/thing-link/set-coordinates/${el.slug}`}>⌖ Test x/y coordinates</Link></p>
+							<p><Link className={'text-slate-500 font-normal'} href={`/thing-link/setup/${el.slug}`}>⌖ Test x/y coordinates</Link></p>
 						</li>
 					)
 				})}

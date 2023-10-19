@@ -13,6 +13,7 @@ const ThingLinkComponent = ({ thinglink }) => {
 				width={thinglink.baseImage.width}
 				height={thinglink.baseImage.height}
 				alt="Picture of the author"
+				layout={'responsive'}
 			/>
 			<div className={'absolute top-0 left-0 w-full h-full'}>
 				{buttons.map((button) => {
