@@ -56,16 +56,16 @@ const ThingLinkButton = ({ data }) => {
 
         switch (size) {
             case 'Small':
-                buttonSize = 'w-5 h-5';
+                buttonSize = 'w-5 h-5 border-2';
                 break;
             case 'Medium':
-                buttonSize = 'w-10 h-10';
+                buttonSize = 'w-10 h-10 border-2';
                 break;
             case 'Large':
-                buttonSize = 'w-20 h-20';
+                buttonSize = 'w-20 h-20 border-4';
                 break;
             default:
-                buttonSize = 'w-10 h-10';
+                buttonSize = 'w-10 h-10 border-2';
                 break;
         }
 
@@ -103,8 +103,8 @@ const ThingLinkButton = ({ data }) => {
                 // initial={{ opacity: 0, scale: 0.5 }}
                 // enter={{ opacity: 1 }}
                 animate={controls} // Use the animation controls
-                whileHover={{ scale: 1.1, opacity: 1 }}
-                className={`cursor-pointer absolute ${colClass} ${sizeClass} ${data.className} z-40 rounded-full shadow-3xl border-black border-4`}
+                whileHover={{ scale: 1.2, opacity: 1 }}
+                className={`cursor-pointer absolute ${colClass} ${sizeClass} ${data.className} z-40 rounded-full shadow-3xl border-black`}
                 transition={spring}
                 onClick={() => {
                     setIsOpen(true)
