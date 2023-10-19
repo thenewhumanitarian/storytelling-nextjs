@@ -1,10 +1,17 @@
+import { useEffect } from 'react'
+
 import Image from 'next/legacy/image'
 
 import ThingLinkButton from './thing-link-button'
 
 const ThingLinkComponent = ({ thinglink }) => {
 	const buttons = thinglink.buttonsCollection.items
-	console.log(buttons)
+
+	useEffect(() => {
+		// Select body and set overflow to hidden
+		const body = document.querySelector('body')
+		body.style.overflow = 'hidden'
+	}, [])
 
 	return (
 		<div className={'w-full h-full overflow-hidden relative'}>

@@ -123,7 +123,7 @@ const ThingLinkButton = ({ data }) => {
                         enter={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={spring}
-                        className={`fixed top-0 left-0 w-full h-full bg-white z-50 ${isOpen ? 'fixed' : 'hidden'}`}
+                        className={`fixed flex justify-center items-center top-0 left-0 w-full h-full bg-white z-50 fixed border-black border-2`}
                     >
                         <motion.div className={'pt-5 pl-5 pb-5 pr-16'}>
                             <RichtextComponent content={data.text.json} />
