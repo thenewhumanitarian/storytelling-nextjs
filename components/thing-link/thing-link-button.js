@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import { motion, useAnimation, AnimatePresence } from 'framer-motion'; // Import useAnimation
+import { motion, AnimatePresence } from 'framer-motion'; // Import useAnimation
 import CloseIcon from '@components/icons/close';
 import RichtextComponent from '@components/richText';
 
@@ -51,10 +51,45 @@ const ThingLinkButton = ({ data }) => {
 
     const colClass = getBackground(data.colour);
 
+    const getBorder = (colour) => {
+        let col = ''
+
+        switch (colour) {
+            case 'Burgundy':
+                col = 'border-burgundy';
+                break;
+            case 'Green':
+                col = 'border-green-400';
+                break;
+            case 'Blue':
+                col = 'border-blue-400';
+                break;
+            case 'Black':
+                col = 'border-black';
+                break;
+            case 'White':
+                col = 'border-white';
+                break;
+            case 'Orange':
+                col = 'border-orange-400';
+                break;
+            default:
+                col = 'border-burgundy';
+                break;
+        }
+
+        return col
+    }
+
+    const borderClass = getBorder(data.borderColour);
+
     const getSize = (size) => {
         let buttonSize = ''
 
         switch (size) {
+            case 'Tiny':
+                buttonSize = 'w-3 h-3 border-1';
+                break;
             case 'Small':
                 buttonSize = 'w-5 h-5 border-2';
                 break;
@@ -64,8 +99,11 @@ const ThingLinkButton = ({ data }) => {
             case 'Large':
                 buttonSize = 'w-20 h-20 border-4';
                 break;
+            case 'Massive':
+                buttonSize = 'w-30 h-30 border-5';
+                break;
             default:
-                buttonSize = 'w-10 h-10 border-2';
+                buttonSize = 'w-5 h-5 border-2';
                 break;
         }
 
@@ -74,25 +112,6 @@ const ThingLinkButton = ({ data }) => {
 
     const sizeClass = getSize(data.size)
 
-    // Create animation controls
-    const controls = useAnimation();
-
-    // Define pulsating animation
-    const pulseAnimation = {
-        scale: [1, 1.05, 1], // Scale values for the pulse effect
-        opacity: [0.9, 1, 0.9], // Opacity values for the pulse effect
-        transition: {
-            duration: 1.5, // Duration of each pulse cycle
-            ease: 'easeInOut', // Easing function
-            loop: Infinity, // Loop the animation infinitely
-        },
-    };
-
-    // Start the pulsating animation when the component mounts
-    useEffect(() => {
-        controls.start(pulseAnimation);
-    }, [controls]);
-
     return (
         <>
             <motion.span
@@ -100,12 +119,13 @@ const ThingLinkButton = ({ data }) => {
                     left: `${pos.x}%`,
                     top: `${pos.y}%`,
                 }}
-                // initial={{ opacity: 0, scale: 0.5 }}
-                // enter={{ opacity: 1 }}
-                animate={controls} // Use the animation controls
-                whileHover={{ scale: 1.2, opacity: 1 }}
-                className={`cursor-pointer absolute ${colClass} ${sizeClass} ${data.className} z-40 rounded-full shadow-3xl border-black`}
-                transition={spring}
+                animate={{
+                    scale: [0.7, 1.3, 0.7], // Scale values for the pulsating effect
+                    opacity: [0.5, 1, 0.5], // Opacity values for the pulsating effect
+                }}
+                transition={{ repeat: Infinity, duration: 2 }}
+                whileHover={{ scale: 1.3, opacity: 1 }}
+                className={`cursor-pointer absolute ${colClass} ${borderClass} ${sizeClass} ${data.className} z-40 rounded-full shadow-3xl`}
                 onClick={() => {
                     setIsOpen(true)
                 }}
@@ -123,9 +143,9 @@ const ThingLinkButton = ({ data }) => {
                         enter={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={spring}
-                        className={`fixed flex justify-center items-center top-0 left-0 w-full h-full bg-white z-50 fixed border-black border-2`}
+                        className={`fixed flex justify-center items-start top-0 left-0 w-full h-full bg-white z-50 fixed border-black border-2 overflow-y-auto`}
                     >
-                        <motion.div className={'pt-5 pl-5 pb-5 pr-16'}>
+                        <motion.div className={'pt-5 pl-5 pb-5 pr-16 overflow-y-auto'}>
                             <RichtextComponent content={data.text.json} />
                         </motion.div>
                         <motion.div
