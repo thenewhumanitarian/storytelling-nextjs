@@ -37,6 +37,24 @@ export const getStaticProps = async (context) => {
             size
             height
           }
+          buttonsCollection {
+            ... on ThingLinkButtonsCollection {
+              items {
+                sys {
+                  id
+                }
+                title
+                text {
+                  json
+                }
+                xPosition
+                yPosition
+                colour
+                className
+                size
+              }
+            }
+          }
         }
       }
   }`
