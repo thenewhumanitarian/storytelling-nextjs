@@ -20,7 +20,7 @@
     "d3-array": "^3.0.1",
     "date-fns": "2.14.0",
     "eslint-config-next": "^13.5.3",
-    "framer-motion": "^4.1.17",
+    "framer-motion": "^10.16.4",
     "graphql": "^15.5.0",
     "mailersend": "^1.1.0",
     "moment": "^2.29.1",
