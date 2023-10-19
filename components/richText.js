@@ -25,7 +25,7 @@ const RichtextComponent = (props) => {
 			[MARKS.BOLD]: (text) => <strong>{text}</strong>,
 			[MARKS.UNDERLINE]: (text) => <u>{text}</u>,
 			[BLOCKS.HEADING_1]: (text) => <h1>{text}</h1>,
-			[BLOCKS.HEADING_2]: (text) => <h2 className={'mb-3'}>{text}</h2>,
+			[BLOCKS.HEADING_2]: (text) => <h2>{text}</h2>,
 			[BLOCKS.HEADING_3]: (text) => <h3>{text}</h3>,
 			[BLOCKS.HEADING_4]: (text) => <h4>{text}</h4>,
 			[BLOCKS.HEADING_5]: (text) => <h5>{text}</h5>,
