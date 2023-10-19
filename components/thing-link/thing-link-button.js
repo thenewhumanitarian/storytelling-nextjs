@@ -99,13 +99,12 @@ const ThingLinkButton = ({ data }) => {
                 style={{
                     left: `${pos.x}%`,
                     top: `${pos.y}%`,
-                    zIndex: 9999
                 }}
-                initial={{ opacity: 0, scale: 0.5 }}
-                enter={{ opacity: 1 }}
+                // initial={{ opacity: 0, scale: 0.5 }}
+                // enter={{ opacity: 1 }}
                 animate={controls} // Use the animation controls
                 whileHover={{ scale: 1.1, opacity: 1 }}
-                className={`cursor-pointer absolute ${colClass} ${sizeClass} ${data.className} z-40 rounded-full shadow-2xl border-white border-4`}
+                className={`cursor-pointer absolute ${colClass} ${sizeClass} ${data.className} z-40 rounded-full shadow-3xl border-black border-4`}
                 transition={spring}
                 onClick={() => {
                     setIsOpen(true)

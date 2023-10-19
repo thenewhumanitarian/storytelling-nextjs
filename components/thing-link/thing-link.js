@@ -15,7 +15,7 @@ const ThingLinkComponent = ({ thinglink }) => {
 				alt="Picture of the author"
 				layout={'responsive'}
 			/>
-			<div className={'absolute top-0 left-0 w-full h-full'}>
+			<div className={'absolute top-0 left-0 w-full h-full overflow-hidden'}>
 				{buttons.map((button) => {
 					return (
 						<ThingLinkButton data={button} />
