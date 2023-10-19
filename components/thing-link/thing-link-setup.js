@@ -51,7 +51,7 @@ const ThingLinkSetupComponent = ({ thinglink }) => {
             // xPosition: xPercent,
             yPosition: 50,
             // yPosition: yPercent,
-            id: buttons.length
+            id: buttons.length + 1
         }
         setButtons([...buttons, newButton]);
 

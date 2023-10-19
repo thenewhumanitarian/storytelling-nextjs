@@ -36,16 +36,17 @@ const ThingLinkSetupButton = ({ data, onUpdatePosition, containerRef }) => {
                 // transform: 'none', // Reset the transform property to its default value
                 transform: hasDragged ? null : `translate(${data.xPosition}%, ${data.yPosition}%)`,
             }}
-            className={`origin-center cursor-pointer absolute bg-red-500 bg-opacity-70 -left-5 -top-5 w-10 h-10 ${data.className} flex justify-center items-center z-50 shadow-2xl border-white border`}
+            className={`origin-center cursor-pointer absolute bg-red-500 bg-opacity-70 -left-5 -top-5 rounded-full w-10 h-10 ${data.className} flex justify-center items-center z-50 shadow-2xl border-white border`}
             drag
             dragConstraints={containerRef}
             onClick={() => { setHasDragged(true) }}
             dragElastic={0} // Add some elasticity for a smoother drag
             dragControls={controls} // Use drag controls
             onDragEnd={onDragEnd}
-            // onDrag={() => {setHasDragged(true)}}
+        // onDrag={() => {setHasDragged(true)}}
         >
             <span className={'font-bold m-0 p-0 pb-1 text-xl'}>⌖</span>
+            <span className={'absolute left-11'}>{data.id}</span>
         </motion.div>
     )
 }
