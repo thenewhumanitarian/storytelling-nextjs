@@ -88,22 +88,22 @@ const ThingLinkButton = ({ data }) => {
 
         switch (size) {
             case 'Tiny':
-                buttonSize = 'w-3 h-3 border';
+                buttonSize = '-ml-1 -mt-1 w-2 h-2 border';
                 break;
             case 'Small':
-                buttonSize = 'w-5 h-5 border-2';
+                buttonSize = '-ml-2 -mt-2 w-4 h-4 border-2';
                 break;
             case 'Medium':
-                buttonSize = 'w-10 h-10 border-2';
+                buttonSize = '-ml-5 -mt-5 w-10 h-10 border-2';
                 break;
             case 'Large':
-                buttonSize = 'w-20 h-20 border-4';
+                buttonSize = '-ml-10 -mt-10 w-20 h-20 border-4';
                 break;
             case 'Massive':
-                buttonSize = 'w-30 h-30 border-5';
+                buttonSize = '-ml-16 -mt-16 w-32 h-32 border-5';
                 break;
             default:
-                buttonSize = 'w-5 h-5 border-2';
+                buttonSize = '-ml-2 -m-t-2 w-4 h-4 border-2';
                 break;
         }
 
@@ -143,7 +143,7 @@ const ThingLinkButton = ({ data }) => {
                         enter={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={spring}
-                        className={`fixed flex justify-center items-start top-0 left-0 w-full h-full bg-white z-50 fixed border-black border-2 overflow-y-auto`}
+                        className={`fixed flex justify-start items-start w-full top-0 left-0 w-full h-full bg-white z-50 fixed border-black border-2 overflow-y-auto`}
                     >
                         <motion.div className={'pt-5 pl-5 pb-5 pr-16 overflow-y-auto'}>
                             <RichtextComponent content={data.text.json} />

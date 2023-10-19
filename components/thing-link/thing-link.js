@@ -15,27 +15,29 @@ const ThingLinkComponent = ({ thinglink }) => {
 	}, [])
 
 	return (
-		<div className={'w-full h-full relative'}>
-			<Image
-				src={thinglink.baseImage.url}
-				width={thinglink.baseImage.width}
-				height={thinglink.baseImage.height}
-				alt="Picture of the author"
-				layout={'responsive'}
-			/>
-			<div className={'absolute top-0 left-0 w-full h-full'}>
-				{buttons.map((button) => {
-					return (
-						<ThingLinkButton data={button} />
-					)
-				})}
+		<>
+			<div className={'w-full h-full relative'}>
+				<Image
+					src={thinglink.baseImage.url}
+					width={thinglink.baseImage.width}
+					height={thinglink.baseImage.height}
+					alt="Picture of the author"
+					layout={'responsive'}
+				/>
+				<div className={'absolute top-0 left-0 w-full h-full'}>
+					{buttons.map((button) => {
+						return (
+							<ThingLinkButton data={button} />
+						)
+					})}
+				</div>
 			</div>
 			{thinglink.caption?.json && (
 				<div className={'py-2 px-3 bg-gray-100'}>
 					<RichtextComponent content={thinglink.caption?.json} />
 				</div>
 			)}
-		</div>
+		</>
 	)
 }
 

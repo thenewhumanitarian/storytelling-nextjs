@@ -7,6 +7,9 @@ const ThingLink = ({ thinglink }) => {
 
   return (
     <div data-iframe-height={true} className={'w-full overflow-hidden h-auto'}>
+      {thinglink.showTitle &&
+        <h2>{thinglink.title}</h2>
+      }
       <ThingLinkComponent thinglink={thinglink} />
     </div>
   )
@@ -58,6 +61,7 @@ export const getStaticProps = async (context) => {
           caption {
             json
           }
+          showTitle
         }
       }
   }`
