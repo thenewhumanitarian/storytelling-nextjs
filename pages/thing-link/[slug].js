@@ -55,6 +55,9 @@ export const getStaticProps = async (context) => {
               }
             }
           }
+          caption {
+            json
+          }
         }
       }
   }`

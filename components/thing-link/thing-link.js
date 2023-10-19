@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import Image from 'next/legacy/image'
 
 import ThingLinkButton from './thing-link-button'
+import RichtextComponent from '@components/richText'
 
 const ThingLinkComponent = ({ thinglink }) => {
 	const buttons = thinglink.buttonsCollection.items
@@ -29,6 +30,11 @@ const ThingLinkComponent = ({ thinglink }) => {
 					)
 				})}
 			</div>
+			{thinglink.caption?.json && (
+				<div className={'py-2 px-3 bg-gray-100'}>
+					<RichtextComponent content={thinglink.caption?.json} />
+				</div>
+			)}
 		</div>
 	)
 }
