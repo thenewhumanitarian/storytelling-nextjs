@@ -88,7 +88,7 @@ const ThingLinkButton = ({ data }) => {
 
         switch (size) {
             case 'Tiny':
-                buttonSize = 'w-3 h-3 border-1';
+                buttonSize = 'w-3 h-3 border';
                 break;
             case 'Small':
                 buttonSize = 'w-5 h-5 border-2';

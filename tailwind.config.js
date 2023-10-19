@@ -1,5 +1,20 @@
 module.exports = {
 	purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}', './components/**/*.css'],
+	content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}', './components/**/*.css'],
+	safelist: [
+		'w-3',
+		'h-3',
+		'w-4',
+		'h-5',
+		'w-6',
+		'h-6',
+		'w-10',
+		'h-10',
+		'w-20',
+		'h-20',
+		'w-30',
+		'h-30',
+	],
 	darkMode: 'media',
 	variants: {
 		opacity: ['hover'],
