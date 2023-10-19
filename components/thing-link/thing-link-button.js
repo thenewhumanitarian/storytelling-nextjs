@@ -115,6 +115,7 @@ const ThingLinkButton = ({ data }) => {
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
+                        onClick={() => setIsOpen(false)}
                         initial={{
                             opacity: 0,
                         }}

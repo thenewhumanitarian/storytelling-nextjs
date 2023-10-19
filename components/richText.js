@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 
 import Image from "next/legacy/image"
 import Link from 'next/link'
@@ -8,10 +8,17 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 import TweetComponent from '@components/embeddedTweet'
 
-const website_url = 'thenewhumanitarian.org'
+// const website_url = 'thenewhumanitarian.org'
 
 const RichtextComponent = (props) => {
 	const { content, className } = props
+
+	const [isLoadedInIframe, setIsLoadedInIframe] = useState(false);
+
+	useEffect(() => {
+		// Check if the component is loaded inside an iframe
+		setIsLoadedInIframe(window.self !== window.top);
+	}, []);
 
 	const options = {
 		renderMark: {
@@ -28,15 +35,15 @@ const RichtextComponent = (props) => {
 		},
 		renderNode: {
 			[INLINES.HYPERLINK]: (node) => {
+				// Set target and rel attributes based on whether it's in an iframe or not
+				const target = isLoadedInIframe ? '_blank' : '_parent';
+				const rel = isLoadedInIframe ? 'noopener noreferrer' : '';
+
 				return (
-					<Link
-						href={node.data.uri}
-						target={`${node.data.uri.indexOf(website_url) > -1 ? '_parent' : '_blank'}`}
-						rel={`${node.data.uri.startsWith(website_url) ? '' : 'noopener noreferrer'}`}
-					>
+					<Link href={node.data.uri} target={target} rel={rel}>
 						{node.content[0].value}
 					</Link>
-				)
+				);
 			},
 			[BLOCKS.PARAGRAPH]: (node, children) => <p>{children}</p>,
 			[BLOCKS.HEADING_6]: (node, children) => <p>{children}</p>,

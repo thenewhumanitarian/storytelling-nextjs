@@ -1,13 +1,13 @@
 import { callContentful } from '@utils/contentfulHelper'
 
-import ThingLinkComponent from '@components/thing-link/thing-link'
+import ThingLinkSetupComponent from '@components/thing-link/thing-link-setup'
 
 const ThingLink = ({ thinglink }) => {
     // console.log(thinglink)
 
     return (
         <div data-iframe-height={true} className={'w-full overflow-hidden h-auto'}>
-            <ThingLinkComponent thinglink={thinglink} />
+            <ThingLinkSetupComponent thinglink={thinglink} />
         </div>
     )
 }
