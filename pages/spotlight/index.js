@@ -5,7 +5,7 @@ import { callContentful } from '@utils/contentfulHelper'
 const AllSpotlights = ({ spotlights }) => {
 	return (
 		<div className={'m-5'}>
-			<h2 className={'mb-2'}>All TNH spotlights:</h2>
+			<h2 className={'mb-2'}>All TNH Spotlight components:</h2>
 			<ul>
 				{spotlights.map((el) => {
 					return (
