@@ -26,7 +26,7 @@
 	}
 
 	h2 {
-		@apply font-title font-normal text-2xl mb-3;
+		@apply font-title font-normal text-xl sm:text-2xl mb-3;
 	}
 
 	h3 {

@@ -120,8 +120,8 @@ const ThingLinkButton = ({ data }) => {
                     top: `${pos.y}%`,
                 }}
                 animate={{
-                    scale: [0.7, 1.3, 0.7], // Scale values for the pulsating effect
-                    opacity: [0.5, 1, 0.5], // Opacity values for the pulsating effect
+                    scale: [0.7, 1.4, 0.7], // Scale values for the pulsating effect
+                    // opacity: [0.5, 1, 0.5], // Opacity values for the pulsating effect
                 }}
                 transition={{ repeat: Infinity, duration: 2 }}
                 whileHover={{ scale: 1.3, opacity: 1 }}
@@ -132,7 +132,12 @@ const ThingLinkButton = ({ data }) => {
             />
             <AnimatePresence>
                 {isOpen && (
-                    <motion.div exit={{ background: 'transparent'}} animate={{ background: isOpen ? 'rgba(255,255,255,0.5)' : 'transparent' }} className={`flex w-full h-full ${isOpen ? 'bg-white bg-opacity-50' : 'bg-transparent'} flex items-center justify-center`} onClick={() => setIsOpen(false)}>
+                    <motion.div
+                        exit={{ background: 'transparent' }}
+                        animate={{ background: isOpen ? 'rgba(255,255,255,0.5)' : 'transparent' }}
+                        className={`flex w-full h-full ${isOpen ? 'bg-white bg-opacity-50' : 'bg-transparent'} flex items-center justify-center`}
+                        onClick={() => setIsOpen(false)}
+                    >
                         <motion.div
                             initial={{
                                 opacity: 0,
@@ -143,22 +148,22 @@ const ThingLinkButton = ({ data }) => {
                             enter={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={spring}
-                            className={`w-auto max-w-xl h-auto bg-white z-50 fixed border-black border-2 overflow-y-auto`}
+                            className={`absolute w-auto max-w-xl h-auto bg-white z-50 fixed border-black border-2 max-h-full overflow-y-auto`}
                         >
-                            <motion.div className={'pt-5 pl-5 pb-5 pr-16 overflow-y-auto'}>
+                            <motion.div className={'pt-5 pl-5 pb-5 pr-5 sm:pr-10'}>
                                 <RichtextComponent content={data.text.json} />
                             </motion.div>
-                            <motion.div
-                                className={'w-8 h-8 block absolute top-5 right-5 text-red-500 cursor-pointer'}
-                                whileHover={{ scale: 1.2 }}
-                                initial={{ rotate: '-40deg' }}
-                                exit={{ rotate: '40deg', opacity: 0 }}
-                                animate={{ rotate: 0 }}
-                                transition={spring}
-                                onClick={() => setIsOpen(false)}
-                            >
-                                <CloseIcon />
-                            </motion.div>
+                        </motion.div>
+                        <motion.div
+                            className={'w-6 h-6 sm:w-8 sm:h-8 block absolute top-2 sm:top-3 right-2 text-red-500 cursor-pointer z-50'}
+                            whileHover={{ scale: 1.2 }}
+                            initial={{ rotate: '-40deg' }}
+                            exit={{ rotate: '40deg', opacity: 0 }}
+                            animate={{ rotate: 0 }}
+                            transition={spring}
+                            onClick={() => setIsOpen(false)}
+                        >
+                            <CloseIcon />
                         </motion.div>
                     </motion.div>
                 )}
