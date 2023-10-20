@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Image from "next/legacy/image"
+import Image from "next/image"
 import Link from 'next/link'
 
 import { BLOCKS, MARKS, INLINES } from '@contentful/rich-text-types'
@@ -52,12 +52,16 @@ const RichtextComponent = (props) => {
 					<figure key={fileName} className={'my-5 max-w-4xl'}>
 						<Image
 							key={fileName}
-							alt={title || 'Photo of timeline entry'}
 							src={`https:${url.indexOf('?w') > -1 ? url : `${url}?w=850`}`}
-							placeholder={'blur'}
+							alt={title || 'Photo of timeline entry'}
 							height={height}
 							width={width}
+							placeholder={'blur'}
 							blurDataURL={`https:${url.indexOf('?w') > -1 ? url : `${url}?w=8`}`}
+							style={{
+								width: '100%',
+								height: 'auto',
+							}}
 						/>
 						{/* {description && <figcaption>{description}</figcaption>} */}
 					</figure>

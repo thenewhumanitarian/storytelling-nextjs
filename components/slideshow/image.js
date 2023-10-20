@@ -1,32 +1,33 @@
-import Image from "next/legacy/image"
+import Image from "next/image"
 
 const SlideshowImage = ({ el, nextEl }) => {
 	return (
 		<div className={'w-full'}>
 			{nextEl && (
-				<div className={'top-0 left-0 w-full h-full opacity-0'}>
+				<div className={'top-0 left-0 w-full h-full opacity-0 absolute'}>
 					<Image
+						key={`nextEl.sys.id`}
 						src={nextEl.image?.url}
 						className={'pointer-events-none'}
-						// width={nextEl.image?.width}
-						// height={nextEl.image?.height}
+						width={nextEl.image?.width}
+						height={nextEl.image?.height}
 						alt={nextEl.image?.description}
-						layout={'fill'}
-						key={`nextEl.sys.id`}
 					/>
 				</div>
 			)}
 			<Image
+				key={`el.sys.id`}
 				src={el.image?.url}
-				blurDataURL={`${el.image?.url}?w=5`}
+				width={el.image?.width}
+				height={el.image?.height}
 				className={'pointer-events-none'}
 				alt={el.image?.description}
-				layout={'fill'}
-				key={`el.sys.id`}
 				placeholder={'blur'}
-				// style={{ minWidth: '100%' }}
-				// width={el.image?.width}
-				// height={el.image?.height}
+				blurDataURL={`${el.image?.url}?w=20&q=50`}
+				style={{
+					width: '100%',
+					height: 'auto',
+				}}
 			/>
 		</div>
 	)

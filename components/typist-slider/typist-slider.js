@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 
 import Link from 'next/link'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 
 import { ArrowDownIcon, ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/solid'
 
@@ -45,12 +45,17 @@ const HeadElement = ({ item, onClick, isCurrent, className }) => {
 		>
 			<motion.div className={'relative w-1/2 sm:w-full pt-1/2 sm:pt-full rounded-full overflow-hidden'}>
 				<Image
-					className={'w-full h-full object-cover absolute top-0 left-0'}
-					layout={'fill'}
-					placeholder={'blur'}
-					blurDataURL={`${item.image.url}?w=8`}
 					src={item.image.url}
+					className={'w-full h-full object-cover absolute top-0 left-0'}
+					placeholder={'blur'}
+					blurDataURL={`${item.image.url}?w=8&q=50`}
 					alt={item.image.description || 'No alt text found'}
+					width={item.image.width}
+					height={item.image.height}
+					style={{
+						width: '100%',
+						height: 'auto',
+					}}
 				/>
 			</motion.div>
 			<h2 className={'text-center font-body font-bold mt-4 text-base'}>{item.name}</h2>

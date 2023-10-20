@@ -757,7 +757,7 @@ picture {
 	-webkit-transform: translateX(-50%);
 	transform: translateX(-50%);
 	left: 50%;
-	padding-top: 56.25vw;
+	padding-top: 56.25%;
 }
 
 .media-element-container.media-wysiwyg_full img {

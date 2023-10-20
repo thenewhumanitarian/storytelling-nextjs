@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 
 import ThingLinkButton from './thing-link-button'
 import RichtextComponent from '@components/richText'
@@ -22,7 +22,12 @@ const ThingLinkComponent = ({ thinglink }) => {
 					width={thinglink.baseImage.width}
 					height={thinglink.baseImage.height}
 					alt="Picture of the author"
-					layout={'responsive'}
+					placeholder='blur'
+					blurDataURL={`${thinglink.baseImage.url}?w=20&q=50`}
+					style={{
+						width: '100%',
+						height: 'auto',
+					}}
 				/>
 				<div className={'absolute top-0 left-0 w-full h-full'}>
 					{buttons.map((button) => {

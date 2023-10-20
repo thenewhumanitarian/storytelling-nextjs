@@ -1,4 +1,4 @@
-import Image from "next/legacy/image"
+import Image from "next/image"
 
 import { motion, AnimatePresence } from 'framer-motion'
 import Stories, { WithSeeMore } from 'ssr-react-insta-stories'
@@ -105,26 +105,34 @@ const SpotlightComponent = ({ content }) => {
 						>
 							<div className={'absolute top-0 left-0 opacity-0'}>
 								<Image
+									src={items[nextImage].image.url}
 									className={'absolute top-0 left-0'}
 									width={items[nextImage].image.width}
 									height={items[nextImage].image.height}
 									priority
 									loading={'eager'}
 									placeholder={'blur'}
-									src={items[nextImage].image.url}
 									blurDataURL={`${items[nextImage].image.url}?w=5`}
 									alt={items[nextImage].image.description || 'No alt text found'}
+									style={{
+										width: '100%',
+										height: 'auto',
+									}}
 								/>
 							</div>
 							<Image
+								src={img.image.url}
 								width={img.image.width}
 								height={img.image.height}
 								priority
 								loading={'eager'}
 								placeholder={'blur'}
 								blurDataURL={`${img.image?.url}?w=5`}
-								src={img.image.url}
 								alt={img.image.description || 'No alt text found'}
+								style={{
+									width: '100%',
+									height: 'auto',
+								}}
 							/>
 							{/* Adds mouseover for showing it goes left and right... */}
 							<div className={'opacity-0 hover:opacity-100 absolute top-0 left-0 w-1/2 bg-gradient-to-r from-gray-800 to-transparent h-full'} />

@@ -15,18 +15,26 @@ import IframeComponent from '@components/slideshow/iframe'
 const variants = {
 	enter: (direction) => {
 		return {
-			x: direction > 0 ? 1000 : -1000,
-			// opacity: 0,
+			x: direction > 0 ? '100%' : '-100%',
+			// x: 0,
+			opacity: 0,
+			transition: {
+				duration: 0.2,
+			}
 		}
 	},
 	center: {
 		x: 0,
-		// opacity: 1,
+		opacity: 1,
 	},
 	exit: (direction) => {
 		return {
-			x: direction < 0 ? 1000 : -1000,
-			// opacity: 0,
+			x: direction < 0 ? '100%' : '-100%',
+			// x: direction < 0 ? 50 : -50,
+			opacity: 0,
+			transition: {
+				duration: 0.2
+			}
 		}
 	},
 }
@@ -42,15 +50,6 @@ const SliderComponent = ({ elements, ua }) => {
 
 	const [isInIframe, setIsInIframe] = useState(false)
 	const [iframeHeight, setIframeHeight] = useState((100 / 16) * 9)
-
-	// useEffect(() => {
-	// 	if (window !== window.parent) {
-	// 		setIsInIframe(true)
-	// 		console.log('Is in iframe!')
-	// 	} else {
-	// 		console.log('Is not in iframe!')
-	// 	}
-	// }, [])
 
 	useEffect(() => {
 		if (elements[imageIndex].iframeHeight || elements.iframeHeightMobile) {
@@ -74,8 +73,8 @@ const SliderComponent = ({ elements, ua }) => {
 	const spring = {
 		type: 'spring',
 		damping: 30,
-		// mass: 1,
-		stiffness: 300,
+		stiffness: 250,
+		mass: 1,
 	}
 
 	let nextImageIndex = imageIndex + 1
@@ -130,9 +129,8 @@ const SliderComponent = ({ elements, ua }) => {
 					<div
 						className={'relative overflow-hidden m-0 p-0'}
 						style={{
-							height: 0,
+							height: 'auto',
 							width: '100%',
-							paddingTop: `${iframeHeight || (100 / 16) * 9}%`,
 						}}
 					>
 						{elements[imageIndex].image && elements[imageIndex].image.url.indexOf('video') < 0 && (

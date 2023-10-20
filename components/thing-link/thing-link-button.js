@@ -120,11 +120,11 @@ const ThingLinkButton = ({ data }) => {
                     top: `${pos.y}%`,
                 }}
                 animate={{
-                    scale: [0.7, 1.4, 0.7], // Scale values for the pulsating effect
+                    scale: [0.75, 1.5, 0.75], // Scale values for the pulsating effect
                     // opacity: [0.5, 1, 0.5], // Opacity values for the pulsating effect
                 }}
                 transition={{ repeat: Infinity, duration: 2 }}
-                whileHover={{ scale: 1.3, opacity: 1 }}
+                whileHover={{ scale: 2, opacity: 1 }}
                 className={`cursor-pointer absolute ${colClass} ${borderClass} ${sizeClass} ${data.className} z-40 rounded-full shadow-3xl`}
                 onClick={() => {
                     setIsOpen(true)
@@ -153,17 +153,17 @@ const ThingLinkButton = ({ data }) => {
                             <motion.div className={'pt-5 pl-5 pb-5 pr-5 sm:pr-10'}>
                                 <RichtextComponent content={data.text.json} />
                             </motion.div>
-                        </motion.div>
-                        <motion.div
-                            className={'w-6 h-6 sm:w-8 sm:h-8 block absolute top-2 sm:top-3 right-2 text-red-500 cursor-pointer z-50'}
-                            whileHover={{ scale: 1.2 }}
-                            initial={{ rotate: '-40deg' }}
-                            exit={{ rotate: '40deg', opacity: 0 }}
-                            animate={{ rotate: 0 }}
-                            transition={spring}
-                            onClick={() => setIsOpen(false)}
-                        >
-                            <CloseIcon />
+                            <motion.div
+                                className={'w-6 h-6 sm:w-6 sm:h-6 block absolute top-2 sm:top-3 right-2 text-red-500 cursor-pointer z-50'}
+                                whileHover={{ scale: 1.2 }}
+                                initial={{ rotate: '-40deg' }}
+                                exit={{ rotate: '40deg', opacity: 0 }}
+                                animate={{ rotate: 0 }}
+                                transition={spring}
+                                onClick={() => setIsOpen(false)}
+                            >
+                                <CloseIcon />
+                            </motion.div>
                         </motion.div>
                     </motion.div>
                 )}

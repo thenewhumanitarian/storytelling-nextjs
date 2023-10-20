@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import Image from "next/legacy/image"
+import Image from "next/image"
 import Link from 'next/link'
 
 import { BLOCKS, MARKS, INLINES } from '@contentful/rich-text-types'
@@ -65,6 +65,10 @@ const RichtextComponent = (props) => {
 							width={width}
 							placeholder={'blur'}
 							blurDataURL={`https:${url.indexOf('?w') > -1 ? url : `${url}?w=8`}`}
+							style={{
+								width: '100%',
+								height: 'auto',
+							}}
 						/>
 						{/* {description && <figcaption>{description}</figcaption>} */}
 					</figure>

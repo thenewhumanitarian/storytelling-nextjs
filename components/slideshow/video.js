@@ -12,6 +12,8 @@ const ReactPlayer = dynamic(() => import('react-player/lazy'), {
 import VisibilitySensor from 'react-visibility-sensor'
 
 const VideoPlayer = ({ el, i, autoPlay }) => {
+	console.log(el)
+
 	const [isPlaying, setIsPlaying] = useState(false)
 	const [userClicked, setUserClicked] = useState(false)
 
@@ -33,6 +35,11 @@ const VideoPlayer = ({ el, i, autoPlay }) => {
 					}
 					setUserClicked(true)
 				}}
+				style={{
+					position: 'relative',
+					paddingTop: el.videoHeight ? `${el.videoHeight}%` : '56.25%',
+					cursor: 'pointer',
+				}}
 			>
 				<ReactPlayer
 					controls
@@ -42,11 +49,11 @@ const VideoPlayer = ({ el, i, autoPlay }) => {
 					url={el.image?.url || el.mediaUrl?.replace('https', 'http') || el.videoUrl?.replace('https', 'http') || el.video?.url}
 					style={{
 						position: 'absolute',
+						zIndex: 1,
 						top: 0,
 						left: 0,
 						width: '100%',
 						height: '100%',
-						zIndex: 1,
 					}}
 					width={'100%'}
 					height={'100%'}
