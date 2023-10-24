@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import { isMobile } from 'react-device-detect'
-import { motion, AnimatePresence, AnimateSharedLayout } from 'framer-motion'
+import { motion, LayoutGroup } from 'framer-motion'
 
 const TwitterIcon = ({ text, url, inverted }) => {
 	return (
@@ -106,7 +106,7 @@ const ShareIcons = (props) => {
 
 	return (
 		<div className={'cursor-pointer'}>
-			<AnimateSharedLayout>
+			<LayoutGroup>
 				{!isActive && (
 					<motion.div
 						layout
@@ -167,7 +167,7 @@ const ShareIcons = (props) => {
 						<MailIcon text={encodeURI(props.shareProps.socialTitle)} url={props.shareProps.url} inverted={props.inverted} />
 					</motion.div>
 				)}
-			</AnimateSharedLayout>
+			</LayoutGroup>
 		</div>
 	)
 }

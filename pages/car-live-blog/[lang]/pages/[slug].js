@@ -34,7 +34,7 @@ const AllLiveBlogs = ({ lang, liveBlogPageData, liveBlogPages, pageContent }) =>
 				<Sidebar title={liveBlogPageData.title} lang={lang} liveBlogPages={liveBlogPages} />
 				<div className='grid grid-cols-1 col-span-7 gap-0 xl:col-span-5'>
 					<h1>{pageContent.title}</h1>
-					<div className={'grid grid-cols-1 gap-y-1 mt-5'}>
+					<div className={'grid grid-cols-1 gap-y-1 mt-8'}>
 						{pageContent.blogPageContentCollection.items.map((entry, i) => {
 							return <DynamicBlogContentComponent key={`blog-entry-content-${i}`} data={entry} lang={lang} />
 						})}

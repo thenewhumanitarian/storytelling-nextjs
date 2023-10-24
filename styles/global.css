@@ -64,3 +64,18 @@
     column-gap: 0;
     height: 90px !important;
 }
+
+.react-images__header_button--fullscreen {
+    display: none !important;
+}
+
+.react-images__footer__caption span {
+    position: relative;
+    background: transparent;
+    bottom: 0;
+    padding: 0;
+}
+
+.react-images__navigation button {
+    z-index: 9999;
+}

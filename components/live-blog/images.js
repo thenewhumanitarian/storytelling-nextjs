@@ -67,6 +67,8 @@ const ImageGrid = ({ images }) => {
 						<Carousel
 							styles={customStyles}
 							currentIndex={currentImage}
+							hideControlsWhenIdle={false}
+							modalProps={{ allowFullscreen: false }}
 							views={photos.map((x) => ({
 								...x,
 								srcset: x.srcSet,

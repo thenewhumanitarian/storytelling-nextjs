@@ -73,7 +73,7 @@ export default function Feed({ entries, lang }) {
 													</a>
 												</div>
 												<p className='text-gray-500 font-normal'>
-													<span className={'hidden sm:block w-5 opacity-40 absolute top-0 right-0'}>{activityItem.icon}</span>
+													<span className={'hidden sm:block opacity-40 absolute top-0 right-0 bg-gray-200 shadow rounded-full w-10 h-10 p-2'}>{activityItem.icon}</span>
 													Posted {activityItem.date} by {activityItem.person.name}
 												</p>
 											</div>
@@ -114,7 +114,7 @@ export default function Feed({ entries, lang }) {
 													</a>
 												</div>
 												<p className='text-gray-500 '>
-													<span className={'hidden sm:block w-5 opacity-40 absolute top-0 right-0 border'}>{activityItem.icon}</span>
+													<span className={'hidden sm:block w-10 opacity-40 absolute top-0 right-0 bg-gray-200 shadow rounded-full h-10 p-2'}>{activityItem.icon}</span>
 													Posted {activityItem.date} by {activityItem.person.name}
 												</p>
 											</div>

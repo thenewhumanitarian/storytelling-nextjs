@@ -1,7 +1,10 @@
-import Sidebar from '@components/live-blog/sidebar'
-import { Helmet } from 'react-helmet'
-import Link from 'next/link'
+import { useEffect } from 'react'
 
+import Head from 'next/head'
+import Link from 'next/link'
+import { Helmet } from 'react-helmet'
+
+import Sidebar from '@components/live-blog/sidebar'
 import { callContentful } from '@utils/contentfulHelper'
 import HeaderComponent from '@components/common/header'
 import Feed from '@components/live-blog/feed'
@@ -20,10 +23,14 @@ const AllLiveBlogs = ({ lang, liveBlogData, liveBlogPages, liveBlogAuthors, live
 		publishedTime: '2021-06-27T08:00:00+00:00',
 	}
 
-	console.log(liveBlogData)
-
 	return (
 		<div>
+			<Head>
+				<script
+					src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"
+					async=""
+				></script>
+			</Head>
 			<Helmet
 				htmlAttributes={{
 					lang: lang === 'en' ? 'en-GB' : 'fr-FR',

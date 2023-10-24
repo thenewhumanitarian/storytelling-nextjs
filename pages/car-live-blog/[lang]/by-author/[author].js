@@ -33,7 +33,7 @@ const AllLiveBlogs = ({ lang, liveBlogData, liveBlogPages, liveBlogAuthors, auth
 			<div className='flex flex-col-reverse sm:grid sm:grid-flow-col sm:grid-cols-9 gap-8 px-3 sm:px-8 mt-3 sm:mt-10 items-start'>
 				<Sidebar title={liveBlogData.title} lang={lang} liveBlogPages={liveBlogPages} showFilter={liveBlogAuthors} currentFilter={author} />
 				<div className='grid items-start grid-cols-1 col-span-7 xl:col-span-5 gap-y-5'>
-					<h2>Latest entries</h2>
+					<h2>All entries by {filteredByAuthor[0].blogEntryAuthor.name}</h2>
 					<Feed lang={lang} entries={filteredByAuthor} />
 				</div>
 			</div>

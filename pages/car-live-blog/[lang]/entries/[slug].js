@@ -57,7 +57,7 @@ const LiveBlogEntry = ({ liveBlogEntryCollection, liveBlogData, lang, liveBlogPa
 						{/* Share buttons */}
 						<ShareIcons shareProps={shareProps} dark={false} allIcons={true} />
 					</div>
-					<div className={'grid grid-cols-1 gap-y-1 mt-5'}>
+					<div className={'grid grid-cols-1 gap-y-1 mt-8'}>
 						{liveBlogEntryCollection.blogEntryContentCollection.items.map((entry, i) => {
 							return <DynamicBlogContentComponent key={`blog-entry-content-${i}`} data={entry} lang={lang} />
 						})}
