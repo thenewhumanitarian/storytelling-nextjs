@@ -1,6 +1,5 @@
-import { useEffect } from 'react'
-
 import Head from 'next/head'
+import Script from 'next/script'
 import Link from 'next/link'
 import { Helmet } from 'react-helmet'
 
@@ -25,12 +24,8 @@ const AllLiveBlogs = ({ lang, liveBlogData, liveBlogPages, liveBlogAuthors, live
 
 	return (
 		<div>
-			<Head>
-				<script
-					src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"
-					async=""
-				></script>
-			</Head>
+			<Script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" />
+			<Head />
 			<Helmet
 				htmlAttributes={{
 					lang: lang === 'en' ? 'en-GB' : 'fr-FR',

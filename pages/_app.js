@@ -16,6 +16,9 @@ function MyApp({ Component, pageProps }) {
 				appId: "b0bf70fc-486e-4f40-9fdc-ebc4c2bd30ce",
 				notifyButton: {
 					enable: true,
+					displayPredicate: function () { return true },
+					position: 'bottom-right',
+					size: 'medium'
 				},
 				allowLocalhostAsSecureOrigin: true,
 			});
