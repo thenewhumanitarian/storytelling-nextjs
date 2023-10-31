@@ -26,3 +26,15 @@ These are the things that need doing.
 * Work on audio
 * Produce some real content
 * Pagination for the feed /page/1 etc.
+
+# Notes after call on 24 October
+
+* Audiogram
+* Yemen Doctor Clips
+* Video with captions
+* Audio with captions / transcript (collapsed?)
+* About author on the filtering page sidebar
+
+# Notes about captions:
+
+* Create with this? https://www.happyscribe.com/v2/onboarding/upload/transcription

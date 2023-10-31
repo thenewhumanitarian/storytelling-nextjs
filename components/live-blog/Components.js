@@ -2,6 +2,7 @@ import RichtextComponent from '@components/live-blog/text'
 import VideoPlayer from '@components/live-blog/video'
 import AudioPlayer from '@components/live-blog/audio'
 import ImageGrid from '@components/live-blog/images'
+import MediaPlayer from '@components/live-blog/media'
 
 const DynamicBlogContentComponent = ({ data, lang }) => {
 	const type = data.__typename
@@ -19,6 +20,14 @@ const DynamicBlogContentComponent = ({ data, lang }) => {
 		return (
 			<div className={'mb-5'}>
 				<VideoPlayer el={data} />
+			</div>
+		)
+	}
+
+	if (type === 'LiveBlogContentMedia') {
+		return (
+			<div className={'mb-5'}>
+				<MediaPlayer el={data} lang={lang} />
 			</div>
 		)
 	}

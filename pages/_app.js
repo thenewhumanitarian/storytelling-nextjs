@@ -16,11 +16,31 @@ function MyApp({ Component, pageProps }) {
 				appId: "b0bf70fc-486e-4f40-9fdc-ebc4c2bd30ce",
 				notifyButton: {
 					enable: true,
-					displayPredicate: function () { return true },
+					// displayPredicate: function () { return true },
+					displayPredicate: true,
 					position: 'bottom-right',
-					size: 'medium'
+					size: 'medium',
+				},
+				promptOptions: {
+					customlink: {
+
+						enabled: true, /* Required to use the Custom Link */
+						style: "button", /* Has value of 'button' or 'link' */
+						size: "medium", /* One of 'small', 'medium', or 'large' */
+						color: {
+							button: '#9f3e52', /* Color of the button background if style = "button" */
+							text: '#fff', /* Color of the prompt's text */
+						},
+						text: {
+							subscribe: "Subscribe to push notifications", /* Prompt's text when not subscribed */
+							unsubscribe: "Unsubscribe from push notifications", /* Prompt's text when subscribed */
+							explanation: "Get updates from all sorts of things that matter to you", /* Optional text appearing before the prompt button */
+						},
+						unsubscribeEnabled: true, /* Controls whether the prompt is visible after subscription */
+					}
 				},
 				allowLocalhostAsSecureOrigin: true,
+				subdomainName: "newhu",
 			});
 		});
 

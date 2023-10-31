@@ -79,3 +79,27 @@
 .react-images__navigation button {
     z-index: 9999;
 }
+
+.onesignal-customlink-container button {
+    text-decoration: capitalize !important;
+}
+
+.caption-box p:only-child {
+    margin: 0 !important;
+}
+
+video::-webkit-media-text-track-display {
+    font-family: 'Roboto', sans-serif;
+    padding: 0.5rem;
+    border-radius: none;
+}
+
+video::-webkit-media-text-track-background {
+    border-radius: none;
+}
+
+video::cue {
+    font-family: 'Roboto', sans-serif;
+    padding: 0.5rem;
+    border-radius: none;
+}

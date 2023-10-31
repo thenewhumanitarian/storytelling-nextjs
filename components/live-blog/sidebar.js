@@ -24,6 +24,7 @@ const Sidebar = ({ lang, title, liveBlogPages, showFilter, currentFilter, hideBa
 				{showFilter && <ArticleFilter lang={lang} authors={showFilter} currentFilter={currentFilter} />}
 				{author && <ArticleAuthorInfo lang={lang} author={author} />}
 			</ul>
+			{/* <div className='onesignal-customlink-container' /> */}
 		</div>
 	)
 }

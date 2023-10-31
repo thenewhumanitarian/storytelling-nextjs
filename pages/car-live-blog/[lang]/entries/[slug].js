@@ -12,7 +12,7 @@ import RichtextComponent from '@components/richText'
 import ShareIcons from '@components/common/shareIcons'
 
 const LiveBlogEntry = ({ liveBlogEntryCollection, liveBlogData, lang, liveBlogPages }) => {
-	console.log(liveBlogEntryCollection.date)
+	console.log(liveBlogEntryCollection.blogEntryContentCollection.items)
 
 	const shareProps = {
 		title: liveBlogEntryCollection.title || 'The New Humanitarian | Live from the CAR', // TODO
@@ -255,6 +255,39 @@ export const getStaticProps = async (ctx) => {
 									title
 									description
 								}
+							}
+						}
+						... on LiveBlogContentMedia {
+							__typename
+							title
+							media {
+							  sys {
+								id
+							  }
+							  url
+							  width
+							  height
+							}
+							mediaUrl
+							captionFile {
+							  fileName
+							  url
+							}
+							captionFileFrench {
+								fileName
+								url
+							  }
+							caption {
+							  json
+							}
+							credit
+							placeholderImage {
+							  sys {
+								id
+							  }
+							  url
+							  width
+							  height
 							}
 						}
 					}
