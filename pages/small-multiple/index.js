@@ -168,7 +168,7 @@ const SmallMultiple = () => {
                                 {currentEntry.country}
                             </span>
                         </div>
-                        <p>{currentEntry.data}</p>
+                        <p className={'leading-regular text-xs sm:text-base'}>{currentEntry.data}</p>
                     </div>
                     <div onClick={() => setIsOpen(-1)} className={'close-overlay absolute top-0 left-0 w-full h-full z-10 cursor-pointer'} />
                 </div>
