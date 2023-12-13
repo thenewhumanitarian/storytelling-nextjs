@@ -39,6 +39,7 @@ const ThingLinkComponent = ({ thinglink }) => {
 			</div>
 			{thinglink.caption?.json && (
 				<div className={'py-2 px-3 bg-gray-100'}>
+					<h3>{thinglink.title}</h3>
 					<RichtextComponent content={thinglink.caption?.json} />
 				</div>
 			)}

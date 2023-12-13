@@ -139,7 +139,7 @@ const SmallMultiple = () => {
         return (
             <div
                 onClick={() => { setIsOpen(index) }}
-                className={`aspect-video sm:aspect-[4/3] relative flex items-center justify-center cursor-pointer hover:bg-zinc-300 transition-all ${isOpen > -1 ? 'opacity-20 pointer-events-none' : ''}`}
+                className={`aspect-[5/2] sm:aspect-[4/3] relative flex items-center justify-center cursor-pointer hover:bg-zinc-300 transition-all ${isOpen > -1 ? 'opacity-20 pointer-events-none' : ''}`}
                 key={`card-${index}`}
             >
                 <div className={'flex flex-row gap-2 justify-center items-center bg-white px-2 py-1'}>
