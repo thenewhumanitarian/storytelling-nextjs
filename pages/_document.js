@@ -5,7 +5,7 @@ export default class MyDocument extends Document {
 		return (
 			<Html lang='en'>
 				<Head />
-				<body>
+				<body style={{ overflow: 'hidden' }}>
 					<Main />
 					<NextScript />
 					<script type='text/javascript' src='https://embed.thenewhumanitarian.org/helpers/iframeResizer.contentWindow.min.js'></script>
