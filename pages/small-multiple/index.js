@@ -121,7 +121,7 @@ const SmallMultiple = () => {
     const Container = ({ children }) => {
         return <div
             data-iframe-height={true}
-            className={`grid grid-cols-3 sm:grid-cols-4 border-2 border-zinc-600`}
+            className={`grid grid-cols-3 sm:grid-cols-4 border-2 border-zinc-600 my-3`}
         >
             {children}
         </div>
