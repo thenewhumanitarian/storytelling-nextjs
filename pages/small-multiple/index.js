@@ -65,7 +65,7 @@ const data = [
     },
     {
         "country": "Uganda",
-        "data": "Uganda, which hosts one of the world’s largest refugee communities, also has one of the poorest funded responses. On top of earlier cuts, WFP has also implemented a prioritisation policy that assigns various levels of vulnerability to refugees. Some of the 1.5 million refugees say they have been miscategorised and are now getting no assistance. Others say the cuts have sparked crime, prostitution, child marriages, and sexual abuse in the settlements as refugees look for ways to feed themselves and their families.   ",
+        "data": "Uganda, which hosts one of the world’s largest refugee communities, also has one of the poorest funded responses. On top of earlier cuts, WFP has implemented “prioritisations” that assign different levels of vulnerability. Some of the 1.5 million refugees say they have been miscategorised and are now getting no assistance. Others say the cuts have sparked crime, prostitution, child marriages, and sexual abuse in the settlements as refugees look for ways to feed themselves and their families.",
         "flag": "ug"
     },
     {
