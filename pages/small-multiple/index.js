@@ -1,7 +1,6 @@
 import { useState } from 'react'
 
 import "flag-icons/css/flag-icons.min.css"
-import motion from 'framer-motion'
 
 const data = [
     {
@@ -116,26 +115,31 @@ const data = [
     }
 ]
 
-const Container = ({ children }) => {
-    return <div data-iframe-height={true} className={'grid grid-cols-3 sm:grid-cols-4'}>{children}</div>
-}
-
-const Flag = ({ flag }) => {
-    return (
-        <span
-            className={`w-64 aspect-[4/3] fi fi-${flag} bg-cover bg-center`}
-        />
-    )
-}
-
 const SmallMultiple = () => {
     const [isOpen, setIsOpen] = useState(-1)
+
+    const Container = ({ children }) => {
+        return <div
+            data-iframe-height={true}
+            className={`grid grid-cols-3 sm:grid-cols-4 border-2 border-zinc-600`}
+        >
+            {children}
+        </div>
+    }
+
+    const Flag = ({ flag }) => {
+        return (
+            <span
+                className={`w-64 aspect-[4/3] fi fi-${flag} bg-cover bg-center`}
+            />
+        )
+    }
 
     const Card = ({ entry, index }) => {
         return (
             <div
                 onClick={() => { setIsOpen(index) }}
-                className={'aspect-[4/3] relative flex items-center justify-center cursor-pointer border hover:border-burgundy hover:bg-burgundy transition-all hover:border-2 border-zinc-500'}
+                className={`aspect-video sm:aspect-[4/3] relative flex items-center justify-center cursor-pointer hover:bg-burgundy transition-all ${isOpen > -1 ? 'opacity-20 pointer-events-none' : ''}`}
                 key={`card-${index}`}
             >
                 <div className={'flex flex-row gap-2 justify-center items-center bg-white px-2 py-1'}>
@@ -152,15 +156,22 @@ const SmallMultiple = () => {
         const currentEntry = data[isOpen]
 
         return (
-            <div
-                className={'fixed top-0 left-0 w-full h-full bg-white bg-opacity-100 p-5 flex items-start justify-center flex-col'}
-            >
-                <span onClick={() => setIsOpen(-1)} className={'text-xs sm:text-sm font-bold cursor-pointer text-burgundy font-bold absolute top-5 right-5'}>Close</span>
-                <div classname={'z-50'}>
-                    <h3 className={'font-bold'}>{currentEntry.country}</h3>
-                    <p>{currentEntry.data}</p>
+            <div className={'absolute top-0 left-0 w-full h-full'}>
+                <div
+                    className={'flex h-full overflow-auto w-full h-auto bg-white bg-opacity-100 p-5 flex items-start justify-center flex-col border-2 border-zinc-700'}
+                >
+                    <span onClick={() => setIsOpen(-1)} className={'text-xs sm:text-sm font-bold cursor-pointer text-burgundy font-bold absolute top-5 right-5'}>Close</span>
+                    <div classname={'z-50'}>
+                        <div className={'flex flex-row gap-2 mb-3'}>
+                            <Flag flag={currentEntry.flag} />
+                            <span className={'top-0 left-0 text-base sm:text-base font-bold'}>
+                                {currentEntry.country}
+                            </span>
+                        </div>
+                        <p>{currentEntry.data}</p>
+                    </div>
+                    <div onClick={() => setIsOpen(-1)} className={'close-overlay absolute top-0 left-0 w-full h-full z-10'} />
                 </div>
-                <div onClick={() => setIsOpen(-1)} className={'close-overlay absolute top-0 left-0 w-full h-full z-10'} />
             </div>
         )
     }
@@ -168,7 +179,7 @@ const SmallMultiple = () => {
     return (
         <Container>
             {data.map((entry, i) => {
-                return <Card entry={entry} index={i} />
+                return <Card entry={entry} index={i} key={`card-entry-${i}`} />
             })}
             {isOpen > -1 && <Overlay />}
         </Container>
