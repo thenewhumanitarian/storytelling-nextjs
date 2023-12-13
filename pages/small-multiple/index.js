@@ -117,7 +117,7 @@ const data = [
 ]
 
 const Container = ({ children }) => {
-    return <div className={'grid grid-cols-3 sm:grid-cols-4'}>{children}</div>
+    return <div data-iframe-height={true} className={'grid grid-cols-3 sm:grid-cols-4'}>{children}</div>
 }
 
 const Flag = ({ flag }) => {
