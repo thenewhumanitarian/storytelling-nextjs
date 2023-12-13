@@ -121,7 +121,7 @@ const SmallMultiple = () => {
     const Container = ({ children }) => {
         return <div
             data-iframe-height={true}
-            className={`grid grid-cols-3 sm:grid-cols-4 border-2 border-zinc-600 my-3`}
+            className={`grid grid-cols-3 sm:grid-cols-4 border-2  border-zinc-600 h-full absolute top-0 left-0 w-full`}
         >
             {children}
         </div>
@@ -139,12 +139,12 @@ const SmallMultiple = () => {
         return (
             <div
                 onClick={() => { setIsOpen(index) }}
-                className={`aspect-video sm:aspect-[4/3] relative flex items-center justify-center cursor-pointer hover:bg-burgundy transition-all ${isOpen > -1 ? 'opacity-20 pointer-events-none' : ''}`}
+                className={`aspect-video sm:aspect-[4/3] relative flex items-center justify-center cursor-pointer hover:bg-zinc-300 transition-all ${isOpen > -1 ? 'opacity-20 pointer-events-none' : ''}`}
                 key={`card-${index}`}
             >
                 <div className={'flex flex-row gap-2 justify-center items-center bg-white px-2 py-1'}>
                     <Flag flag={entry.flag} />
-                    <span className={'top-0 left-0 text-xs sm:text-sm font-bold'}>
+                    <span className={'top-0 left-0 text-xs sm:text-lg font-title'}>
                         {entry.country}
                     </span>
                 </div>
@@ -158,19 +158,19 @@ const SmallMultiple = () => {
         return (
             <div className={'absolute top-0 left-0 w-full h-full'}>
                 <div
-                    className={'flex h-full overflow-auto w-full h-auto bg-white bg-opacity-100 p-5 flex items-start justify-center flex-col border-2 border-zinc-700'}
+                    className={'flex h-full overflow-auto w-full h-auto bg-white bg-opacity-100 p-5 flex items-start justify-center flex-col'}
                 >
-                    <span onClick={() => setIsOpen(-1)} className={'text-xs sm:text-sm font-bold cursor-pointer text-burgundy font-bold absolute top-5 right-5'}>Close</span>
+                    <span onClick={() => setIsOpen(-1)} className={'text-xs sm:text-sm font-bold cursor-pointer text-burgundy font-bold absolute top-5 right-7'}>Close</span>
                     <div classname={'z-50'}>
                         <div className={'flex flex-row gap-2 mb-3'}>
                             <Flag flag={currentEntry.flag} />
-                            <span className={'top-0 left-0 text-base sm:text-base font-bold'}>
+                            <span className={'top-0 left-0 text-base sm:text-2xl font-title'}>
                                 {currentEntry.country}
                             </span>
                         </div>
                         <p>{currentEntry.data}</p>
                     </div>
-                    <div onClick={() => setIsOpen(-1)} className={'close-overlay absolute top-0 left-0 w-full h-full z-10'} />
+                    <div onClick={() => setIsOpen(-1)} className={'close-overlay absolute top-0 left-0 w-full h-full z-10 cursor-pointer'} />
                 </div>
             </div>
         )
