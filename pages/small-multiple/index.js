@@ -153,12 +153,14 @@ const SmallMultiple = () => {
 
         return (
             <div
-                onClick={() => setIsOpen(-1)}
                 className={'fixed top-0 left-0 w-full h-full bg-white bg-opacity-100 p-5 flex items-start justify-center flex-col'}
             >
                 <span onClick={() => setIsOpen(-1)} className={'text-xs sm:text-sm font-bold cursor-pointer text-burgundy font-bold absolute top-5 right-5'}>Close</span>
-                <h3 className={'font-bold'}>{currentEntry.country}</h3>
-                <p>{currentEntry.data}</p>
+                <div classname={'z-50'}>
+                    <h3 className={'font-bold'}>{currentEntry.country}</h3>
+                    <p>{currentEntry.data}</p>
+                </div>
+                <div onClick={() => setIsOpen(-1)} className={'close-overlay absolute top-0 left-0 w-full h-full z-10'} />
             </div>
         )
     }
