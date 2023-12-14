@@ -18,3 +18,21 @@ export const callContentful = async (query) => {
 		throw new Error('Could not fetch data from Contentful!')
 	}
 }
+
+export const callContentfulWithPreview = async (query, apiUrl, accessToken) => {
+	const fetchOptions = {
+		method: 'POST',
+		headers: {
+			Authorization: 'Bearer ' + accessToken,
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({ query }),
+	};
+
+	try {
+		const data = await fetch(apiUrl, fetchOptions).then((response) => response.json());
+		return data;
+	} catch (error) {
+		throw new Error('Could not fetch data from Contentful!');
+	}
+};

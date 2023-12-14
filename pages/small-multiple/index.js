@@ -112,6 +112,11 @@ const data = [
         "country": "Jordan",
         "data": "Due to ongoing funding shortfalls, WFP’s assistance in Jordan has been gradually reduced. Around 410,000 “vulnerable refugees” in camps and host community members receive monthly cash transfers at a “one third reduced” level. In September, the agency said new donations had allowed aid to continue — after warnings of a suspension — but shortfalls are ongoing.",
         "flag": "jo"
+    },
+    {
+        "country": "Burundi",
+        "data": "Dwindling funding forced WFP to cut rations for more than 56,000 Congolese refugees in Burundi this year. The East African country has one of the most neglected humanitarian situations in the world, according to the Norwegian Refugee Council.",
+        "flag": "bi"
     }
 ]
 
@@ -139,7 +144,7 @@ const SmallMultiple = () => {
         return (
             <div
                 onClick={() => { setIsOpen(index) }}
-                className={`aspect-[5/2] sm:aspect-[4/3] relative flex items-center justify-center cursor-pointer hover:bg-zinc-200 transition-all ${isOpen > -1 ? 'opacity-20 pointer-events-none' : ''}`}
+                className={`aspect-[5/2] sm:aspect-[4/3] relative flex items-center justify-center cursor-pointer sm:hover:bg-zinc-200 transition-all ${isOpen > -1 ? 'opacity-20 pointer-events-none' : ''}`}
                 key={`card-${index}`}
             >
                 <div className={'flex flex-row gap-2 justify-center items-center px-2 py-1'}>
