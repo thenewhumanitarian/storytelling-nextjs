@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
 	purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}', './components/**/*.css'],
 	content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}', './components/**/*.css'],
@@ -20,6 +22,10 @@ module.exports = {
 		opacity: ['hover'],
 	},
 	theme: {
+		screens: {
+			'xs': '360px',
+			...defaultTheme.screens,
+		},
 		extend: {
 			screens: {
 				'xs': '360px',
