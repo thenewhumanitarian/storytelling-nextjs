@@ -164,7 +164,7 @@ const ThingLinkOverlay = ({ data, isOpen, setIsOpen }) => {
         enter={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={spring}
-        className={`w-auto max-w-xl h-auto bg-white z-50 absolute border-black border-2 max-h-full overflow-y-auto`}
+        className={`w-auto max-w-3xl h-auto bg-white z-50 absolute border-black border-2 max-h-full overflow-y-auto`}
       >
 
         {data.image ? (
