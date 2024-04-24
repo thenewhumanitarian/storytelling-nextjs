@@ -64,6 +64,7 @@ export const getStaticProps = async (context) => {
                 xPosition
                 yPosition
                 colour
+                borderColor
                 className
                 size
               }

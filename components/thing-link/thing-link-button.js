@@ -50,6 +50,8 @@ const ThingLinkButton = ({ data }) => {
   const getBorder = (colour) => {
     let col = ''
 
+    console.log(colour)
+
     switch (colour) {
       case 'Burgundy':
         col = 'border-burgundy';
@@ -77,7 +79,7 @@ const ThingLinkButton = ({ data }) => {
     return col
   }
 
-  const borderClass = getBorder(data.borderColour);
+  const borderClass = getBorder(data.borderColor);
 
   const getSize = (size) => {
     let buttonSize = ''
@@ -120,7 +122,7 @@ const ThingLinkButton = ({ data }) => {
           // opacity: [0.5, 1, 0.5], // Opacity values for the pulsating effect
         }}
         transition={{ repeat: Infinity, duration: 2 }}
-        whileHover={{ scale: 2, opacity: 1 }}
+        whileHover={{ scale: [1.5, 1.5, 1.5], opacity: 1, zIndex: 9999 }}
         className={`cursor-pointer absolute ${colClass} ${borderClass} ${sizeClass} ${data.className} z-40 rounded-full shadow-3xl`}
         onClick={() => {
           setIsOpen(true)
@@ -149,8 +151,8 @@ const ThingLinkOverlay = ({ data, isOpen, setIsOpen }) => {
       exit={{ background: 'transparent' }}
       animate={{ background: isOpen ? 'rgba(255,255,255,0.5)' : 'transparent' }}
       className={`flex w-full h-full ${isOpen ? 'bg-white bg-opacity-50' : 'bg-transparent'} flex items-center justify-center`}
-      // onClick={() => data.image ? null : setIsOpen(false)}
       onClick={() => setIsOpen(false)}
+    // onClick={() => data.image ? null : setIsOpen(false)}
     >
       <motion.div
         initial={{
