@@ -49,6 +49,15 @@ export const getStaticProps = async (context) => {
                   id
                 }
                 title
+                image {
+                  url
+                  width
+                  fileName
+                  description
+                  title
+                  size
+                  height
+                }
                 text {
                   json
                 }
