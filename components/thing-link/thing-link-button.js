@@ -182,6 +182,23 @@ const ThingLinkOverlay = ({ data, allData, isOpen, setIsOpen }) => {
               <ResizeableImage image={currentData.image} />
             </div>
             <motion.div className={'pt-5 pl-5 pb-5 pr-5 sm:pr-10'}>
+              {allData.length > 1 &&
+                <div className={'w-full flex justify-start items-center mb-3 gap-x-3'}>
+                  <button onClick={handleBack} className={`transition-opacity bg-burgundy px-3 py-1 text-white font-bold ${currentIndex - 1 < 0 ? 'opacity-50' : ''}`}>
+                    ←Back
+                  </button>
+                  <button onClick={handleNext} className={`transition-opacity bg-burgundy px-3 py-1 text-white font-bold ${currentIndex + 1 >= allData.length ? 'opacity-50' : ''}`}>
+                    Next→
+                  </button>
+                  <span>{currentIndex + 1} / {allData.length}</span>
+                </div>
+              }
+              <RichtextComponent content={currentData.text.json} />
+            </motion.div>
+          </div>
+        ) : (
+          <motion.div className={'pt-5 pl-5 pb-5 pr-5 sm:pr-10'}>
+            {allData.length > 1 && (
               <div className={'w-full flex justify-start items-center mb-3 gap-x-3'}>
                 <button onClick={handleBack} className={`transition-opacity bg-burgundy px-3 py-1 text-white font-bold ${currentIndex - 1 < 0 ? 'opacity-50' : ''}`}>
                   ←Back
@@ -191,11 +208,7 @@ const ThingLinkOverlay = ({ data, allData, isOpen, setIsOpen }) => {
                 </button>
                 <span>{currentIndex + 1} / {allData.length}</span>
               </div>
-              <RichtextComponent content={currentData.text.json} />
-            </motion.div>
-          </div>
-        ) : (
-          <motion.div className={'pt-5 pl-5 pb-5 pr-5 sm:pr-10'}>
+            )}
             <RichtextComponent content={currentData.text.json} />
           </motion.div>
         )}
