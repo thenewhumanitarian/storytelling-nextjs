@@ -6,7 +6,8 @@ import { motion, AnimatePresence } from 'framer-motion'; // Import useAnimation
 import CloseIcon from '@components/icons/close';
 import RichtextComponent from '@components/richText';
 
-const ThingLinkButton = ({ data }) => {
+const ThingLinkButton = ({ data, allData }) => {
+
 
   const [isOpen, setIsOpen] = useState(false)
 
@@ -49,8 +50,6 @@ const ThingLinkButton = ({ data }) => {
 
   const getBorder = (colour) => {
     let col = ''
-
-    console.log(colour)
 
     switch (colour) {
       case 'Burgundy':
@@ -130,7 +129,7 @@ const ThingLinkButton = ({ data }) => {
       />
       <AnimatePresence>
         {isOpen && (
-          <ThingLinkOverlay data={data} isOpen={isOpen} setIsOpen={setIsOpen} />
+          <ThingLinkOverlay data={data} isOpen={isOpen} setIsOpen={setIsOpen} allData={allData} />
         )}
       </AnimatePresence>
     </>
@@ -139,52 +138,70 @@ const ThingLinkButton = ({ data }) => {
 
 export default ThingLinkButton;
 
-const ThingLinkOverlay = ({ data, isOpen, setIsOpen }) => {
+const ThingLinkOverlay = ({ data, allData, isOpen, setIsOpen }) => {
+  const [currentIndex, setCurrentIndex] = useState(allData.indexOf(data));
+
   const spring = {
     type: 'spring',
     stiffness: 200,
     damping: 20,
-  }
+  };
+
+  const handleNext = () => {
+    if (currentIndex < allData.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+    }
+  };
+
+  const handleBack = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    }
+  };
+
+  const currentData = allData[currentIndex];
 
   return (
     <motion.div
       exit={{ background: 'transparent' }}
       animate={{ background: isOpen ? 'rgba(255,255,255,0.5)' : 'transparent' }}
       className={`flex w-full h-full ${isOpen ? 'bg-white bg-opacity-50' : 'bg-transparent'} flex items-center justify-center`}
-      onClick={() => setIsOpen(false)}
-    // onClick={() => data.image ? null : setIsOpen(false)}
+    // onClick={() => setIsOpen(false)}
     >
       <motion.div
-        initial={{
-          opacity: 0,
-        }}
-        animate={{
-          opacity: 1,
-        }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         enter={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={spring}
         className={`w-auto max-w-3xl h-auto bg-white z-50 absolute border-black border-2 max-h-full overflow-y-auto`}
       >
-
-        {data.image ? (
+        {currentData.image ? (
           <div className={'flex flex-col-reverse sm:grid sm:grid-cols-2 items-center sm:p-2'}>
             <div>
-              <ResizeableImage image={data.image} />
+              <ResizeableImage image={currentData.image} />
             </div>
             <motion.div className={'pt-5 pl-5 pb-5 pr-5 sm:pr-10'}>
-              <RichtextComponent content={data.text.json} />
+              <div className={'w-full flex justify-start items-center mb-3 gap-x-3'}>
+                <button onClick={handleBack} className={`transition-opacity bg-burgundy px-3 py-1 text-white font-bold ${currentIndex - 1 < 0 ? 'opacity-50' : ''}`}>
+                  ←Back
+                </button>
+                <button onClick={handleNext} className={`transition-opacity bg-burgundy px-3 py-1 text-white font-bold ${currentIndex + 1 >= allData.length ? 'opacity-50' : ''}`}>
+                  Next→
+                </button>
+                <span>{currentIndex + 1} / {allData.length}</span>
+              </div>
+              <RichtextComponent content={currentData.text.json} />
             </motion.div>
           </div>
         ) : (
           <motion.div className={'pt-5 pl-5 pb-5 pr-5 sm:pr-10'}>
-            <RichtextComponent content={data.text.json} />
+            <RichtextComponent content={currentData.text.json} />
           </motion.div>
         )}
 
-
         <motion.div
-          className={'w-6 h-6 sm:w-6 sm:h-6 block absolute top-2 sm:top-2 right-2 text-red-500 cursor-pointer z-50'}
+          className={'w-6 h-6 sm:w-6 sm:h-6 block absolute top-2 sm:top-2 right-2 text-burgundy cursor-pointer z-50'}
           whileHover={{ scale: 1.2 }}
           initial={{ rotate: '-40deg' }}
           exit={{ rotate: '40deg', opacity: 0 }}
@@ -196,8 +213,8 @@ const ThingLinkOverlay = ({ data, isOpen, setIsOpen }) => {
         </motion.div>
       </motion.div>
     </motion.div>
-  )
-}
+  );
+};
 
 const ResizeableImage = ({ image }) => {
   return (
