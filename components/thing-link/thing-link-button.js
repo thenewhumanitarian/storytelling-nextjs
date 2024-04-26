@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion'; // Import useAnimation
 import CloseIcon from '@components/icons/close';
 import RichtextComponent from '@components/richText';
 
-const ThingLinkButton = ({ data, allData }) => {
+const ThingLinkButton = ({ data, allData, index }) => {
 
 
   const [isOpen, setIsOpen] = useState(false)
@@ -111,22 +111,24 @@ const ThingLinkButton = ({ data, allData }) => {
 
   return (
     <>
-      <motion.span
+      <motion.div
         style={{
           left: `${pos.x}%`,
           top: `${pos.y}%`,
         }}
         animate={{
-          scale: [0.75, 1.5, 0.75], // Scale values for the pulsating effect
+          scale: [1, 1, 1.5, 1, 1], // Scale values for the pulsating effect
           // opacity: [0.5, 1, 0.5], // Opacity values for the pulsating effect
         }}
         transition={{ repeat: Infinity, duration: 2 }}
-        whileHover={{ scale: [1.5, 1.5, 1.5], opacity: 1, zIndex: 9999 }}
-        className={`cursor-pointer absolute ${colClass} ${borderClass} ${sizeClass} ${data.className} z-40 rounded-full shadow-3xl`}
+        whileHover={{ scale: [2, 2, 2, 2, 2], opacity: 1, zIndex: 9999 }}
+        className={`cursor-pointer absolute ${colClass} ${borderClass} ${sizeClass} ${data.className} z-40 rounded-full shadow-3xl flex items-center justify-center`}
         onClick={() => {
           setIsOpen(true)
         }}
-      />
+      >
+        {data.showIndex && <span className={'text-white text-xs font-bold'}>{index + 1}</span>}
+      </motion.div>
       <AnimatePresence>
         {isOpen && (
           <ThingLinkOverlay data={data} isOpen={isOpen} setIsOpen={setIsOpen} allData={allData} />
@@ -184,10 +186,10 @@ const ThingLinkOverlay = ({ data, allData, isOpen, setIsOpen }) => {
             <motion.div className={'pt-5 pl-5 pb-5 pr-5 sm:pr-10'}>
               {allData.length > 1 &&
                 <div className={'w-full flex justify-start items-center mb-3 gap-x-3'}>
-                  <button onClick={handleBack} className={`transition-opacity bg-burgundy px-3 py-1 text-white font-bold ${currentIndex - 1 < 0 ? 'opacity-50' : ''}`}>
+                  <button onClick={handleBack} className={`transition-opacity bg-burgundy px-3 py-1 text-white font-normal ${currentIndex - 1 < 0 ? 'opacity-50' : ''}`}>
                     ←Back
                   </button>
-                  <button onClick={handleNext} className={`transition-opacity bg-burgundy px-3 py-1 text-white font-bold ${currentIndex + 1 >= allData.length ? 'opacity-50' : ''}`}>
+                  <button onClick={handleNext} className={`transition-opacity bg-burgundy px-3 py-1 text-white font-normal ${currentIndex + 1 >= allData.length ? 'opacity-50' : ''}`}>
                     Next→
                   </button>
                   <span>{currentIndex + 1} / {allData.length}</span>
@@ -200,10 +202,10 @@ const ThingLinkOverlay = ({ data, allData, isOpen, setIsOpen }) => {
           <motion.div className={'pt-5 pl-5 pb-5 pr-5 sm:pr-10'}>
             {allData.length > 1 && (
               <div className={'w-full flex justify-start items-center mb-3 gap-x-3'}>
-                <button onClick={handleBack} className={`transition-opacity bg-burgundy px-3 py-1 text-white font-bold ${currentIndex - 1 < 0 ? 'opacity-50' : ''}`}>
+                <button onClick={handleBack} className={`transition-opacity bg-burgundy px-3 py-1 text-white font-normal ${currentIndex - 1 < 0 ? 'opacity-50' : ''}`}>
                   ←Back
                 </button>
-                <button onClick={handleNext} className={`transition-opacity bg-burgundy px-3 py-1 text-white font-bold ${currentIndex + 1 >= allData.length ? 'opacity-50' : ''}`}>
+                <button onClick={handleNext} className={`transition-opacity bg-burgundy px-3 py-1 text-white font-normal ${currentIndex + 1 >= allData.length ? 'opacity-50' : ''}`}>
                   Next→
                 </button>
                 <span>{currentIndex + 1} / {allData.length}</span>

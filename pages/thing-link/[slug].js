@@ -49,6 +49,7 @@ export const getStaticProps = async (context) => {
                   id
                 }
                 title
+                showIndex
                 image {
                   url
                   width

@@ -30,21 +30,23 @@ const ThingLinkComponent = ({ thinglink }) => {
           }}
         />
         <div className={'absolute top-0 left-0 w-full h-full'}>
-          {buttons.map((button) => {
+          {buttons.map((button, i) => {
             return (
-              <ThingLinkButton data={button} allData={buttons} />
+              <ThingLinkButton data={button} allData={buttons} index={i} />
             )
           })}
         </div>
       </div>
-      <div className={'py-2 px-3 bg-gray-100'}>
-        {thinglink.showTitle &&
-          <h3>{thinglink.title}</h3>
-        }
-        {thinglink.caption?.json && (
-          <RichtextComponent content={thinglink.caption?.json} />
-        )}
-      </div>
+      {thinglink.caption?.json || thinglink.showTitle && (
+        <div className={'py-2 px-3 bg-gray-100'}>
+          {thinglink.showTitle &&
+            <h3>{thinglink.title}</h3>
+          }
+          {thinglink.caption?.json && (
+            <RichtextComponent content={thinglink.caption?.json} />
+          )}
+        </div>
+      )}
     </>
   )
 }
