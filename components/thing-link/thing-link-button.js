@@ -234,7 +234,7 @@ const ThingLinkOverlay = ({ data, allData, isOpen, setIsOpen }) => {
 const ResizeableImage = ({ image }) => {
   return (
     <div className={'w-full'}>
-      <Image src={image.url} width={image.width} height={image.height} alt={image.title} key={`image-${image.url}`} />
+      <Image src={image.url} width={image.width} height={image.height} alt={image.title} key={`image-${image?.url}`} />
     </div>
   )
 }
