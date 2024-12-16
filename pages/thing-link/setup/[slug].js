@@ -3,21 +3,21 @@ import { callContentful } from '@utils/contentfulHelper'
 import ThingLinkSetupComponent from '@components/thing-link/thing-link-setup'
 
 const ThingLink = ({ thinglink }) => {
-    // console.log(thinglink)
+  // console.log(thinglink)
 
-    return (
-        <div data-iframe-height={true} className={'w-full overflow-hidden h-auto'}>
-            <ThingLinkSetupComponent thinglink={thinglink} />
-        </div>
-    )
+  return (
+    <div data-iframe-height={true} className={'w-full overflow-hidden h-auto'}>
+      <ThingLinkSetupComponent thinglink={thinglink} />
+    </div>
+  )
 }
 
 export default ThingLink
 
 export const getStaticProps = async (context) => {
-    const slug = context.params.slug
+  const slug = context.params.slug
 
-    const query = `{
+  const query = `{
       thingLinkCollection(
         limit: 1
         where: {slug: "${slug}"}
@@ -59,16 +59,16 @@ export const getStaticProps = async (context) => {
       }
   }`
 
-    const thinglink = await callContentful(query)
+  const thinglink = await callContentful(query)
 
-    return {
-        props: { thinglink: thinglink.data.thingLinkCollection.items[0] },
-        revalidate: 60,
-    }
+  return {
+    props: { thinglink: thinglink.data.thingLinkCollection.items[0] },
+    revalidate: 60,
+  }
 }
 
 export const getStaticPaths = async () => {
-    const query = `{
+  const query = `{
     thingLinkCollection {
       items {
         slug
@@ -76,18 +76,18 @@ export const getStaticPaths = async () => {
     }
   }`
 
-    const thinglinks = await callContentful(query)
+  const thinglinks = await callContentful(query)
 
-    const paths = thinglinks.data.thingLinkCollection.items.map((thinglink) => {
-        return {
-            params: {
-                slug: thinglink.slug,
-            },
-        }
-    })
-
+  const paths = thinglinks.data.thingLinkCollection.items.map((thinglink) => {
     return {
-        paths: paths,
-        fallback: 'blocking', // Creates pages if they don't exist and then stores them...
+      params: {
+        slug: thinglink.slug,
+      },
     }
+  })
+
+  return {
+    paths: paths,
+    fallback: 'blocking', // Creates pages if they don't exist and then stores them...
+  }
 }
