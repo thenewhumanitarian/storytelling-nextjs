@@ -118,10 +118,14 @@ const ThingLinkButton = ({ data, allData, index }) => {
           transform: 'translate(-50%, -50%)', // Ensure the circle's center stays fixed
         }}
         animate={{
-          // scale: [1.5], // Scale values for the pulsating effect
-          // opacity: [0.5, 1, 0.5], // Opacity values for the pulsating effect
+          // scale: [1, 1, 1.5, 1, 1], // Scale values for the pulsating effect
+          opacity: [0.6, 1, 0.6], // Opacity values for the pulsating effect
+          transformBox: 'fill-box',
         }}
         // whileHover={{ scale: [2, 2, 2, 2, 2], opacity: 1, zIndex: 9999 }}
+        whileHover={{
+          opacity: 1,
+        }}
         transition={{ repeat: Infinity, duration: 2 }}
         className={`cursor-pointer absolute ${colClass} ${borderClass} ${sizeClass} ${data.className} z-40 rounded-full shadow-3xl flex items-center justify-center`}
         onClick={() => {
