@@ -114,7 +114,7 @@ const ThingLinkButton = ({ data, allData, index }) => {
       <motion.div
         style={{
           left: `${pos.x - 0.5}%`,
-          top: `${pos.y - 0.7}%`,
+          top: `${pos.y - 0.9}%`,
           // transform: 'translate(-50%, -50%)', // Ensure the circle's center stays fixed
         }}
         animate={{
