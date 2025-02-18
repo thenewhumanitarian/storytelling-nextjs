@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 
 import Image from 'next/image';
 
@@ -113,21 +113,18 @@ const ThingLinkButton = ({ data, allData, index }) => {
     <>
       <motion.div
         style={{
-          left: `${pos.x}%`,
-          top: `${pos.y}%`,
-          transform: 'translate(-50%, -50%)', // Ensure the circle's center stays fixed
+          left: `${pos.x - 0.75}%`,
+          top: `${pos.y - 0.85}%`,
+          // transform: 'translate(-50%, -50%)', // Ensure the circle's center stays fixed
         }}
         animate={{
+          scale: [1, 1.5, 1], // Scale values for the pulsating effect
+          opacity: [1, 0.85, 1], // Opacity values for the pulsating effect
           // scale: [1, 1, 1.5, 1, 1], // Scale values for the pulsating effect
-          opacity: [0.6, 1, 0.6], // Opacity values for the pulsating effect
-          transformBox: 'fill-box',
         }}
-        // whileHover={{ scale: [2, 2, 2, 2, 2], opacity: 1, zIndex: 9999 }}
-        whileHover={{
-          opacity: 1,
-        }}
-        transition={{ repeat: Infinity, duration: 2 }}
-        className={`cursor-pointer absolute ${colClass} ${borderClass} ${sizeClass} ${data.className} z-40 rounded-full shadow-3xl flex items-center justify-center`}
+        whileHover={{ scale: [1.5], opacity: 1, zIndex: 9999 }}
+        transition={{ repeat: Infinity, duration: 2.5 }}
+        className={`cursor-pointer absolute ${colClass} ${borderClass} ${sizeClass} ${data.className} z-40 rounded-full shadow-3xl flex items-center justify-center p-0 m-0 text-center inline`}
         onClick={() => {
           setIsOpen(true)
         }}
@@ -147,6 +144,8 @@ export default ThingLinkButton;
 
 const ThingLinkOverlay = ({ data, allData, isOpen, setIsOpen }) => {
   const [currentIndex, setCurrentIndex] = useState(allData.indexOf(data));
+
+  const modalRef = useRef(null); // Create a reference to the modal
 
   const spring = {
     type: 'spring',
@@ -168,6 +167,25 @@ const ThingLinkOverlay = ({ data, allData, isOpen, setIsOpen }) => {
 
   const currentData = allData[currentIndex];
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // If modal is open and click is outside, close it
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    // Add event listener when modal is open
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      // Cleanup event listener on unmount
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen, setIsOpen]);
+
   return (
     <motion.div
       exit={{ background: 'transparent' }}
@@ -182,6 +200,7 @@ const ThingLinkOverlay = ({ data, allData, isOpen, setIsOpen }) => {
         exit={{ opacity: 0 }}
         transition={spring}
         className={`w-auto max-w-3xl h-auto bg-white z-50 absolute border-black border-2 max-h-full overflow-y-auto`}
+        ref={modalRef} // Attach ref here to detect outside clicks
       >
         {currentData.image ? (
           <div className={'flex flex-col-reverse sm:grid sm:grid-cols-2 items-center sm:p-2'}>
