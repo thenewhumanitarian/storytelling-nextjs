@@ -85,22 +85,22 @@ const ThingLinkButton = ({ data, allData, index }) => {
 
     switch (size) {
       case 'Tiny':
-        buttonSize = '-ml-1 -mt-1 w-2 h-2 border';
+        buttonSize = 'w-2 h-2 border';
         break;
       case 'Small':
-        buttonSize = '-ml-2 -mt-2 w-4 h-4 border-2';
+        buttonSize = 'w-4 h-4 border-2';
         break;
       case 'Medium':
-        buttonSize = '-ml-5 -mt-5 w-10 h-10 border-2';
+        buttonSize = 'w-10 h-10 border-2';
         break;
       case 'Large':
-        buttonSize = '-ml-10 -mt-10 w-20 h-20 border-4';
+        buttonSize = 'w-20 h-20 border-4';
         break;
       case 'Massive':
-        buttonSize = '-ml-16 -mt-16 w-32 h-32 border-5';
+        buttonSize = 'w-32 h-32 border-5';
         break;
       default:
-        buttonSize = '-ml-2 -m-t-2 w-4 h-4 border-2';
+        buttonSize = 'w-4 h-4 border-2';
         break;
     }
 
@@ -115,12 +115,13 @@ const ThingLinkButton = ({ data, allData, index }) => {
         style={{
           left: `${pos.x}%`,
           top: `${pos.y}%`,
+          transform: 'translate(-50%, -50%)', // Ensure the circle's center stays fixed
         }}
         animate={{
-          scale: [1, 1, 1.5, 1, 1], // Scale values for the pulsating effect
+          // scale: [1.5], // Scale values for the pulsating effect
           // opacity: [0.5, 1, 0.5], // Opacity values for the pulsating effect
         }}
-        whileHover={{ scale: [2, 2, 2, 2, 2], opacity: 1, zIndex: 9999 }}
+        // whileHover={{ scale: [2, 2, 2, 2, 2], opacity: 1, zIndex: 9999 }}
         transition={{ repeat: Infinity, duration: 2 }}
         className={`cursor-pointer absolute ${colClass} ${borderClass} ${sizeClass} ${data.className} z-40 rounded-full shadow-3xl flex items-center justify-center`}
         onClick={() => {
