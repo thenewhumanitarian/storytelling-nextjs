@@ -114,7 +114,7 @@ const ThingLinkButton = ({ data, allData, index }) => {
       <motion.div
         style={{
           left: `${pos.x - 0.5}%`,
-          top: `${pos.y - 0.9}%`,
+          top: `${pos.y - 1}%`,
           // transform: 'translate(-50%, -50%)', // Ensure the circle's center stays fixed
         }}
         animate={{
@@ -124,7 +124,7 @@ const ThingLinkButton = ({ data, allData, index }) => {
         }}
         whileHover={{ scale: [1.4], opacity: 1 }}
         transition={{ repeat: Infinity, duration: 2.5 }}
-        className={`cursor-pointer absolute ${colClass} ${borderClass} ${sizeClass} ${data.className} z-40 rounded-full shadow-3xl flex items-center justify-center p-0 m-0 text-center inline`}
+        className={`cursor-pointer absolute ${colClass} ${borderClass} ${sizeClass} ${data.className} z-40 rounded-full shadow-3xl flex items-center justify-center p-0 m-0 text-center`}
         onClick={() => {
           setIsOpen(true)
         }}

@@ -60,7 +60,7 @@ const ThingLinkComponent = ({ thinglink }) => {
           src={thinglink.baseImage.url}
           width={thinglink.baseImage.width}
           height={thinglink.baseImage.height}
-          alt="Picture of the author"
+          alt="Base image of this interactive Thing Link component"
           placeholder='blur'
           blurDataURL={`${thinglink.baseImage.url}?w=20&q=50`}
           style={{

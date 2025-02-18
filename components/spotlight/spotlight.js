@@ -109,8 +109,6 @@ const SpotlightComponent = ({ content }) => {
 									className={'absolute top-0 left-0'}
 									width={items[nextImage].image.width}
 									height={items[nextImage].image.height}
-									priority
-									loading={'eager'}
 									placeholder={'blur'}
 									blurDataURL={`${items[nextImage].image.url}?w=5`}
 									alt={items[nextImage].image.description || 'No alt text found'}
@@ -118,14 +116,14 @@ const SpotlightComponent = ({ content }) => {
 										width: '100%',
 										height: 'auto',
 									}}
+									loading={'eager'}
+									priority
 								/>
 							</div>
 							<Image
 								src={img.image.url}
 								width={img.image.width}
 								height={img.image.height}
-								priority
-								loading={'eager'}
 								placeholder={'blur'}
 								blurDataURL={`${img.image?.url}?w=5`}
 								alt={img.image.description || 'No alt text found'}
@@ -133,6 +131,8 @@ const SpotlightComponent = ({ content }) => {
 									width: '100%',
 									height: 'auto',
 								}}
+								loading={'eager'}
+								priority
 							/>
 							{/* Adds mouseover for showing it goes left and right... */}
 							<div className={'opacity-0 hover:opacity-100 absolute top-0 left-0 w-1/2 bg-gradient-to-r from-gray-800 to-transparent h-full'} />

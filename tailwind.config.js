@@ -1,7 +1,6 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
-	purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}', './components/**/*.css'],
 	content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}', './components/**/*.css'],
 	safelist: [
 		'w-3',
@@ -47,6 +46,6 @@ module.exports = {
 			},
 		},
 	},
-	plugins: [require('@tailwindcss/line-clamp'), require('@rvxlab/tailwind-plugin-ios-full-height')],
+	plugins: [require('@rvxlab/tailwind-plugin-ios-full-height')],
 	// plugins: [require('@tailwindcss/typography')],
-}
+};
